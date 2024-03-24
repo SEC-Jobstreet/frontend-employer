@@ -1,9 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-export default function configureAppStore() {
-  const store = configureStore({
-    reducer: {},
-  });
+import counterReducer from "./counterSlice";
 
-  return store;
-}
+const store = configureStore({
+  reducer: {
+    counter: counterReducer,
+  },
+  devTools: process.env.NODE_ENV !== "production",
+});
+
+export default store;
