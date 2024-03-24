@@ -1,0 +1,82 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "plugins": ["@typescript-eslint", "react", "prettier", "simple-import-sort"],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "18.0"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "./"]
+      }
+    }
+  },
+  "extends": ["airbnb", "airbnb/hooks", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "no-param-reassign": ["error", {
+      "props": true,
+      "ignorePropertyModificationsFor": [
+        "state"
+      ]
+    }],
+    "no-console": "warn",
+    "no-eval": "error",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [
+      2,
+      {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          // Packages `react` related packages come first.
+          ["^react", "^@?\\w"],
+          // Internal packages.
+          ["^(@|src)(/.*|$)"],
+          // Side effect imports.
+          ["^\\u0000"],
+          // Parent imports. Put `..` last.
+          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+          // Other relative imports. Put same-folder imports and `.` last.
+          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+          // Style imports.
+          ["^.+\\.?(css)$"]
+        ]
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 80,
+        "trailingComma": "es5",
+        "semi": true,
+        "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+        "no-unused-vars": ["error"]
+      }
+    ]
+  }
+}

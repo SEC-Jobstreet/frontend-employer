@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+
+  frontend:
+    container_name: employer-dev
+    image: employer-dev
+    build: 
+      context: .
+      target: development
+    volumes:
+      - './src:/app/src'
+    ports:
+      - 3001:3001
+    environment:
+      - WATCHPACK_POLLING=true
