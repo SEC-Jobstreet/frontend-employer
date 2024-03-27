@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Col, Container, Pagination } from "react-bootstrap";
 
 import JobItem from "../../components/SearchResult/JobItem";
@@ -99,34 +99,40 @@ function Search() {
           className="text-start"
           style={{ marginInline: "1.6rem", fontSize: "1.5rem" }}
         >
-          <strong>{SearchResult.length} </strong>
+          <b>{SearchResult.length} </b>
           việc - Trang
-          <strong> {pages.current + 1} </strong>
+          <b> {pages.current + 1} </b>
           của
-          <strong> {pages.total}</strong>
+          <b> {pages.total}</b>
         </div>
         <div>
           {jobsListed.map((job) => (
-            <JobItem data={job} />
+            <Fragment key={job.id}>
+              <JobItem data={job} />
+            </Fragment>
           ))}
         </div>
         <Pagination className={styles.paginationContainer}>
           <Pagination.Prev onClick={handlePreviousButtonClick}>
-            <strong>Trước</strong>
+            <b>Trước</b>
           </Pagination.Prev>
           {[...Array(pages.end - pages.start + 1)].map((item, index) => {
             const page = pages.start + index + 1;
             return (
-              <Pagination.Item
-                onClick={handlePageNumberClick}
-                className={page === pages.current + 1 ? styles.pageCurrent : ""}
-              >
-                {page}
-              </Pagination.Item>
+              <Fragment key={page}>
+                <Pagination.Item
+                  onClick={handlePageNumberClick}
+                  className={
+                    page === pages.current + 1 ? styles.pageCurrent : ""
+                  }
+                >
+                  {page}
+                </Pagination.Item>
+              </Fragment>
             );
           })}
           <Pagination.Next onClick={handleNextButtonClick}>
-            <strong>Kế tiếp</strong>
+            <b>Kế tiếp</b>
           </Pagination.Next>
         </Pagination>
       </Col>
