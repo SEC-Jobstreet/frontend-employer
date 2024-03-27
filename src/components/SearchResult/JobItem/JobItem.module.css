@@ -1,0 +1,81 @@
+.jobCard {
+  box-shadow: var(--bg-shadow, 0 4px 8px 0 rgba(164, 164, 164, 0.5));
+  border-radius: 8px;
+  margin: 0.8rem 1.6rem 1rem !important;
+  padding: 1.6rem !important;
+  text-align: left;
+  cursor: pointer;
+}
+
+.jobCard:hover {
+  box-shadow: 0 4px 8px 0 rgba(164, 164, 164, 0.2);
+  box-shadow: var(--bg-shadow-light, 0 4px 8px 0 rgba(164, 164, 164, 0.2));
+}
+
+.badge {
+  font-weight: 400 !important;
+  font-size: 1.2rem !important;
+  text-transform: capitalize;
+  color: var(--text-badge-feature, #1c1c1c);
+  padding-inline: 0.65em;
+  padding-block: 0.35em;
+  border-radius: 0.375rem;
+}
+
+.seenJobBadge {
+  background-color: var(--bg-badge-default-jobcard-temp, #626262) !important;
+  color: #fff;
+}
+
+.freshnessTime {
+  color: var(--bg-muted-3, #626262);
+  font-weight: 400;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  margin-left: 0.8rem;
+}
+
+.jobTitle {
+  font-size: 1.5rem !important;
+  font-weight: 500;
+  hyphens: auto;
+  line-height: 1.5;
+  color: var(--text-body, #1c1c1c);
+  margin-top: 0.8rem !important;
+}
+
+.jobCardBody {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+.jobCardBody div {
+  margin-bottom: 0.8rem;
+}
+
+.quickApplyBadge {
+  background-color: #ddf8eb !important;
+}
+
+.listedDate {
+  color: var(--text-muted, #626262);
+  font-size: 1.1rem;
+}
+
+.saveButton {
+  background-color: #fff !important;
+  border-radius: 50px !important;
+  color: var(--text-body, #1c1c1c) !important;
+  border-color: var(--border-line, #dedede) !important;
+  padding: 0.5rem 1.6rem !important;
+  font-size: 1.3rem !important;
+
+  background-image: url("../../../assets/save_icon.svg");
+  background-position: center left 1.2rem;
+  background-repeat: no-repeat;
+  padding-left: 3.2rem !important;
+}
+
+.saveButton:hover {
+  background-color: #dedede !important;
+}

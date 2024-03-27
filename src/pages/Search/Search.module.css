@@ -1,0 +1,68 @@
+.wrapper {
+  display: grid;
+  margin: 2.4rem auto;
+  max-width: 1300px !important;
+  width: calc(100vw - 100px) !important;
+  grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.6fr);
+  column-gap: 1.6rem;
+}
+
+.paginationContainer {
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationContainer a {
+  color: var(--text-body, #1c1c1c);
+  font-size: 1.6rem !important;
+  text-wrap: nowrap;
+}
+
+.paginationContainer a:hover {
+  text-decoration: underline;
+  color: inherit !important;
+  border: 1px solid #dee2e6 !important;
+  background-color: inherit !important;
+}
+
+.paginationContainer a:focus {
+  text-decoration: none;
+  color: inherit !important;
+  border: 1px solid #dee2e6 !important;
+  background-color: inherit !important;
+  box-shadow: none;
+}
+
+.paginationContainer span {
+  font-size: 1.6rem !important;
+}
+
+.pageCurrent {
+  color: var(--text-highlight, #0e8136) !important;
+  border-bottom: 1px solid var(--border-highlight, #0e8136) !important;
+  font-weight: bold;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.68rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --bg-badge-default-jobcard-temp: #626262;
+  --bg-muted-3: #626262;
+  --text-body: #1c1c1c;
+  --text-badge-feature: #1c1c1c;
+  --text-muted: #626262;
+}
