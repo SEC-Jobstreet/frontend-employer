@@ -31,8 +31,10 @@
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint --fix .  --ext .js,.jsx,.ts,.tsx",
-    "stylelint:check": "stylelint \"src/**/*.css\"",
-    "lint-check-all": "npm run lint && npm run stylelint:check"
+    "stylelint": "stylelint \"src/**/*.css\"",
+    "stylelint:fix": "stylelint --fix \"src/**/*.css\"",
+    "lint-fix-all": "npm run lint:fix && npm run stylelint:fix",
+    "lint-check-all": "npm run lint && npm run stylelint"
   },
   "browserslist": {
     "production": [

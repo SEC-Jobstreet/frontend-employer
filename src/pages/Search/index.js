@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
 import { Col, Container, Pagination } from "react-bootstrap";
 
-import JobItem from "../../components/SearchResult/JobItem";
+import JobItem from "../../components/searchresult/jobitem";
 
 import { SearchResult } from "./sampleData";
 
-import styles from "./Search.module.css";
+import styles from "./search.module.css";
 
 const ITEM_PER_PAGE = 15;
 const MAX_PAGES_LISTED = 7;

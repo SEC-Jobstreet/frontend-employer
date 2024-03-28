@@ -1,6 +1,6 @@
 import { Button, Card } from "react-bootstrap";
 
-import styles from "./JobItem.module.css";
+import styles from "./jobItem.module.css";
 
 function JobItem({ data }) {
   return (
