@@ -24,6 +24,7 @@
     }
   },
   "rules": {
+    "react-hooks/exhaustive-deps": "off",
     "react/prop-types": "off",
     "react/function-component-definition": [
       2,

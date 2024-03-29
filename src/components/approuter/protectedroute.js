@@ -1,16 +1,12 @@
-import { useSelector } from "react-redux";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-import { selectUser } from "../../store/user";
-
-function ProtectedRoute({ children }) {
-  const user = useSelector(selectUser);
+function ProtectedRoute({ isAllowed, redirectPath = "/" }) {
   const location = useLocation();
 
-  if (user.email === "") {
-    return <Navigate to="/" state={{ from: location }} replace />;
+  if (!isAllowed) {
+    return <Navigate to={redirectPath} state={{ from: location }} replace />;
   }
-  return children;
+  return <Outlet />;
 }
 
 export default ProtectedRoute;

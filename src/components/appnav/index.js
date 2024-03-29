@@ -6,7 +6,7 @@ import { loginAccout, logoutAccout, selectUser } from "../../store/user";
 
 import "./appnav.css";
 
-const logo = require("../../assets/logo.svg").default;
+const logo = require("../../assets/svg/logo.svg").default;
 
 function NavBar() {
   const user = useSelector(selectUser);
@@ -36,21 +36,21 @@ function NavBar() {
             <>
               <Nav className="p-0">
                 <NavItem eventkey={1} href="/profile">
-                  <NavLink to="/profile" as={Link}>
+                  <NavLink to="/account/profile" as={Link}>
                     Hồ sơ cá nhân
                   </NavLink>
                 </NavItem>
               </Nav>
               <Nav className="p-0">
                 <NavItem eventkey={2} href="/job_alerts">
-                  <NavLink to="/job_alerts" as={Link}>
+                  <NavLink to="/account/job_alerts" as={Link}>
                     Thông báo việc
                   </NavLink>
                 </NavItem>
               </Nav>
               <Nav className="p-0">
                 <NavItem eventkey={3} href="/saved_jobs">
-                  <NavLink to="/saved_jobs" as={Link}>
+                  <NavLink to="/account/saved_jobs" as={Link}>
                     Việc của tôi
                   </NavLink>
                 </NavItem>

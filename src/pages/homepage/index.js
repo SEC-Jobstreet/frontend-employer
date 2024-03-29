@@ -1,11 +1,8 @@
-import Search from "../search";
-
 function Homepage() {
   return (
-    <>
+    <div>
       <div>This is homepage</div>
-      <Search />
-    </>
+    </div>
   );
 }
 
