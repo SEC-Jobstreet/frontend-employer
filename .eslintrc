@@ -24,7 +24,14 @@
     }
   },
   "rules": {
+    "react-hooks/exhaustive-deps": "off",
     "react/prop-types": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "function-declaration"
+      }
+    ],
     "no-param-reassign": ["error", {
       "props": true,
       "ignorePropertyModificationsFor": [
@@ -76,7 +83,8 @@
         "trailingComma": "es5",
         "semi": true,
         "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
-        "no-unused-vars": ["error"]
+        "no-unused-vars": ["error"],
+        "endOfLine": "auto"
       }
     ]
   }

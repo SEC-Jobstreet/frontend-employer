@@ -1,0 +1,49 @@
+.header {
+  padding: 1.8rem 4rem;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.navbar {
+  width: 100%;
+}
+
+.nav-link {
+  font-size: 1.5rem !important;
+  color: black !important;
+  margin: 0 1.5rem;
+}
+
+.rightGroup {
+  justify-content: flex-end;
+}
+
+.button-employer {
+  height: 4rem;
+  font-size: 1.5rem !important;
+  font-weight: 500 !important;
+  margin: 0rem 0rem 0rem 3rem;
+}
+
+.login {
+  font-size: 1.5rem !important;
+  border: none;
+  background: none;
+}
+
+.login:hover {
+  text-decoration: underline;
+}
+
+.logout {
+  font-size: 1.5rem !important;
+  border: none;
+  background: none;
+  margin-left: 2rem;
+}
+
+.logout:hover {
+  text-decoration: underline;
+}
