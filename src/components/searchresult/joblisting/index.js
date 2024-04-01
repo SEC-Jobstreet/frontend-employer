@@ -1,9 +1,11 @@
 import React, { Fragment } from "react";
-import { Col, Container, Pagination } from "react-bootstrap";
+import { Button, Col, Container, Pagination } from "react-bootstrap";
 
 import { SearchResult } from "../../../temp/samplelistjobdata";
 import JobDescription from "../jobdescription";
 import JobItem from "../jobitem";
+
+import PersonalizedTags from "./personalizedTags";
 
 import styles from "./search.module.css";
 
@@ -18,6 +20,7 @@ function JobListing() {
     start: 0,
     end: 0,
   });
+  const [activeTag, setActiveTag] = React.useState(null);
 
   React.useEffect(() => {
     const totalPageNumber = Math.ceil(
@@ -92,20 +95,51 @@ function JobListing() {
     }
   };
 
+  const handleTagButtonClick = (e) => {
+    const newTag = e.target.innerText;
+
+    if (newTag !== activeTag) {
+      setActiveTag(newTag);
+    } else {
+      setActiveTag(null);
+    }
+  };
+
   return (
     <Container className={styles.wrapper}>
       <Col>
-        <div
-          className="text-start"
-          style={{ marginInline: "1.6rem", fontSize: "1.5rem" }}
-        >
-          <b>{SearchResult.length} </b>
-          việc - Trang
-          <b> {pages.current + 1} </b>
-          của
-          <b> {pages.total}</b>
+        <div className={styles.topPanel}>
+          <div
+            className="text-start"
+            style={{ fontSize: "1.5rem", marginBottom: "1rem" }}
+          >
+            <p style={{ fontSize: "1.35rem" }}>
+              <b>{SearchResult.length} việc làm </b>– tại <b>Hồ Chí Minh</b>
+            </p>
+            <p>
+              Trang
+              <b> {pages.current + 1} </b>
+              của
+              <b> {pages.total}</b>
+            </p>
+          </div>
+          <div className={styles.personalizedTags}>
+            {PersonalizedTags.map((tag) => (
+              <Button
+                className={
+                  activeTag === tag.tagName
+                    ? `${styles.tagButton} ${styles.active}`
+                    : `${styles.tagButton}`
+                }
+                onClick={handleTagButtonClick}
+                key={tag.tagName}
+              >
+                {tag.tagName}
+              </Button>
+            ))}
+          </div>
         </div>
-        <div>
+        <div className={styles.jobList}>
           {jobsListed.map((job) => (
             <Fragment key={job.id}>
               <JobItem data={job} />
