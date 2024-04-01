@@ -11,12 +11,14 @@
   overflow-x: auto;
   display: flex;
   justify-content: center;
+  margin: 2.4rem 0;
 }
 
 .paginationContainer a {
   color: var(--text-body, #1c1c1c);
   font-size: 1.6rem !important;
   text-wrap: nowrap;
+  padding: .7rem 1.1rem;
 }
 
 .paginationContainer a:hover {
@@ -42,6 +44,10 @@
   color: var(--text-highlight, #0e8136) !important;
   border-bottom: 1px solid var(--border-highlight, #0e8136) !important;
   font-weight: bold;
+}
+
+.pageItem {
+  padding: 0;
 }
 
 * {

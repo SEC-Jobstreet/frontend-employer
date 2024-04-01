@@ -10,7 +10,7 @@ const sampleJob = {
   link: "/#",
 };
 
-const SearchResult = Array.from({ length: 5000 }, (_, index) => ({
+const SearchResult = Array.from({ length: 100 }, (_, index) => ({
   ...sampleJob,
   id: index + 1,
 }));

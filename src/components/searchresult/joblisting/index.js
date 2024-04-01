@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Col, Container, Pagination } from "react-bootstrap";
 
 import { SearchResult } from "../../../temp/samplelistjobdata";
+import JobDescription from "../jobdescription";
 import JobItem from "../jobitem";
 
 import styles from "./search.module.css";
@@ -53,7 +54,7 @@ function JobListing() {
       pageEnd = MAX_PAGES_LISTED - 1;
     } else if (newPage + halfMaxPages > pages.total) {
       pageEnd = pages.total - 1;
-      pageStart = pageEnd - MAX_PAGES_LISTED;
+      pageStart = pageEnd - MAX_PAGES_LISTED + 1;
     } else {
       pageStart = newPage - halfMaxPages;
       pageEnd = newPage + 3;
@@ -112,7 +113,10 @@ function JobListing() {
           ))}
         </div>
         <Pagination className={styles.paginationContainer}>
-          <Pagination.Prev onClick={handlePreviousButtonClick}>
+          <Pagination.Prev
+            onClick={handlePreviousButtonClick}
+            className={pages.current === 0 ? "visually-hidden" : ""}
+          >
             <b>Trước</b>
           </Pagination.Prev>
           {[...Array(pages.end - pages.start + 1)].map((item, index) => {
@@ -122,7 +126,9 @@ function JobListing() {
                 <Pagination.Item
                   onClick={handlePageNumberClick}
                   className={
-                    page === pages.current + 1 ? styles.pageCurrent : ""
+                    page === pages.current + 1
+                      ? `${styles.pageCurrent} ${styles.pageItem}`
+                      : `${styles.pageItem}`
                   }
                 >
                   {page}
@@ -130,13 +136,18 @@ function JobListing() {
               </Fragment>
             );
           })}
-          <Pagination.Next onClick={handleNextButtonClick}>
+          <Pagination.Next
+            onClick={handleNextButtonClick}
+            className={
+              pages.current === pages.total - 1 ? "visually-hidden" : ""
+            }
+          >
             <b>Kế tiếp</b>
           </Pagination.Next>
         </Pagination>
       </Col>
       <Col>
-        <h2>job detail</h2>
+        <JobDescription />
       </Col>
     </Container>
   );
