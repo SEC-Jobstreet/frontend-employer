@@ -4,10 +4,12 @@ import { Button, Col, Container, Pagination } from "react-bootstrap";
 import { SearchResult } from "../../../temp/samplelistjobdata";
 import JobDescription from "../jobdescription";
 import JobItem from "../jobitem";
+import RecentResearch from "../recentresearch";
+import RelatedResearch from "../relatedsearches";
 
 import PersonalizedTags from "./personalizedTags";
 
-import styles from "./search.module.css";
+import styles from "./joblisting.module.css";
 
 const ITEM_PER_PAGE = 15;
 const MAX_PAGES_LISTED = 7;
@@ -21,6 +23,7 @@ function JobListing() {
     end: 0,
   });
   const [activeTag, setActiveTag] = React.useState(null);
+  const [activeJob, setAvticeJob] = React.useState(null);
 
   React.useEffect(() => {
     const totalPageNumber = Math.ceil(
@@ -105,15 +108,19 @@ function JobListing() {
     }
   };
 
+  const handleJobItemClick = (value) => {
+    setAvticeJob(value);
+  };
+
   return (
     <Container className={styles.wrapper}>
       <Col>
         <div className={styles.topPanel}>
           <div
             className="text-start"
-            style={{ fontSize: "1.5rem", marginBottom: "1rem" }}
+            style={{ fontSize: "1.54rem", marginBottom: "1rem" }}
           >
-            <p style={{ fontSize: "1.35rem" }}>
+            <p style={{ fontSize: "1.6rem" }}>
               <b>{SearchResult.length} việc làm </b>– tại <b>Hồ Chí Minh</b>
             </p>
             <p>
@@ -142,7 +149,11 @@ function JobListing() {
         <div className={styles.jobList}>
           {jobsListed.map((job) => (
             <Fragment key={job.id}>
-              <JobItem data={job} />
+              <JobItem
+                data={job}
+                activeItem={activeJob}
+                handleClick={handleJobItemClick}
+              />
             </Fragment>
           ))}
         </div>
@@ -179,9 +190,13 @@ function JobListing() {
             <b>Kế tiếp</b>
           </Pagination.Next>
         </Pagination>
+        <RecentResearch />
+        <RelatedResearch />
       </Col>
-      <Col>
-        <JobDescription />
+      <Col style={{ alignSelf: "stretch" }}>
+        <JobDescription
+          data={activeJob === null ? null : SearchResult[activeJob - 1]}
+        />
       </Col>
     </Container>
   );

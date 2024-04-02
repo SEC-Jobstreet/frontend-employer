@@ -1,9 +1,9 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
 
-import styles from "./jobItem.module.css";
+import styles from "./jobitem.module.css";
 
-function JobItem({ data }) {
+function JobItem({ data, activeItem, handleClick }) {
   const [saved, setSaved] = React.useState(false);
 
   const handleSaveButtonClick = () => {
@@ -11,7 +11,14 @@ function JobItem({ data }) {
   };
 
   return (
-    <Card className={styles.wrapper}>
+    <Card
+      className={
+        activeItem === data.id
+          ? `${styles.wrapper} ${styles.activeJob}`
+          : `${styles.wrapper}`
+      }
+      onClick={() => handleClick(data.id)}
+    >
       <Card.Body className={styles.jobCard}>
         <Card.Subtitle className="mb-2 text-mute d-flex align-items-center">
           <span className={`${styles.badge} ${styles.seenJobBadge}`}>
@@ -25,10 +32,7 @@ function JobItem({ data }) {
           <div>{data.company}</div>
           <div>{data.location}</div>
           <div>
-            <span
-              className={`${styles.badge} ${styles.quickApplyBadge}`}
-              style={{ backgroundColor: "#ddf8eb" }}
-            >
+            <span className={`${styles.badge} ${styles.quickApplyBadge}`}>
               Nộp đơn nhanh
             </span>
           </div>

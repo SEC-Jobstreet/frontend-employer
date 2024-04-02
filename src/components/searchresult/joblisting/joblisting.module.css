@@ -57,7 +57,7 @@
 .personalizedTags {
   display: flex;
   row-gap: 0.8rem !important;
-  gap: 0.8rem;
+  column-gap: 0.8rem;
   flex-wrap: wrap;
   margin-block: 1.2rem;
 }
@@ -68,7 +68,7 @@
   color: var(--text-body, #1c1c1c) !important;
   border-color: var(--border-line, #dedede) !important;
   padding: 0.5rem 1.6rem !important;
-  font-size: 1.3rem !important;
+  font-size: 1.4rem !important;
 }
 
 .tagButton:hover {
@@ -93,7 +93,8 @@ html {
 }
 
 body {
-  font-size: 1.68rem;
+  font-size: 1.6rem;
+  line-height: 1.6;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 

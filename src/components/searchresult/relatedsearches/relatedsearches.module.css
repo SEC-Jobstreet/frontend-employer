@@ -1,0 +1,33 @@
+.wrapper {
+  margin-top: 2.4rem;
+  text-align: left;
+}
+
+.button {
+  margin-bottom: 1.6rem;
+  margin-right: 1.6rem;
+  border: 1px solid var(--bg-highlight, #0e8136);
+  background-color: var(--bg-body, #fff);
+  color: var(--bg-highlight, #0e8136);
+  font-size: 1.4rem;
+  height: 4rem;
+  padding-left: 1.2rem;
+  padding-right: 2rem;
+  appearance: none;
+  align-items: center;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 500;
+  justify-content: center;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.button svg {
+  margin-right: 0.4rem;
+}
+
+.button:hover {
+  color: #15a449 !important;
+}
