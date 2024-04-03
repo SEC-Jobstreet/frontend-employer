@@ -1,7 +1,15 @@
+.wrapper {
+  margin-top: 1.6rem;
+  border: 0px !important;
+}
+
+.activeJob {
+  border: 1px solid var(--border-highlight, #0e8136) !important;
+}
+
 .jobCard {
   box-shadow: var(--bg-shadow, 0 4px 8px 0 rgba(164, 164, 164, 0.5));
   border-radius: 8px;
-  margin: 0.8rem 1.6rem 1rem !important;
   padding: 1.6rem !important;
   text-align: left;
   cursor: pointer;
@@ -50,11 +58,12 @@
 }
 
 .jobCardBody div {
-  margin-bottom: 0.8rem;
+  margin-top: 0.8rem;
 }
 
 .quickApplyBadge {
   background-color: #ddf8eb !important;
+  margin-block: 1rem !important;
 }
 
 .listedDate {
@@ -78,4 +87,21 @@
 
 .saveButton:hover {
   background-color: #dedede !important;
+}
+
+.savedStyle {
+  background-image: url("../../../assets/svg/saved_icon.svg");
+}
+
+.cardBottom {
+  margin-top: 1.2rem;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}
+
+@media only screen and (max-width: 1000px) {
+  .activeJob {
+    border: 0px !important;
+  }
 }

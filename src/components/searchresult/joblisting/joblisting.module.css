@@ -1,0 +1,135 @@
+.wrapper {
+  display: grid;
+  margin: 2.4rem auto;
+  max-width: 1300px !important;
+  width: calc(100vw - 100px) !important;
+  grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.6fr);
+  column-gap: 1.6rem;
+}
+
+.jobList {
+  display: inline-block;
+}
+
+.paginationContainer {
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+  margin: 2.4rem 0;
+}
+
+.fullPagination {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.smallPagination a {
+  border: 1px solid var(--bg-highlight, #0e8136);
+  background-color: var(--bg-highlight, #0e8136) !important;
+  color: var(--text-pop, #fff) !important;
+  height: 4.8rem;
+  font-size: 1.6rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-weight: 500;
+}
+
+.fullPagination a {
+  color: var(--text-body, #1c1c1c);
+  font-size: 1.6rem !important;
+  text-wrap: nowrap;
+  padding: 0.7rem 1.1rem;
+}
+
+.fullPagination a:hover {
+  text-decoration: underline;
+  color: inherit !important;
+  border: 1px solid #dee2e6 !important;
+  background-color: inherit !important;
+}
+
+.fullPagination a:focus {
+  text-decoration: none;
+  color: inherit !important;
+  border: 1px solid #dee2e6 !important;
+  background-color: inherit !important;
+  box-shadow: none;
+}
+
+.fullPagination span {
+  font-size: 1.6rem !important;
+}
+
+.pageCurrent {
+  color: var(--text-highlight, #0e8136) !important;
+  border-bottom: 1px solid var(--border-highlight, #0e8136) !important;
+  font-weight: bold;
+}
+
+.pageItem {
+  padding: 0;
+}
+
+.personalizedTags {
+  display: flex;
+  row-gap: 0.8rem !important;
+  column-gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-block: 1.2rem;
+}
+
+.tagButton {
+  background-color: #fff !important;
+  border-radius: 50px !important;
+  color: var(--text-body, #1c1c1c) !important;
+  border-color: var(--border-line, #dedede) !important;
+  padding: 0.5rem 1.6rem !important;
+  font-size: 1.4rem !important;
+}
+
+.tagButton:hover {
+  background-color: #dedede !important;
+}
+
+.personalizedTags .active {
+  color: var(--text-highlight-light, #0e8136) !important;
+  font-weight: 500;
+  background-color: var(--bg-highlight-light, #f2fdf7) !important;
+  border-color: var(--border-highlight, #0e8136) !important;
+}
+
+.smallPagination {
+  width: 100%;
+}
+
+.smallPagination a:focus {
+  text-decoration: none;
+  color: var(--text-pop, #fff) !important;
+  background-color: var(--bg-highlight, #0e8136) !important;
+  box-shadow: none;
+}
+
+.smallPagination a:hover {
+  background-color: #15a449 !important;
+}
+
+@media only screen and (max-width: 1000px) {
+  .wrapper {
+    grid-template-columns: auto;
+  }
+
+  .jobList {
+    width: -webkit-fill-available;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .smallPagination {
+    display: block !important;
+  }
+
+  .fullPagination {
+    display: none;
+  }
+}

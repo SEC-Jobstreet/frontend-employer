@@ -1,10 +1,13 @@
+import { StateProvider } from "../../components/searchresult/context";
 import JobListing from "../../components/searchresult/joblisting";
 
 function Search() {
   return (
     <div>
       <div>This is search page</div>
-      <JobListing />
+      <StateProvider>
+        <JobListing />
+      </StateProvider>
     </div>
   );
 }

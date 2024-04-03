@@ -1,0 +1,37 @@
+.wrapper {
+  padding: 1.6rem;
+  border: 1px solid var(--border-line, #dedede);
+  border-radius: 0.8rem;
+  text-align: left;
+}
+
+.header {
+  margin-bottom: 0.8rem;
+  font-size: 1.68rem;
+  font-weight: 700;
+}
+
+.recentResearch {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  padding-block: 0.8rem;
+}
+
+.recentResearch:hover {
+  text-decoration: underline;
+  text-decoration-color: #1c1c1c;
+  text-decoration-thickness: 1.5px;
+}
+
+.title {
+  color: var(--text-body, #1c1c1c);
+  font-size: 1.6rem;
+}
+
+.number {
+  color: var(--text-cool, #0f62c7);
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}

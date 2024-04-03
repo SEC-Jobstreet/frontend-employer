@@ -1,0 +1,163 @@
+.wrapper {
+  text-align: left;
+  font-size: 1.6rem;
+  position: sticky;
+  top: 0px;
+  padding-top: 1.6rem;
+  margin-bottom: 2.4rem !important;
+}
+
+.facetLink {
+  color: var(--text-highlight, #0e8136) !important;
+  text-decoration: none !important;
+  font-weight: 400;
+}
+
+.facetLink:hover {
+  text-decoration: underline !important;
+}
+
+.divider {
+  margin: 0 calc(0.4rem + 0.1rem);
+}
+
+.jobDescription {
+  border: 1px solid var(--border-highlight, #0e8136);
+  border-radius: 8px;
+  height: 95vh;
+  --offset: 66px;
+  padding: 1.6rem;
+  display: grid;
+  margin-bottom: 2.4rem;
+}
+
+.JDHeader {
+  padding-bottom: 1.6rem;
+}
+
+.headingXXLarge {
+  font-size: 2.24rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+}
+
+.company {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  white-space: nowrap;
+  font-size: 1.54rem;
+}
+
+.location {
+  text-wrap: nowrap;
+  color: var(--text-muted, #626262);
+  font-size: 1.54rem;
+}
+
+.badge {
+  font-weight: 400 !important;
+  font-size: 1.4rem;
+  letter-spacing: -0.04em;
+  line-height: 1.6rem;
+  text-transform: capitalize;
+  color: var(--text-badge-default, #1c1c1c) !important;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.375rem;
+  background-color: var(--bg-badge-default, #dedede);
+  width: fit-content;
+  margin-bottom: 0.8rem;
+}
+
+.clockIcon {
+  background-image: url("../../../assets/svg/clock_icon.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 1.6rem;
+  padding-left: 2rem;
+  margin-right: 0.8rem;
+}
+
+.actionsContainer {
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
+  padding-block: 2.4rem;
+}
+
+.applyButton {
+  height: 4.8rem;
+  padding-inline: 2.4rem !important;
+  font-size: 1.6rem !important;
+  font-weight: 500 !important;
+  color: var(--text-pop, #fff) !important;
+  border: 0px !important;
+  background-color: var(--bg-highlight, #0e8136) !important;
+}
+
+.applyButton:hover {
+  background-color: #15a449 !important;
+}
+
+.saveButton {
+  height: 4.8rem;
+  padding-inline: 2.4rem !important;
+  font-size: 1.6rem !important;
+  font-weight: 500 !important;
+  border: 1px solid var(--bg-highlight, #0e8136) !important;
+  background-color: var(--bg-body, #fff) !important;
+  color: var(--bg-highlight, #0e8136) !important;
+}
+
+.saveButton:hover {
+  color: #15a449 !important;
+}
+
+.openNewTab {
+  text-decoration: none;
+  color: var(--text-cool, #0f62c7);
+}
+
+.openNewTab:hover {
+  text-decoration: underline;
+}
+
+.descriptionContent {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  text-align: justify;
+  overflow-y: scroll;
+  --offset: 66px;
+}
+
+.descriptionContent::-webkit-scrollbar {
+  display: none;
+}
+
+li {
+  margin-bottom: 0.4rem;
+}
+
+.moreButton {
+  cursor: pointer;
+  color: var(--text-muted, #626262);
+}
+
+.moreButton:hover {
+  text-decoration: underline;
+  color: #bcbcbc;
+}
+
+@media only screen and (max-width: 1000px) {
+  .jobDescription {
+    display: none;
+  }
+  .wrapper {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}

@@ -10,9 +10,13 @@ const sampleJob = {
   link: "/#",
 };
 
-const SearchResult = Array.from({ length: 5000 }, (_, index) => ({
+const SearchResult = Array.from({ length: 100 }, (_, index) => ({
   ...sampleJob,
   id: index + 1,
 }));
 
-export { SearchResult, sampleJob };
+const SavedJob = Array.from({ length: 100 }, (_, index) => ({
+  [index + 1]: false,
+}));
+
+export { SearchResult, sampleJob, SavedJob };
