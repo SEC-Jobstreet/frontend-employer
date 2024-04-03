@@ -8,18 +8,18 @@ export const userSlice = createSlice({
     },
   },
   reducers: {
-    logoutAccout: (state) => {
+    logoutAccount: (state) => {
       state.account = {
         email: "",
       };
     },
-    loginAccout: (state, action) => {
+    loginAccount: (state, action) => {
       state.account = action.payload;
     },
   },
 });
 
-export const { loginAccout, logoutAccout } = userSlice.actions;
+export const { loginAccount, logoutAccount } = userSlice.actions;
 
 export const selectUser = (state) => state.user.account;
 

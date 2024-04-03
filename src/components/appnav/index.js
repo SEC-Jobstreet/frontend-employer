@@ -1,8 +1,10 @@
+import React, { useState } from "react";
 import { Button, Nav, Navbar, NavItem, NavLink } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
-import { loginAccout, logoutAccout, selectUser } from "../../store/user";
+import Login from "../../pages/login/login";
+import { logoutAccount, selectUser } from "../../store/user";
 
 import "./appnav.css";
 
@@ -12,6 +14,12 @@ function NavBar() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showLogin, setShowLogin] = useState(false);
+
+  // eslint-disable-next-line no-unused-vars
+  const handleLoginClick = () => {
+    setShowLogin(!showLogin);
+  };
 
   return (
     <div className="header">
@@ -28,15 +36,15 @@ function NavBar() {
             <button
               type="button"
               className="login"
-              onClick={() => dispatch(loginAccout({ email: "a@email.com" }))}
+              onClick={() => setShowLogin(true)}
             >
               <span>Đăng nhập</span>
             </button>
           ) : (
             <>
               <Nav className="p-0">
-                <NavItem eventkey={1} href="/profile">
-                  <NavLink to="/account/profile" as={Link}>
+                <NavItem eventkey={1}>
+                  <NavLink as={Link} to="account/profile">
                     Hồ sơ cá nhân
                   </NavLink>
                 </NavItem>
@@ -59,7 +67,7 @@ function NavBar() {
                 type="button"
                 className="logout"
                 onClick={() => {
-                  dispatch(logoutAccout());
+                  dispatch(logoutAccount());
                   navigate("/");
                 }}
               >
@@ -79,6 +87,9 @@ function NavBar() {
           </a>
         </Navbar.Collapse>
       </Navbar>
+      {showLogin && (
+        <Login onClose={() => setShowLogin(false)} show={showLogin} />
+      )}
     </div>
   );
 }
