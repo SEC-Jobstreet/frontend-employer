@@ -34,6 +34,7 @@
   display: flex;
   font-weight: 500;
 }
+
 .fullPagination a {
   color: var(--text-body, #1c1c1c);
   font-size: 1.6rem !important;
@@ -131,28 +132,4 @@
   .fullPagination {
     display: none;
   }
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: 62.5%;
-}
-
-body {
-  font-size: 1.6rem;
-  line-height: 1.6;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-:root {
-  --bg-badge-default-jobcard-temp: #626262;
-  --bg-muted-3: #626262;
-  --text-body: #1c1c1c;
-  --text-badge-feature: #1c1c1c;
-  --text-muted: #626262;
 }
