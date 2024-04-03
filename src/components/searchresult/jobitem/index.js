@@ -3,7 +3,7 @@ import { Button, Card } from "react-bootstrap";
 
 import { useJobsState } from "../context";
 
-import styles from "./jobitem.module.css";
+import styles from "./jobItem.module.css";
 
 function JobItem({ data, activeItem, handleClick }) {
   const { savedJobs, setSaveJobs } = useJobsState();
