@@ -1,0 +1,73 @@
+.trending-jobs {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 0 1.6rem;
+}
+
+.heading-medium {
+  font-size: 1.68rem;
+  font-weight: 700;
+  margin-bottom: 1.6rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.heading-icon {
+  font-size: 2rem;
+}
+
+.tabs-section ul {
+  border: none !important;
+  display: block !important;
+  overflow-x: scroll;
+  scrollbar-width: thin;
+  text-wrap: nowrap !important;
+}
+
+.tabs-section li {
+  display: inline-block !important;
+}
+
+.tabs-section li .nav-link {
+  font-size: 1.6rem !important;
+  font-weight: 500 !important;
+  border: none !important;
+  margin: 0 !important;
+  margin-right: 4rem !important;
+  padding: 1.7rem 0 !important;
+}
+
+.tabs-section ul li .active {
+  border-bottom: 2px solid #0e8136 !important;
+  color: #0e8136 !important;
+}
+
+.tabs-section .tab-content .active {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+}
+
+.trending-link {
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #0e8136;
+  padding: 0.9rem 2rem;
+  padding-left: 1.4rem;
+  border: 1px solid #0e8136;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.trending-link:hover {
+  opacity: 0.8;
+}
+
+.tab-icon {
+  font-size: 2rem;
+}
