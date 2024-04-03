@@ -1,4 +1,6 @@
 .wrapper {
+  max-width: 900px;
+  margin: auto;
   padding: 1.6rem;
   border: 1px solid var(--border-line, #dedede);
   border-radius: 0.8rem;

@@ -9,7 +9,7 @@ import { loginAccount } from "../../store/user";
 
 import "./login-style.css";
 
-function CandidateLogin({ isPage }) {
+function CandidateLogin({ isPage, onClose = () => {} }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -19,6 +19,7 @@ function CandidateLogin({ isPage }) {
     // Test with static email
     const userEmail = "user@example.com";
     dispatch(loginAccount({ email: userEmail }));
+    onClose(true);
   };
 
   const handleCreateAccountClick = () => {
@@ -53,11 +54,13 @@ function CandidateLogin({ isPage }) {
           </div>
         </div>
         <button
+          type="submit"
           className={`rounded-button-primary btn-sign-up ${isPage ? "my-signin-button-class" : ""}`}
         >
           Đăng nhập
         </button>
         <button
+          type="button"
           className={`rounded-button-primary btn-forgot-pw ${isPage ? "my-forgot-pw-button-class" : ""}`}
         >
           Quên mật khẩu
