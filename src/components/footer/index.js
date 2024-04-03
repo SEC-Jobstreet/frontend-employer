@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { loginAccout, logoutAccout, selectUser } from "../../store/user";
+import { loginAccount, logoutAccount, selectUser } from "../../store/user";
 
 import "./footer.css";
 
@@ -37,7 +37,7 @@ function Footer() {
           {user.email === "" ? (
             <button
               type="button"
-              onClick={() => dispatch(loginAccout({ email: "a@email.com" }))}
+              onClick={() => dispatch(loginAccount({ email: "a@email.com" }))}
             >
               Đăng nhập
             </button>
@@ -48,7 +48,7 @@ function Footer() {
               <button
                 type="button"
                 onClick={() => {
-                  dispatch(logoutAccout());
+                  dispatch(logoutAccount());
                   navigate("/");
                 }}
               >
