@@ -1,18 +1,18 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Button, Container } from "react-bootstrap";
 
-import FacetLinks from "./facetlinks";
+import { useJobsState } from "../context";
+import FacetLinks from "../facetlinks";
 
 import styles from "./jobdescription.module.css";
 
 function JobDescription({ data }) {
-  const [viewMore, setViewMore] = React.useState(() => {
-    const newObject = {};
-    FacetLinks.forEach((item) => {
-      newObject[item.title] = true;
-    });
-    return newObject;
-  });
+  const { savedJobs, setSaveJobs } = useJobsState();
+
+  const handleSaveButtonClick = (id) => {
+    const newValue = !savedJobs[id];
+    setSaveJobs((prev) => ({ ...prev, [id]: newValue }));
+  };
 
   return (
     <Container className={styles.wrapper}>
@@ -39,7 +39,12 @@ function JobDescription({ data }) {
             </div>
             <div className={styles.actionsContainer}>
               <Button className={styles.applyButton}>Nộp đơn nhanh</Button>
-              <Button className={styles.saveButton}>Lưu việc</Button>
+              <Button
+                className={styles.saveButton}
+                onClick={() => handleSaveButtonClick(data.id)}
+              >
+                {savedJobs[data.id] === true ? "Đã lưu lại" : "Lưu việc"}
+              </Button>
               <a className={styles.openNewTab} href="/#">
                 Mở trang mới
               </a>
@@ -166,83 +171,7 @@ function JobDescription({ data }) {
           </div>
         </div>
       )}
-      <div>
-        <p style={{ fontSize: "1.68rem" }}>
-          <b>Mọi người cũng đã tìm kiếm</b>
-        </p>
-        <div style={{ fontSize: "1.54rem" }}>
-          {FacetLinks.map((item) => (
-            <div key={item.title}>
-              <b>{item.title}: </b>
-              {item.links.length <= 5 &&
-                item.links.map((link, index) => (
-                  <Fragment key={link.content}>
-                    <a href={link.href} className={styles.facetLink}>
-                      {link.content}
-                    </a>
-                    {index !== item.links.length - 1 && (
-                      <span className={styles.divider}>·</span>
-                    )}
-                  </Fragment>
-                ))}
-              {item.links.length > 5 &&
-                item.links.map((link, index) => {
-                  if (index < 4) {
-                    return (
-                      <Fragment key={link.content}>
-                        <a href={link.href} className={styles.facetLink}>
-                          {link.content}
-                        </a>
-                        <span className={styles.divider}>·</span>
-                      </Fragment>
-                    );
-                  }
-                  if (index === 4) {
-                    return (
-                      <Fragment key={link.content}>
-                        <span
-                          className={styles.moreButton}
-                          onClick={() => {
-                            setViewMore((prev) => ({
-                              ...prev,
-                              [item.title]: false,
-                            }));
-                          }}
-                          aria-hidden="true"
-                          hidden={!viewMore[item.title]}
-                        >
-                          thêm ›
-                        </span>
-                        <span hidden={viewMore[item.title]}>
-                          <span
-                            className={styles.divider}
-                            hidden={!viewMore[item.title]}
-                          >
-                            ·
-                          </span>
-                          <a href={link.href} className={styles.facetLink}>
-                            {link.content}
-                          </a>
-                          <span className={styles.divider}>·</span>
-                        </span>
-                      </Fragment>
-                    );
-                  }
-                  return (
-                    <span key={link.content} hidden={viewMore[item.title]}>
-                      <a href={link.href} className={styles.facetLink}>
-                        {link.content}
-                      </a>
-                      {index !== item.links.length - 1 && (
-                        <span className={styles.divider}>·</span>
-                      )}
-                    </span>
-                  );
-                })}
-            </div>
-          ))}
-        </div>
-      </div>
+      <FacetLinks />
     </Container>
   );
 }

@@ -1,13 +1,24 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
 
+import { useJobsState } from "../context";
+
 import styles from "./jobitem.module.css";
 
 function JobItem({ data, activeItem, handleClick }) {
-  const [saved, setSaved] = React.useState(false);
+  const { savedJobs, setSaveJobs } = useJobsState();
 
-  const handleSaveButtonClick = () => {
-    setSaved((prev) => !prev);
+  const handleSaveButtonClick = (id) => {
+    const newValue = !savedJobs[id];
+    setSaveJobs((prev) => ({ ...prev, [id]: newValue }));
+  };
+
+  const handleItemClick = (href, id) => {
+    if (window.innerWidth < 1000) {
+      window.location.href = href;
+    } else {
+      handleClick(id);
+    }
   };
 
   return (
@@ -17,7 +28,7 @@ function JobItem({ data, activeItem, handleClick }) {
           ? `${styles.wrapper} ${styles.activeJob}`
           : `${styles.wrapper}`
       }
-      onClick={() => handleClick(data.id)}
+      onClick={() => handleItemClick("/#", data.id)}
     >
       <Card.Body className={styles.jobCard}>
         <Card.Subtitle className="mb-2 text-mute d-flex align-items-center">
@@ -41,14 +52,14 @@ function JobItem({ data, activeItem, handleClick }) {
         <div className={styles.cardBottom}>
           <span className={styles.listedDate}>{data.listedDate}</span>
           <Button
-            onClick={handleSaveButtonClick}
+            onClick={() => handleSaveButtonClick(data.id)}
             className={
-              saved
+              savedJobs[data.id] === true
                 ? `${styles.saveButton} ${styles.savedStyle}`
                 : `${styles.saveButton}`
             }
           >
-            {saved ? "Đã lưu lại" : "Lưu lại"}
+            {savedJobs[data.id] === true ? "Đã lưu lại" : "Lưu lại"}
           </Button>
         </div>
       </Card.Body>

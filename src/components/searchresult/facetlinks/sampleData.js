@@ -1,4 +1,4 @@
-const FacetLinks = [
+const SampleData = [
   {
     title: "Chức danh",
     links: [{ content: "Nhân Viên Kinh Doanh", href: "/#" }],
@@ -26,4 +26,4 @@ const FacetLinks = [
   },
 ];
 
-export default FacetLinks;
+export default SampleData;

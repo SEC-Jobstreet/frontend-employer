@@ -145,19 +145,7 @@ li {
   color: var(--text-muted, #626262);
 }
 
-.moreButton:hover {
+.moreButton:hover{
   text-decoration: underline;
   color: #bcbcbc;
-}
-
-@media only screen and (max-width: 1000px) {
-  .jobDescription {
-    display: none;
-  }
-  .wrapper {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
 }
