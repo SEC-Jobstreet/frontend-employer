@@ -1,0 +1,78 @@
+.editSetting{
+    text-align: left;
+    margin: 0 2em;
+    width: 55%;
+    border-bottom: solid .5px #dedede;
+    border-top: solid .5px #dedede;
+}
+
+.titleEdit{
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 1em;
+}
+
+.inp{
+    width: 100%;
+    padding: 12px 12px;
+    border: solid .5px #999;
+    border-radius: 3px;
+    outline: none;
+    font-size: 16px;
+}
+.inp:focus{
+    border: solid .5px #0e8136;
+}
+
+label{
+    font-weight:lighter;
+    font-size: 16px;
+}
+.groupForm{
+    margin-bottom: 1.2em;
+}
+.groupForm span{
+    font-size: 14px;
+}
+.groupButton{
+    display: flex;
+    justify-content: space-between;
+}
+.btnSubmit{
+    width: 48%;
+    padding: 10px 0;
+    border: none;
+    background-color: #0e8136;
+    color: white;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 16px;
+}
+.btnSubmit:hover{
+    background-color: green;
+}
+.btnCancel{
+    width: 100%;
+    padding: 10px 0;
+    border: solid  .5px #0e8136;
+    background-color: white;
+    color: #0e8136;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.linkButtonCancel{
+    width: 48%;
+}
+.btnCancel:hover{
+    color: green;
+}
+
+.txtWarning{
+    color: #e32121;
+}
+
+.hide{
+    display: none;
+}

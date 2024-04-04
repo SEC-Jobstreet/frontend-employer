@@ -8,6 +8,7 @@ import store from "./store/store";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+import "font-awesome/css/font-awesome.min.css";
 import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

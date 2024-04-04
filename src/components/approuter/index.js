@@ -7,6 +7,7 @@ import NotFound from "../../pages/notfound";
 import Register from "../../pages/register/register";
 import { selectUser } from "../../store/user";
 import DeletionConfirmation from "../deletioncomfirmation";
+import EditSetting from "../editsetting";
 import JobsAlerts from "../jobalerts";
 import CreateJobAlert from "../jobalerts/pages/CreateJobAlert";
 import CandidateLogin from "../login/candidate-login";
@@ -37,6 +38,7 @@ function AppRouter() {
           <Route path="profile" element={<Profile />} />
           <Route path="job_alerts" element={<JobsAlerts />} />
           <Route path="saved_jobs" element={<SavedJobs />} />
+          <Route path="edit_setting" element={<EditSetting />} />
           <Route
             path="deletion_confirmation"
             element={<DeletionConfirmation />}
