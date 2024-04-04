@@ -8,6 +8,7 @@ import Register from "../../pages/register/register";
 import { selectUser } from "../../store/user";
 import DeletionConfirmation from "../deletioncomfirmation";
 import JobsAlerts from "../jobalerts";
+import CreateJobAlert from "../jobalerts/pages/CreateJobAlert";
 import CandidateLogin from "../login/candidate-login";
 import Profile from "../profile";
 import SavedJobs from "../savedjobs";
@@ -42,6 +43,7 @@ function AppRouter() {
           />
           <Route path="*" element={<NotFound />} />
         </Route>
+        <Route path="account/job_alerts/new" element={<CreateJobAlert />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

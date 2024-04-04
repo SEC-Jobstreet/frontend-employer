@@ -1,0 +1,227 @@
+:root {
+  --primary: #0e8136;
+  --text-highlight: #0e8136;
+  --border-color: rgb(222, 222, 222);
+  --mute: rgb(222, 222, 222);
+  --text-muted: #626262;
+  --black: rgb(20, 20, 20);
+}
+body {
+  margin: 0;
+  padding: 0 1.6rem 1.6rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+}
+/* mobile */
+
+.tabs-container {
+  display: flex;
+  font-size: 1.4rem;
+  height: 3.4rem;
+  justify-content: space-evenly;
+  margin-top: 2.4rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.mobile-account-tabs {
+  display: none;
+  @media only screen and (max-width: 991px) {
+    display: flex;
+  }
+}
+.tabs-container.tab {
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+.profile-tab.tab {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #1c1c1c;
+  text-decoration: none;
+}
+.profile-tab.tab:hover {
+  text-decoration: underline;
+}
+.profile-tab.tab.-active {
+  font-weight: bold;
+  color: var(--primary);
+}
+.-active::after {
+  background-color: var(--text-highlight, #0e8136);
+  content: "";
+  display: block;
+  height: 0.2rem;
+  position: relative;
+  top: 9px;
+  width: 100%;
+}
+/* content */
+.my-account-content {
+  display: block;
+  text-align: start;
+  unicode-bidi: isolate;
+  border-bottom: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
+  padding: 2.4rem;
+  min-height: 27rem;
+  margin-bottom: 12.8rem;
+
+  @media screen and (max-width: 991px) {
+    margin: 0 1.6rem 0rem 1.6rem;
+    border-top: 0px;
+    padding: 0;
+  }
+}
+.grid-content {
+  grid-area: content;
+  align-self: start;
+  box-sizing: inherit;
+}
+.heading-large {
+  font-size: 1.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.email-alerts p {
+  font-size: 1.4rem;
+}
+.account-page-heading {
+  display: none;
+  margin-bottom: 1.6rem;
+  @media screen and (min-width: 992px) {
+    display: block;
+  }
+}
+.text-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.mail-label {
+  color: var(--primary);
+  margin-right: 1rem;
+}
+#unconfirm-email {
+  font-size: 1.4rem;
+  padding-top: 2.4rem;
+  padding-bottom: 2.4rem;
+}
+#unconfirm-email p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+}
+input {
+  font-family: inherit;
+  margin-bottom: 1.6rem;
+}
+.button {
+  color: var(--primary);
+  font-weight: bold;
+  padding-top: 0.8rem;
+  border: 0px;
+}
+form {
+  display: block;
+  unicode-bidi: isolate;
+}
+.button.quinary {
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+  position: relative;
+}
+
+/* alerts item */
+.alert-item {
+  width: 100%;
+  border-bottom: 1px solid var(--border-color, #dedede);
+  padding-bottom: 1.6rem;
+  padding-top: 1.6rem;
+}
+.alert-item .alert-title {
+  display: inline-block;
+  margin-bottom: 0.4rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--primary);
+  text-decoration: none;
+}
+.alert-item .alert-info {
+  padding-bottom: 1.6rem;
+}
+.alert-info span {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+.alert-info .divider {
+  margin: 0 0.5rem 0 0.5rem;
+}
+.alert-info .alert-status {
+  color: var(--text-muted);
+}
+.alert-item > .actions-container {
+  display: flex;
+}
+
+.actions-container button {
+  border-radius: 27px;
+  font-size: 1.4rem;
+  font-weight: normal;
+  justify-content: center;
+  margin-left: 1.2rem;
+}
+
+button.tertiary {
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #dedede;
+  color: #1c1c1c;
+  padding-top: 0.8rem;
+  padding-right: 1.6rem;
+  padding-bottom: 0.8rem;
+  padding-left: 1.6rem;
+  position: relative;
+}
+.actions-container button:hover {
+  background: var(--mute);
+}
+
+.create-alert-button {
+  margin-top: 1.2rem;
+  margin-bottom: -1.6rem;
+
+  @media screen and (max-width: 991px) {
+    margin: 2.4rem 0;
+    border-bottom: none;
+  }
+}
+button.create-alert-button {
+  width: fit-content;
+  font-size: 1.6rem;
+  height: 4.8rem;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+  align-items: center;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  border: none;
+  @media screen and (max-width: 991px) {
+    width: 100%;
+  }
+}
+
+button.-primary {
+  color: white;
+  background: var(--primary);
+}
+button.-primary:hover {
+  opacity: 0.9;
+}

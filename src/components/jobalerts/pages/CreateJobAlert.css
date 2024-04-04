@@ -1,0 +1,117 @@
+:root {
+  --color-border: #a4a4a4;
+  --primary: #0e8136;
+}
+body {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-top: 1.6rem;
+}
+
+#email-alert-management-page {
+  margin-top: 0px;
+  min-height: 50vh;
+}
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.content-container.-width-md {
+  margin: 0 auto;
+  max-width: 550px;
+}
+
+.content-container.-margin-y-md {
+  margin-bottom: 9.6rem;
+  margin-top: 6.4rem;
+  min-height: 24vh;
+}
+
+/* headler */
+.heading-large {
+  font-size: 1.82rem;
+  display: flex;
+  flex-direction: row;
+  align-items: top;
+}
+.new_email_alert {
+  margin-bottom: 1.6rem;
+  width: 100%;
+}
+.email-alert-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-bottom: 1.6rem;
+  width: 100%;
+}
+label {
+  display: block;
+  font-weight: 300;
+  margin-bottom: 0;
+  font-size: 1.6rem;
+}
+input.email-alert {
+  font-size: 1.6rem;
+  height: 4.8rem;
+  padding: 0 1.6rem;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  background-color: rgba(0, 0, 0, 0);
+}
+input.email-alert:focus {
+  box-shadow: none;
+  border-color: var(--primary);
+}
+.email-alert {
+  width: 100%;
+}
+
+select.email-alert {
+  font-size: 1.6rem;
+  height: 4.8rem;
+  padding: 0 1.6rem;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  background-color: rgba(0, 0, 0, 0);
+}
+select.email-alert:focus {
+  box-shadow: none;
+  border-color: var(--primary);
+}
+button.email-alert {
+  font-size: 1.6rem;
+  height: 4.8rem;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+  margin-bottom: 1.6rem;
+  border: 1px solid var(--primary);
+}
+button.email-alert:hover {
+  border-color: var(--primary);
+  opacity: 80%;
+}
+button.email-alert.primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+button.email-alert.secondary {
+  background-color: white;
+  color: var(--primary);
+}
+
+#email-alert-management-page .privacy-statement {
+  margin: 0 0 2.4rem 0;
+  text-align: start;
+}
+.heading-xxsmall {
+  font-size: 1.12rem;
+}
+.privacy-statement a {
+  color: var(--primary);
+}

@@ -2,7 +2,8 @@ import { NavLink } from "react-router-dom";
 
 import "./myaccount-style.css";
 
-function MyAccount() {
+function MyAccount(props) {
+  const { children } = props;
   return (
     <div className="container">
       <div className="sidebar">
@@ -26,7 +27,7 @@ function MyAccount() {
           Xoá tài khoản
         </NavLink>
       </div>
-      <div className="main-content"> </div>
+      <div className="main-content">{children}</div>
     </div>
   );
 }

@@ -4,10 +4,9 @@ import MyAccount from "../../components/myaccount/myaccount";
 
 function Account() {
   return (
-    <>
-      <MyAccount />
+    <MyAccount>
       <Outlet />
-    </>
+    </MyAccount>
   );
 }
 
