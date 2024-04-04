@@ -73,3 +73,12 @@
 .tab-icon {
   font-size: 2rem;
 }
+
+.tabs-section li,
+.tabs-section ul li .nav-link {
+  width: fit-content;
+}
+
+.tabs-section ul li .nav-link:hover {
+  text-decoration: none;
+}
