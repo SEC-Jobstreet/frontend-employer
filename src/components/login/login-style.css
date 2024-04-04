@@ -24,9 +24,6 @@ body {
     z-index: 15;
 }
 
-.login-widget.active {
-    display: block;
-}
 
 input.form-control {
     background-position: right 12px center;
@@ -171,7 +168,7 @@ p {
     }
 }
 
-@media only screen and (min-width: 480.1px) and (max-width: 767.98px) {
+@media only screen and (min-width: 480.1px) and (max-width: 975px) {
 
     .login-widget,
     div.role-selection-container {
@@ -180,6 +177,8 @@ p {
         right: 0;
         height: auto;
         box-shadow: none;
+        position: relative;
+        top: 0;
     }
 
     .rounded-button-primary.btn-forgot-pw,
@@ -199,7 +198,7 @@ p {
         width: auto;
         right: 0;
         left: 0;
-        top: 74px;
+        top: 0;
         height: auto;
         box-shadow: none;
     }
