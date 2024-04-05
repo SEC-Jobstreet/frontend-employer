@@ -27,13 +27,23 @@
   border-radius: 8px;
   height: 95vh;
   --offset: 66px;
-  padding: 1.6rem;
   display: grid;
   margin-bottom: 2.4rem;
 }
 
+.JDInner {
+  overflow-y: scroll;
+  max-height: calc(100vh - var(--offset));
+  min-height: 400px;
+  scrollbar-width: none;
+  margin: 1.6rem;
+}
+
 .JDHeader {
   padding-bottom: 1.6rem;
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-body, #fff);
 }
 
 .headingXXLarge {
@@ -129,7 +139,6 @@
   font-size: 1.4rem;
   line-height: 1.6;
   text-align: justify;
-  overflow-y: scroll;
   --offset: 66px;
 }
 

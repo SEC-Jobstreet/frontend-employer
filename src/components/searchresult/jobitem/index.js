@@ -15,7 +15,7 @@ function JobItem({ data, activeItem, handleClick }) {
 
   const handleItemClick = (href, id) => {
     if (window.innerWidth < 1000) {
-      window.location.href = href;
+      window.open(href);
     } else {
       handleClick(id);
     }
@@ -52,7 +52,10 @@ function JobItem({ data, activeItem, handleClick }) {
         <div className={styles.cardBottom}>
           <span className={styles.listedDate}>{data.listedDate}</span>
           <Button
-            onClick={() => handleSaveButtonClick(data.id)}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleSaveButtonClick(data.id);
+            }}
             className={
               savedJobs[data.id] === true
                 ? `${styles.saveButton} ${styles.savedStyle}`

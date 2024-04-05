@@ -15,8 +15,10 @@ const SearchResult = Array.from({ length: 100 }, (_, index) => ({
   id: index + 1,
 }));
 
-const SavedJob = Array.from({ length: 100 }, (_, index) => ({
-  [index + 1]: false,
-}));
+const SavedJob = {};
+
+for (let i = 1; i <= 100; i += 1) {
+  SavedJob[i] = false;
+}
 
 export { SearchResult, sampleJob, SavedJob };

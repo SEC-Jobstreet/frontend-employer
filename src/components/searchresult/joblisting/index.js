@@ -3,6 +3,7 @@ import { Button, Col, Container, Pagination } from "react-bootstrap";
 
 import { SearchResult } from "../../../temp/samplelistjobdata";
 import { StateProvider } from "../context";
+import EmailAlert from "../emailalert";
 import JobDescription from "../jobdescription";
 import JobItem from "../jobitem";
 import RecentResearch from "../recentresearch";
@@ -149,15 +150,31 @@ function JobListing() {
             </div>
           </div>
           <div className={styles.jobList}>
-            {jobsListed.map((job) => (
-              <Fragment key={job.id}>
-                <JobItem
-                  data={job}
-                  activeItem={activeJob}
-                  handleClick={handleJobItemClick}
-                />
-              </Fragment>
-            ))}
+            {jobsListed.map((job, index) => {
+              if ((index + 1) % 6 === 0) {
+                return (
+                  <Fragment key={job.id * -1}>
+                    <EmailAlert />
+                    <Fragment key={job.id}>
+                      <JobItem
+                        data={job}
+                        activeItem={activeJob}
+                        handleClick={handleJobItemClick}
+                      />
+                    </Fragment>
+                  </Fragment>
+                );
+              }
+              return (
+                <Fragment key={job.id}>
+                  <JobItem
+                    data={job}
+                    activeItem={activeJob}
+                    handleClick={handleJobItemClick}
+                  />
+                </Fragment>
+              );
+            })}
           </div>
           <Pagination className={styles.paginationContainer}>
             <div className={styles.fullPagination}>

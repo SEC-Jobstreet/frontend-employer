@@ -1,0 +1,53 @@
+.wrapper {
+  margin-top: 1.6rem;
+  border: 0px !important;
+}
+
+.activeJob {
+  border: 1px solid var(--border-highlight, #0e8136) !important;
+}
+
+.card {
+  box-shadow: var(--bg-shadow, 0 4px 8px 0 rgba(164, 164, 164, 0.5));
+  border-radius: 8px;
+  padding: 1.6rem !important;
+  text-align: left;
+}
+
+.cardBody {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.notiIcon {
+  background-image: url(../../../assets/svg/noti_icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.notiButton {
+  height: 4.8rem;
+  padding-inline: 2.4rem !important;
+  font-size: 1.6rem !important;
+  font-weight: 500 !important;
+  color: var(--text-pop, #fff) !important;
+  border: 0px !important;
+  background-color: var(--bg-highlight, #0e8136) !important;
+  width: 100%;
+  margin-bottom: 1.2rem;
+}
+
+.notiButton:hover {
+  background-color: #15a449 !important;
+}
+
+.brandedLink {
+  color: var(--text-highlight, #0e8136);
+  text-decoration: none;
+}
+
+.brandedLink:hover {
+  text-decoration: underline;
+}
