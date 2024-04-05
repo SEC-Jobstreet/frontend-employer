@@ -48,7 +48,7 @@ export default function CreateJobAlert() {
     event.preventDefault();
   };
   const onCancelHandler = () => {
-    navigate("/account/job_alerts");
+    navigate("/account/job-alerts");
   };
   return (
     <div

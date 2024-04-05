@@ -45,6 +45,17 @@
   font-weight: 500 !important;
   margin-left: 2.3rem;
   padding: 0 2rem !important;
+  text-decoration: none;
+  color: #0e8136;
+  border: 1px solid #0e8136;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.button-employer:hover {
+  opacity: 0.8;
 }
 
 .login {
@@ -148,7 +159,6 @@
   }
 
   .employer-link {
-    width: 100%;
     text-align: left;
     padding: 1.6rem;
 
@@ -156,13 +166,15 @@
   }
 
   .button-employer {
-    margin: 0;
+    margin: 1.5rem 0;
+    margin-left: 1.6rem;
   }
 
-  .mobile-app-link {
+  .nav-mobile-app-link {
     width: 100%;
     text-align: left;
     padding: 2.4rem 1.6rem;
+    border-top: 1px solid #cfcfcf;
     border-bottom: 1px solid #cfcfcf;
   }
 

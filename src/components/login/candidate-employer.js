@@ -10,8 +10,8 @@ function CandidateEmployer() {
         type="button"
         className="rounded-button-primary btn-sign-up mb-24"
         onClick={() => {
-          document.querySelector(".role-selection-container").style.display =
-            "none";
+          const temp = document.querySelector(".role-selection-container");
+          if (temp) temp.style.display = "none";
         }}
       >
         Ứng Viên

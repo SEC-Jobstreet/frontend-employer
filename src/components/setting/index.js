@@ -8,7 +8,7 @@ function Setting() {
       <p className="titleSetting">Settings</p>
       <p>tuando24101997@gmail.com</p>
       <p>*********</p>
-      <NavLink to="/account/edit_setting">
+      <NavLink to="/account/edit-setting">
         <button type="button" className="btnSetting">
           Edit settings
         </button>

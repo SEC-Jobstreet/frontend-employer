@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Button, Nav, Navbar, NavItem, NavLink } from "react-bootstrap";
+import { Nav, Navbar, NavItem, NavLink } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
-import Login from "../../pages/login/login";
 import { setNotification } from "../../store/notification";
 import { logoutAccount, selectUser } from "../../store/user";
 import { notiLogout } from "../../utils/notification";
+import Login from "../login/login";
 
 import "./appnav.css";
 
@@ -46,8 +46,8 @@ function NavBar() {
               type="button"
               className="login"
               onClick={() => {
-                document.querySelector(".login-widget-from-nav").style.display =
-                  "block";
+                const temp = document.querySelector(".login-widget-from-nav");
+                if (temp) temp.style.display = "block";
               }}
             >
               <span>Đăng nhập</span>
@@ -62,10 +62,10 @@ function NavBar() {
                 </NavItem>
               </Nav>
               <Nav className="p-0">
-                <NavItem eventkey={2} href="/job_alerts">
+                <NavItem eventkey={2} href="/job-alerts">
                   <NavLink
                     className="nav-link"
-                    to="/account/job_alerts"
+                    to="/account/job-alerts"
                     as={Link}
                   >
                     <img src={alertIcon} alt="alert" /> Thông báo việc
@@ -73,10 +73,10 @@ function NavBar() {
                 </NavItem>
               </Nav>
               <Nav className="p-0">
-                <NavItem eventkey={3} href="/saved_jobs">
+                <NavItem eventkey={3} href="/save-jobs">
                   <NavLink
                     className="nav-link"
-                    to="/account/saved_jobs"
+                    to="/account/save-jobs"
                     as={Link}
                   >
                     <img src={saveIcon} alt="alert" /> Việc của tôi
@@ -92,14 +92,8 @@ function NavBar() {
               </button>
             </>
           )}
-          <a href="/">
-            <Button
-              type="button"
-              className="button-employer"
-              variant="outline-success"
-            >
-              Truy cập trang web của nhà tuyển dụng
-            </Button>
+          <a href="/" className="employer-link button-employer">
+            Truy cập trang web của nhà tuyển dụng
           </a>
         </Navbar.Collapse>
       </Navbar>
@@ -119,9 +113,8 @@ function NavBar() {
                 type="button"
                 className="login"
                 onClick={() => {
-                  document.querySelector(
-                    ".login-widget-from-nav"
-                  ).style.display = "block";
+                  const temp = document.querySelector(".login-widget-from-nav");
+                  if (temp) temp.style.display = "block";
                 }}
               >
                 <span>Đăng nhập</span>
@@ -178,10 +171,10 @@ function NavBar() {
                     </NavItem>
                   </Nav>
                   <Nav className="p-0">
-                    <NavItem eventkey={2} href="/job_alerts">
+                    <NavItem eventkey={2} href="/job-alerts">
                       <NavLink
                         className="nav-link"
-                        to="/account/job_alerts"
+                        to="/account/job-alerts"
                         as={Link}
                       >
                         <img src={alertIcon} alt="alert" /> Thông báo việc
@@ -189,10 +182,10 @@ function NavBar() {
                     </NavItem>
                   </Nav>
                   <Nav className="p-0">
-                    <NavItem eventkey={3} href="/saved_jobs">
+                    <NavItem eventkey={3} href="/save-jobs">
                       <NavLink
                         className="nav-link"
-                        to="/account/saved_jobs"
+                        to="/account/save-jobs"
                         as={Link}
                       >
                         <img src={saveIcon} alt="alert" /> Việc của tôi
@@ -201,16 +194,10 @@ function NavBar() {
                   </Nav>
                 </div>
               )}
-              <a className="employer-link" href="/">
-                <Button
-                  type="button"
-                  className="button-employer"
-                  variant="outline-success"
-                >
-                  Truy cập trang web của nhà tuyển dụng
-                </Button>
+              <a className="employer-link button-employer" href="/">
+                Truy cập trang web của nhà tuyển dụng
               </a>
-              <div className="mobile-app-link">
+              <div className="nav-mobile-app-link">
                 <a href="/">
                   <img
                     className="img-app-link"

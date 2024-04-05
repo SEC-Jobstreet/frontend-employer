@@ -1,15 +1,17 @@
 import React, { useEffect, useRef } from "react";
 
-import CandidateLogin from "../../components/login/candidate-login";
+import CandidateEmployer from "./candidate-employer";
+import CandidateLogin from "./candidate-login";
 
-import "../../components/login/login-style.css";
+import "./login-style.css";
 
 function Login() {
   const loginRef = useRef();
 
   const handleClickOutside = (event) => {
     if (loginRef.current && !loginRef.current.contains(event.target)) {
-      document.querySelector(".login-widget-from-nav").style.display = "none";
+      const temp = document.querySelector(".login-widget-from-nav");
+      if (temp) temp.style.display = "none";
     }
   };
 
@@ -22,6 +24,7 @@ function Login() {
 
   return (
     <div className="login-widget login-widget-from-nav" ref={loginRef}>
+      <CandidateEmployer />
       <CandidateLogin />
     </div>
   );
