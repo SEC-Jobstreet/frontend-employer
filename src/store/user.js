@@ -1,25 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const init = {
+  account: {
+    email: "",
+    email_verified: false,
+    name: "",
+    picture: "",
+  },
+};
+
 export const userSlice = createSlice({
   name: "user",
-  initialState: {
-    account: {
-      email: "",
-    },
-  },
+  initialState: init,
   reducers: {
-    logoutAccout: (state) => {
+    logoutAccount: (state) => {
       state.account = {
-        email: "",
+        ...init.account,
       };
     },
-    loginAccout: (state, action) => {
-      state.account = action.payload;
+    loginAccount: (state, action) => {
+      const newState = action.payload;
+      state.account = {
+        email: newState.email,
+        name: newState.name,
+        email_verified: newState.email_verified,
+        picture: newState.picture,
+      };
     },
   },
 });
 
-export const { loginAccout, logoutAccout } = userSlice.actions;
+export const { loginAccount, logoutAccount } = userSlice.actions;
 
 export const selectUser = (state) => state.user.account;
 

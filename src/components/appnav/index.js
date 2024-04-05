@@ -1,8 +1,8 @@
-import { Button, Nav, Navbar, NavItem, NavLink } from "react-bootstrap";
+import { Nav, Navbar, NavItem, NavLink } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
-import { loginAccout, logoutAccout, selectUser } from "../../store/user";
+import { loginAccount, logoutAccount, selectUser } from "../../store/user";
 
 import "./appnav.css";
 
@@ -28,7 +28,7 @@ function NavBar() {
             <button
               type="button"
               className="login"
-              onClick={() => dispatch(loginAccout({ email: "a@email.com" }))}
+              onClick={() => dispatch(loginAccount({ email: "a@email.com" }))}
             >
               <span>Đăng nhập</span>
             </button>
@@ -59,7 +59,7 @@ function NavBar() {
                 type="button"
                 className="logout"
                 onClick={() => {
-                  dispatch(logoutAccout());
+                  dispatch(logoutAccount());
                   navigate("/");
                 }}
               >
@@ -67,16 +67,6 @@ function NavBar() {
               </button>
             </>
           )}
-
-          <a href="/">
-            <Button
-              type="button"
-              className="button-employer"
-              variant="outline-success"
-            >
-              Truy cập trang web của nhà tuyển dụng
-            </Button>
-          </a>
         </Navbar.Collapse>
       </Navbar>
     </div>
