@@ -30,9 +30,11 @@ function DeletionConfirmation() {
               placeholder='Nhập "xóa"'
             />
           </label>
-          <span id="txtWarningDelete" className="hide">
-            Tài khoản chưa được xóa. Xin vui lòng thử lại.
-          </span>
+          <p>
+            <span id="txtWarningDelete" className="hide">
+              Tài khoản chưa được xóa. Xin vui lòng thử lại.
+            </span>
+          </p>
         </div>
         <button type="submit" className="btnDelete">
           Xóa tài khoản

@@ -1,10 +1,10 @@
 .deleteAccount{
     text-align: left;
-    margin: 0 2em;
-    width: 55%;
+    margin-left: 2em;
+    margin-bottom: 100px;
     border-bottom: solid .5px #dedede;
     border-top: solid .5px #dedede;
-    padding-bottom: 2em;
+    padding-bottom: 5em;
 }
 
 .titleDelete{
@@ -33,6 +33,7 @@
 .formDelete label{
     font-size: 16px;
     font-weight: 100;
+    width: 100%;
 }
 
 .btnDelete{
@@ -43,7 +44,7 @@
     background-color: #0e8136;
     border: none;
     border-radius: 4px;
-    margin-top: 1em;
+    margin-top: .5em;
     font-size: 16px;
 }
 

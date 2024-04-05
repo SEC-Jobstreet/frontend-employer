@@ -1,10 +1,10 @@
 .contJobCard{
     text-align: left;
-    margin: 0 2em;
-    width: 55%;
+    margin-left: 2em;
+    margin-bottom: 100px;
     border-bottom: solid .5px #dedede;
     border-top: solid .5px #dedede;
-    
+    padding-bottom: 2em;
 }
 
 .title{

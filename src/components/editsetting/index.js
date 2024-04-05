@@ -60,7 +60,9 @@ function EditSetting() {
             />
           </label>
           <div>
-            <span>Để trống nếu bạn không muốn thay đổi</span>
+            <p>
+              <span>Để trống nếu bạn không muốn thay đổi</span>
+            </p>
           </div>
         </div>
         <div className="groupForm">
@@ -74,7 +76,11 @@ function EditSetting() {
               placeholder="Nhập mật khẩu"
             />
           </label>
-          <span>Chúng tôi cần mật khẩu của bạn để lưu thông tin thay đổi</span>
+          <p>
+            <span>
+              Chúng tôi cần mật khẩu của bạn để lưu thông tin thay đổi
+            </span>
+          </p>
           <p className="txtWarning hide" id="nofPassword">
             <span id="txtWarningPassword" />
           </p>
@@ -83,7 +89,7 @@ function EditSetting() {
           <button type="submit" className="btnSubmit">
             Lưu tài khoản
           </button>
-          <NavLink to="/account" className="linkButtonCancel">
+          <NavLink to="/account/settings" className="linkButtonCancel">
             <button type="button" className="btnCancel">
               Hủy
             </button>

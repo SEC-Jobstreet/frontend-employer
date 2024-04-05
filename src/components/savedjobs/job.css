@@ -1,7 +1,7 @@
 .cardWork{
     margin-bottom: 1em;
     padding: 1em;
-   
+    
     border-radius: 7px;
     cursor: pointer;
     box-shadow: 0px 0px 10px 0px #dedede;
@@ -13,6 +13,7 @@
     margin: 0;
     margin-top: 10px;
     margin-bottom: 7px;
+    padding: 0 10px;
 }
 
 .workTitle{
