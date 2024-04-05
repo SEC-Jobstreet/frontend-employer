@@ -1,7 +1,3 @@
-/* eslint-disable no-useless-escape */
-/* eslint-disable no-shadow */
-/* eslint-disable react/button-has-type */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 
 import "./register-style.css";
@@ -13,11 +9,12 @@ function Register() {
   const [passwordError, setPasswordError] = useState(false);
   const [passwordLengthError, setPasswordLengthError] = useState(false);
 
-  const validateEmail = (email) => {
-    const re =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  };
+  const validateEmail = (email1) =>
+    String(email1)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -80,14 +77,14 @@ function Register() {
               )}
             </div>
           </div>
-          <button className="rounded-button-primary btn-sign-in">
+          <button className="rounded-button-primary btn-sign-in" type="submit">
             Tạo tài khoản mới
           </button>
           <div className="privacy-statement">
             <span className="branded-links">
               Bằng cách đăng nhập vào tài khoản của bạn, bạn đồng ý với{" "}
-              <a href="#">Các điều khoản và điều kiện sử dụng</a> và{" "}
-              <a href="#">Chính Sách Bảo Mật</a> của JobStreet.
+              <a href="/">Các điều khoản và điều kiện sử dụng</a> và{" "}
+              <a href="/">Chính Sách Bảo Mật</a> của JobStreet.
             </span>
           </div>
         </form>

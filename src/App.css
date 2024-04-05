@@ -7,7 +7,7 @@
   pointer-events: none;
 }
 
-.main-content {
+.app-content {
   padding: 0 1.6rem;
   min-height: calc(100vh - 220px);
 }

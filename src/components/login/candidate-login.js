@@ -1,9 +1,6 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable react/button-has-type */
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
 import { setNotification } from "../../store/notification";
@@ -32,12 +29,13 @@ function CandidateLogin({ isPage }) {
   };
 
   const handleCreateAccountClick = () => {
+    document.querySelector(".login-widget-from-nav").style.display = "none";
     navigate("/register"); // Navigate to the Register page
   };
 
   return (
     <>
-      <CandidateEmployer />
+      {!isPage && <CandidateEmployer />}
       <div className={`login-container ${isPage ? "custom-login-class" : ""}`}>
         <h3 className="login-title">Ứng viên tìm việc đăng nhập</h3>
         <form onSubmit={handleSubmit}>
@@ -48,7 +46,7 @@ function CandidateLogin({ isPage }) {
                 className="form-control email"
                 placeholder="Nhập email của bạn"
                 name="user[email]"
-                id="login_widget_user_email"
+                id={`login_widget_user_email ${isPage ? "page" : ""}`}
                 required
               />
             </div>
@@ -58,7 +56,7 @@ function CandidateLogin({ isPage }) {
               <input
                 type="password"
                 className="form-control password"
-                id="login_widget_user_password"
+                id={`login_widget_user_password ${isPage ? "page" : ""}`}
                 placeholder="Nhập mật khẩu"
                 required
               />
@@ -79,17 +77,17 @@ function CandidateLogin({ isPage }) {
           <div className="privacy-statement">
             <span className="branded-links">
               Bằng cách đăng nhập vào tài khoản của bạn, bạn đồng ý với{" "}
-              <a href="#">Các điều khoản và điều kiện sử dụng</a> và{" "}
-              <a href="#">Chính Sách Bảo Mật</a> của JobStreet.
+              <NavLink to="/">Các điều khoản và điều kiện sử dụng</NavLink> và{" "}
+              <NavLink to="/">Chính Sách Bảo Mật</NavLink> của JobStreet.
             </span>
           </div>
           <h3 className="login-title sign-up">
             Bạn chưa có tài khoản JobStreet? Đăng ký dùng,
           </h3>
           <div className="social-login-container">
-            <a
+            <NavLink
               className="jora-sign-up"
-              href=""
+              to="/register"
               onClick={handleCreateAccountClick}
             >
               <svg
@@ -115,8 +113,8 @@ function CandidateLogin({ isPage }) {
               <div className="heading-xsmall social-login-text">
                 Tạo tài khoản
               </div>
-            </a>
-            <a className="facebook-login" href="">
+            </NavLink>
+            <a className="facebook-login" to="/">
               <svg
                 width="48"
                 height="48"
@@ -133,7 +131,7 @@ function CandidateLogin({ isPage }) {
               </svg>
               <div className="heading-xsmall social-login-text">Facebook</div>
             </a>
-            <a className="apple-login" href="#">
+            <a className="apple-login" to="/">
               <svg
                 width="48"
                 height="48"
@@ -152,7 +150,7 @@ function CandidateLogin({ isPage }) {
               </svg>
               <div className="heading-xsmall social-login-text">Apple</div>
             </a>
-            <a className="google-login" href="">
+            <a className="google-login" to="/">
               <svg
                 width="48"
                 height="48"

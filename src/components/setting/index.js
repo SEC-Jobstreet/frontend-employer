@@ -1,5 +1,3 @@
-/* eslint-disable react/button-has-type */
-/* eslint-disable react/jsx-no-comment-textnodes */
 import { NavLink } from "react-router-dom";
 
 import "./index.css";
@@ -11,7 +9,9 @@ function Setting() {
       <p>tuando24101997@gmail.com</p>
       <p>*********</p>
       <NavLink to="/account/edit_setting">
-        <button className="btnSetting">Edit settings</button>
+        <button type="button" className="btnSetting">
+          Edit settings
+        </button>
       </NavLink>
     </div>
   );

@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import Email from "../../../assets/svg/email_icon.svg";
 
@@ -127,9 +127,9 @@ export default function CreateJobAlert() {
         <div className="privacy-statement heading-xxsmall">
           <span className="branded-links">
             Bằng cách tạo thông báo qua email, bạn đồng ý với{" "}
-            <Link to="/">Các điều khoản và điều kiện sử dụng</Link> và{" "}
-            <Link to="/">Chính Sách Bảo Mật</Link> của JobStreet Bạn có thể huỷ
-            thông báo qua email bất cứ lúc nào.
+            <NavLink to="/">Các điều khoản và điều kiện sử dụng</NavLink> và{" "}
+            <NavLink to="/">Chính Sách Bảo Mật</NavLink> của JobStreet Bạn có
+            thể huỷ thông báo qua email bất cứ lúc nào.
           </span>
         </div>
       </Form>

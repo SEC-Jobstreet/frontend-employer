@@ -1,7 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
 
@@ -25,13 +21,15 @@ function DeletionConfirmation() {
       <p className="titleDelete">Delete Account</p>
       <form className="formDelete" onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="idDeleteAccount">Nhập 'xóa' để tiếp tục</label>
-          <input
-            type="text"
-            name="idDeleteAccount"
-            id="idDeleteAccount"
-            placeholder="Nhập 'xóa'"
-          />
+          <label htmlFor="idDeleteAccount">
+            Nhập &quot;xóa&quot; để tiếp tục
+            <input
+              type="text"
+              name="idDeleteAccount"
+              id="idDeleteAccount"
+              placeholder='Nhập "xóa"'
+            />
+          </label>
           <span id="txtWarningDelete" className="hide">
             Tài khoản chưa được xóa. Xin vui lòng thử lại.
           </span>

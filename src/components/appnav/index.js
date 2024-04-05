@@ -232,7 +232,7 @@ function NavBar() {
           </div>
         )}
       </Navbar>
-      <Login />
+      {user.email === "" && <Login />}
     </div>
   );
 }

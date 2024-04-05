@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { NavLink } from "react-router-dom";
 
 import "./index.css";
@@ -32,14 +31,17 @@ function EditSetting() {
       <p className="titleEdit">Edit Setting</p>
       <form id="myFrom" onSubmit={handleSubmit}>
         <div className="groupForm">
-          <label htmlFor="inpEmail">Địa chỉ email</label>
-          <input
-            type="email"
-            className="inp"
-            id="inpEmail"
-            name="inpEmail"
-            placeholder="Nhập email của bạn"
-          />
+          <label htmlFor="inpEmail">
+            Địa chỉ email
+            <input
+              type="email"
+              className="inp"
+              id="inpEmail"
+              name="inpEmail"
+              placeholder="Nhập email của bạn"
+            />
+          </label>
+
           <p className="txtWarning hide" id="nofEmail">
             <span className="txtWarningEmail">
               Địa chỉ email không thể để trắng
@@ -47,25 +49,31 @@ function EditSetting() {
           </p>
         </div>
         <div className="groupForm">
-          <label htmlFor="inpPassword">Mật khẩu</label>
-          <input
-            type="password"
-            className="inp"
-            id="inpPassword"
-            name="inpPassword"
-            placeholder="Nhập mật khẩu"
-          />
-          <span>Để trống nếu bạn không muốn thay đổi</span>
+          <label htmlFor="inpPassword">
+            Mật khẩu
+            <input
+              type="password"
+              className="inp"
+              id="inpPassword"
+              name="inpPassword"
+              placeholder="Nhập mật khẩu"
+            />
+          </label>
+          <div>
+            <span>Để trống nếu bạn không muốn thay đổi</span>
+          </div>
         </div>
         <div className="groupForm">
-          <label htmlFor="inpNewPassword">Mật khẩu hiện tại</label>
-          <input
-            type="password"
-            className="inp"
-            id="inpNewPassword"
-            name="inpNewPassword"
-            placeholder="Nhập mật khẩu"
-          />
+          <label htmlFor="inpNewPassword">
+            Mật khẩu hiện tại
+            <input
+              type="password"
+              className="inp"
+              id="inpNewPassword"
+              name="inpNewPassword"
+              placeholder="Nhập mật khẩu"
+            />
+          </label>
           <span>Chúng tôi cần mật khẩu của bạn để lưu thông tin thay đổi</span>
           <p className="txtWarning hide" id="nofPassword">
             <span id="txtWarningPassword" />

@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 import { selectNotification, setDefaultNoti } from "../../store/notification";
 
@@ -9,6 +11,12 @@ const closeIcons = require("../../assets/svg/close.svg").default;
 function NotificationBar() {
   const { type, message } = useSelector(selectNotification);
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  useEffect(() => {
+    dispatch(setDefaultNoti());
+  }, [location]);
+
   // color error: #fff1f1, color success: #f2fdf7
   return (
     message !== "" && (
