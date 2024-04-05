@@ -2,14 +2,17 @@ import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 
 import Account from "../../pages/account/account";
+import Business from "../../pages/business";
+import DeletionConfirmation from "../../pages/deletionconfirm";
 import Homepage from "../../pages/homepage";
+import HomepageLogin from "../../pages/homepagelogin";
 import Login from "../../pages/login";
 import NotFound from "../../pages/notfound";
+import PostJob from "../../pages/postjob";
 import Register from "../../pages/register";
+import Setting from "../../pages/setting";
+import UpdateProfile from "../../pages/updateprofile";
 import { selectUser } from "../../store/user";
-import JobsAlerts from "../jobalerts";
-import SavedJobs from "../savedjobs";
-import Setting from "../setting";
 
 import ProtectedRoute from "./protectedroute";
 
@@ -18,14 +21,24 @@ function AppRouter() {
 
   return (
     <Routes>
-      <Route exact path="/" element={<Homepage />} />
-      <Route exact path="login" element={<Login />} />
-      <Route exact path="register" element={<Register />} />
+      <Route element={<ProtectedRoute isAllowed={!user?.email} />}>
+        <Route exact path="/" element={<Homepage />} />
+        <Route exact path="login" element={<Login />} />
+        <Route exact path="register" element={<Register />} />
+      </Route>
+
       <Route element={<ProtectedRoute isAllowed={!!user?.email} />}>
+        <Route path="home" element={<HomepageLogin />} />
+        <Route path="post_job" element={<PostJob />} />
+        <Route path="business" element={<Business />} />
         <Route path="account" element={<Account />}>
-          <Route index element={<Setting />} />
-          <Route path="job_alerts" element={<JobsAlerts />} />
-          <Route path="saved_jobs" element={<SavedJobs />} />
+          <Route path="settings" element={<Setting />} />
+          <Route path="update-profile" element={<UpdateProfile />} />
+
+          <Route
+            path="deletion_confirmation"
+            element={<DeletionConfirmation />}
+          />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Route>
