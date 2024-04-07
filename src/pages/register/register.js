@@ -82,7 +82,7 @@ function Register() {
           </button>
           <div className="privacy-statement">
             <span className="branded-links">
-              Bằng cách đăng nhập vào tài khoản của bạn, bạn đồng ý với{" "}
+              Bằng cách tạo tài khoản, bạn đồng ý với{" "}
               <a href="/">Các điều khoản và điều kiện sử dụng</a> và{" "}
               <a href="/">Chính Sách Bảo Mật</a> của JobStreet.
             </span>

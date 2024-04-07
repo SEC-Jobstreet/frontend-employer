@@ -1,0 +1,75 @@
+.my-profile{
+    margin: 1rem 0;
+}
+
+.button-cancel-submit button{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    line-height: 3rem;
+    border: 1px solid #15a449;
+    border-radius: .5rem;
+    height: 5rem;
+    background-image: none;
+    cursor: pointer;
+}
+.cancel-create-profile {
+    margin-right: .5rem;
+    background-color: rgb(255 255 255);
+    color: #15a449;
+}
+
+.address-description {
+    text-align: left;
+    margin-top: 1rem;
+    color: #626262;
+    font-size: 1.4rem;
+}
+
+.cancel-create-profile:hover {
+    opacity: 0.8;
+    color: rgb(21 164 73);
+}
+.submit-create-profile {
+    margin-left: .5rem;
+    background-color: #0e8136;
+    color: white;
+}
+.submit-create-profile:hover {
+    opacity: 1;
+    background-color: rgb(21 164 73);
+}
+
+.work-eligibility{
+    margin-top: 2rem;
+    text-align: left;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
+.work-eligibility-title{
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.phone-number-title{
+    text-align: left;
+    margin-top: 2.5rem;
+}
+.PhoneInput{
+    height: 48px;
+    border: 1px solid #a4a4a4;
+    border-radius: 5px
+}
+
+.PhoneInputCountry{
+    width: 60px;
+    justify-content: center;
+    margin-right: 0;
+}
+
+#currentRoleStartDate{
+    display: block;
+    width: 100%;
+    border: 1px solid #a4a4a4;
+    border-radius: 4px;
+}

@@ -10,6 +10,10 @@
 .app-content {
   padding: 0 1.6rem;
   min-height: calc(100vh - 220px);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column
 }
 
 @media (prefers-reduced-motion: no-preference) {

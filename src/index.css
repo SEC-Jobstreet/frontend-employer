@@ -6,9 +6,23 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 0;
+  font-size: 1.6rem;
+  line-height: 1.6;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+:root {
+  --bg-badge-default-jobcard-temp: #626262;
+  --bg-muted-3: #626262;
+  --text-body: #1c1c1c;
+  --text-badge-feature: #1c1c1c;
+  --text-muted: #626262;
 }
