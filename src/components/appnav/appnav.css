@@ -1,49 +1,111 @@
 .header {
-  padding: 1.8rem 4rem;
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
   margin-bottom: 1.5rem;
+  background-color: rgb(28, 28, 28);
 }
 
 .navbar {
   width: 100%;
+  display: block !important;
+  padding: 0 !important;
 }
 
-.nav-link {
-  font-size: 1.5rem !important;
-  color: black !important;
-  margin: 0 1.5rem;
+.nav-above-content {
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 1.05rem 2rem;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
 }
 
-.rightGroup {
-  justify-content: flex-end;
+.nav-above-content .left-content {
+  width: 10rem;
+  text-align: left;
 }
 
-.button-employer {
-  height: 4rem;
-  font-size: 1.5rem !important;
-  font-weight: 500 !important;
-  margin: 0rem 0rem 0rem 3rem;
+.logo-page-header {
+  margin: 0 !important;
+  cursor: pointer;
 }
 
-.login {
-  font-size: 1.5rem !important;
+.nav-above-content .left-content button {
+  background-color: transparent;
+  border: none;
+}
+
+.nav-above-content .right-content {
+  width: 10rem;
+  text-align: right;
+}
+
+.nav-below-content {
+  width: 100%;
+  background-color: white;
+}
+
+.nav-menu {
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 0.4rem 3.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-menu .nav-link {
+  font-size: 1.2rem !important;
+  color: rgb(98, 98, 98);
+  padding: 0.8rem 0.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu .active {
+  color: #0e8136 !important;
+}
+
+.nav-menu .nav-link img {
+  width: 2.3rem;
+  height: 2.3rem;
+  margin-right: 0.9rem;
+}
+
+.nav-menu .nav-link span {
+  text-align: left;
+  line-height: 1;
+  padding-right: 1.4rem;
+}
+
+.right-content .login span {
+  font-size: 1.3rem !important;
+  font-weight: 300;
+  color: white;
   border: none;
   background: none;
 }
 
-.login:hover {
+.login:hover span {
   text-decoration: underline;
 }
 
-.logout {
-  font-size: 1.5rem !important;
-  border: none;
-  background: none;
-  margin-left: 2rem;
+.nav-menu .active .nav-icon {
+  filter: invert(0%) sepia(98%) saturate(2140%) hue-rotate(135deg)
+    brightness(91%) contrast(89%);
 }
 
-.logout:hover {
-  text-decoration: underline;
+@media screen and (max-width: 600px) {
+  .nav-menu {
+    justify-content: space-around;
+    padding: 0.1rem 3.6rem;
+  }
+
+  .nav-menu .nav-link {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .nav-below-content .nav-menu .nav-link {
+    font-size: 1rem !important;
+  }
 }
