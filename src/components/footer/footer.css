@@ -1,0 +1,49 @@
+footer {
+  width: 100%;
+  padding: 1.5rem 2rem;
+  background-color: rgb(222, 222, 222);
+}
+
+.footer {
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+.footer-links {
+  padding: 0.4rem 0;
+}
+
+.footer-link {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: black;
+  text-decoration: none;
+  line-height: normal;
+  padding: 0.4rem 1.2rem;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+.footer-copyright {
+  font-size: 1.4rem;
+  padding-top: 1.2rem;
+  padding-bottom: 0.3rem;
+}
+
+@media screen and (max-width: 790px) {
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-link {
+    padding: 0.4rem 0;
+  }
+
+  .footer-copyright {
+    text-align: left;
+  }
+}

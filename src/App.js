@@ -4,6 +4,7 @@ import { jwtDecode } from "jwt-decode";
 
 import NavBar from "./components/appnav";
 import AppRouter from "./components/approuter";
+import Footer from "./components/footer";
 import { loginAccount, logoutAccount } from "./store/user";
 
 import "./App.css";
@@ -36,6 +37,7 @@ function App() {
       <div className="App">
         <NavBar />
         <AppRouter />
+        <Footer />
       </div>
     )
   );
