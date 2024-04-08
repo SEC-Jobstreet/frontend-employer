@@ -36,7 +36,9 @@ function App() {
     rehydrated && (
       <div className="App">
         <NavBar />
-        <AppRouter />
+        <div className="app-content">
+          <AppRouter />
+        </div>
         <Footer />
       </div>
     )
