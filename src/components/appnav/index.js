@@ -30,8 +30,7 @@ function NavBar() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
-                </svg>
-                Back
+                </svg>{" "}
               </button>
             )}
             {user.email !== "" && (
@@ -49,8 +48,7 @@ function NavBar() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
-                </svg>
-                Back
+                </svg>{" "}
               </button>
             )}
           </div>
