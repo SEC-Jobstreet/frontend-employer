@@ -1,10 +1,13 @@
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
+import CustomButton from "../../components/custombutton";
 import { loginAccount } from "../../store/user";
 
 function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleLogin = () => {
     // Handle the form submission
     // After verify
@@ -13,13 +16,17 @@ function Login() {
     localStorage.setItem("access-token", accessToken);
     const data = jwtDecode(accessToken);
     dispatch(loginAccount(data));
+    navigate("/home");
   };
   return (
     <div>
       This is login
-      <button type="button" onClick={() => handleLogin()}>
+      <CustomButton type="submit" color="green" onClick={() => handleLogin()}>
         Đăng nhập
-      </button>
+      </CustomButton>
+      <CustomButton type="button" onClick={() => navigate("/register")}>
+        Đăng ký
+      </CustomButton>
     </div>
   );
 }

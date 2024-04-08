@@ -18,7 +18,6 @@ import ProtectedRoute from "./protectedroute";
 
 function AppRouter() {
   const user = useSelector(selectUser);
-
   return (
     <Routes>
       <Route element={<ProtectedRoute isAllowed={!user?.email} />}>

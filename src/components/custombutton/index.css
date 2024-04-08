@@ -1,0 +1,20 @@
+.while-css {
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(14, 129, 54);
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    justify-content: center;
+    color:  rgb(14, 129, 54);
+
+}
+
+.green-css {
+    background-color: rgb(14, 129, 54);
+    border-color: rgb(14, 129, 54);
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    justify-content: center;
+    color: white;
+}

@@ -1,18 +1,17 @@
 import { Navbar } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import accountIcon from "../../assets/svg/account_icon.svg";
 import addIcon from "../../assets/svg/add_icon.svg";
 import businessIcon from "../../assets/svg/business_icon.svg";
 import paperIcon from "../../assets/svg/paper_icon.svg";
-import { loginAccount, selectUser } from "../../store/user";
+import { selectUser } from "../../store/user";
 
 import "./appnav.css";
 
 function NavBar() {
   const user = useSelector(selectUser);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -21,8 +20,27 @@ function NavBar() {
       <Navbar>
         <div className="nav-above-content">
           <div className="left-content">
-            {location.pathname !== "/" && (
+            {!user?.email && location.pathname !== "/" && (
               <button type="button" onClick={() => navigate(-1)}>
+                <svg width="8" viewBox="0 0 11 18" fill="none">
+                  <path
+                    d="M10.5.5.5 9l10 8.5"
+                    stroke="#FFFFFF"
+                    strokeMiterlimit="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                Back
+              </button>
+            )}
+            {user.email !== "" && (
+              <button
+                type="button"
+                onClick={() => {
+                  if (location.pathname !== "/home") navigate(-1);
+                }}
+              >
                 <svg width="8" viewBox="0 0 11 18" fill="none">
                   <path
                     d="M10.5.5.5 9l10 8.5"
@@ -64,16 +82,9 @@ function NavBar() {
           </Navbar.Brand>
           <div className="right-content">
             {user.email === "" && (
-              <button
-                type="button"
-                className="login"
-                onClick={() => {
-                  dispatch(loginAccount({ email: "a@email.com" }));
-                  navigate("/home");
-                }}
-              >
-                <span>Đăng nhập</span>
-              </button>
+              <NavLink className="nav-link login" to="/login">
+                <span style={{ color: "white" }}>Đăng nhập</span>
+              </NavLink>
             )}
           </div>
         </div>

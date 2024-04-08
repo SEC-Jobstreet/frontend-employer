@@ -1,43 +1,23 @@
+import { useDispatch } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
+
+import { logoutAccount } from "../../store/user";
 
 function MyAccount() {
   const currentPage = useLocation().pathname;
-
+  const dispatch = useDispatch();
   return (
     <div>
       <div>Tài khoản của tôi</div>
       <div
         className={
-          currentPage === "/account/profile" ? "nav-link active" : "nav-link"
+          currentPage === "/account/update-profile"
+            ? "nav-link active"
+            : "nav-link"
         }
       >
         <NavLink to="profile" className="account-navlink">
-          Hồ sơ cá nhân
-        </NavLink>
-      </div>
-      <div
-        className={
-          currentPage === "/account/job_alerts" ? "nav-link active" : "nav-link"
-        }
-      >
-        <NavLink to="job_alerts" className="account-navlink">
-          Thông báo việc
-        </NavLink>
-      </div>
-      <div
-        className={
-          currentPage === "/account/saved_jobs" ? "nav-link active" : "nav-link"
-        }
-      >
-        <NavLink to="saved_jobs" className="account-navlink">
-          Việc của tôi
-        </NavLink>
-      </div>
-      <div
-        className={currentPage === "/account" ? "nav-link active" : "nav-link"}
-      >
-        <NavLink to="/account" className="account-navlink">
-          Settings
+          Chỉnh sửa
         </NavLink>
       </div>
       <div
@@ -51,6 +31,16 @@ function MyAccount() {
           Xoá tài khoản
         </NavLink>
       </div>
+      <button
+        className="logout"
+        type="button"
+        onClick={() => {
+          localStorage.removeItem("access-token");
+          dispatch(logoutAccount());
+        }}
+      >
+        Đăng xuất
+      </button>
     </div>
   );
 }
