@@ -1,20 +1,53 @@
-.while-css {
-    background-color: rgb(255, 255, 255);
-    border-color: rgb(14, 129, 54);
-    border-radius: 4px;
-    border-style: solid;
-    border-width: 1px;
-    justify-content: center;
-    color:  rgb(14, 129, 54);
+.white-css,
+.green-css {
+  padding: 1.2rem 2.4rem;
+  line-height: 2.4rem;
+}
 
+.white-css {
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(14, 129, 54);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  justify-content: center;
+  color: rgb(14, 129, 54);
 }
 
 .green-css {
-    background-color: rgb(14, 129, 54);
-    border-color: rgb(14, 129, 54);
-    border-radius: 4px;
-    border-style: solid;
-    border-width: 1px;
-    justify-content: center;
-    color: white;
+  background-color: rgb(14, 129, 54);
+  border-color: rgb(14, 129, 54);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  justify-content: center;
+  color: white;
+}
+
+.white-css:hover {
+  color: rgb(21, 164, 73);
+  border-color: rgb(21, 164, 73);
+}
+
+.green-css:hover {
+  background-color: rgb(21, 164, 73);
+  border-color: rgb(21, 164, 73);
+}
+
+.white-css:focus,
+.green-css:focus {
+  outline: 1px solid #197fe6 !important;
+  outline-offset: 2px;
+  z-index: 3000;
+}
+
+.white-css:focus {
+  background-color: rgb(242, 253, 247);
+  border-color: rgb(8, 92, 34);
+  color: rgb(8, 92, 34);
+}
+
+.green-css:focus {
+  background-color: rgb(8, 92, 34);
+  border-color: rgb(8, 92, 34);
 }
