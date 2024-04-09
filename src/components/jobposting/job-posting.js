@@ -62,7 +62,6 @@ function JobPosting({ jobDetails, setJobDetails }) {
           spellCheck="true"
           type="text"
           className="job-title-input"
-          value=""
         />
         <JobTitleComponent description={description} />
       </div>

@@ -17,7 +17,7 @@
 .job-title-form,
 .job-category-title,
 .job-visa-header {
-    font-family: "Noto Sans";
+    font-family: "Noto Sans", sans-serif;
     font-size: 16px;
     line-height: 24px;
     font-weight: 300;
@@ -35,7 +35,7 @@
     height: 50px;
     width: 430px;
     outline-style: none;
-    font-family: "Noto Sans";
+    font-family: "Noto Sans", sans-serif;
     font-size: 16px;
     line-height: 24px;
     font-weight: 300;
@@ -61,7 +61,7 @@
 
 .job-visa-desc{
     margin-left: 12px;
-    font-family: "Noto Sans";
+    font-family: "Noto Sans", sans-serif;
     font-size: 14px;
     font-weight: 300;
 }

@@ -13,7 +13,7 @@
     text-align: left;
     padding-right: 30px; 
     padding-left: 10px;
-    font-family: "Noto Sans";
+    font-family: "Noto Sans", sans-serif;
     font-size: 16px;
     line-height: 24px;
     font-weight: 300;
@@ -65,7 +65,7 @@
   }
 
   div.dropdown-item{
-    font-family: "Noto Sans";
+    font-family: "Noto Sans", sans-serif;
     font-size: 16px;
     line-height: 24px;
     font-weight: 300;
