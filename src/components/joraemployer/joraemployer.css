@@ -1,0 +1,200 @@
+.joraemployer {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, Helvetica, sans-serif;
+    background-color: #f0f0f0;
+    height: 1000px;
+}
+
+.header {
+    background-color: #000;
+    width: 100%;
+    text-align: center;
+    height: 4.8rem;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0.8rem;
+    text-decoration: none;
+}
+
+.logo {
+    width: 11rem;
+    height: 2rem;
+    color: #fff;
+}
+
+.title {
+    color: #fff;
+    font-size: 1.8rem;
+    padding-left: 0.5rem;
+    font-weight: 300;
+    margin-top: 0.5rem;
+}
+
+
+.login  {
+    margin-top: -2.8rem;
+    font-weight: 300;
+}
+
+.login-button {
+    color: #fff;
+    float: right;
+    text-decoration: none;
+    font-size: 1.4rem;
+    letter-spacing: -.04em;
+}
+
+.login-button:hover {
+    text-decoration: underline;
+}
+
+
+.content {
+    width: 75rem;
+    margin: 0 auto;
+    
+}
+
+.content-title {
+    line-height: 24px;
+    font-size: 20px;
+    text-align: left;
+    margin: 1.6rem 0 1.6rem 0;
+    padding-left: 2rem;
+    font-weight: 400;
+    letter-spacing: -0.72px
+}
+
+.content-path {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.content-info {
+    text-align: left;
+    width: 100%;
+    padding: 24px 32px 32px;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.48px;
+}
+.content-info-title {
+    font-weight: 400;
+}
+
+.content-info-description {
+    margin-top: 1.6rem;
+    font-weight: 300;
+}
+
+.content-signup {
+    margin-top: 1.6rem;
+    font-weight: 300;
+}
+
+.content-signup span {
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -0.48px;
+}
+
+.content-image {
+    margin-top: 6.5rem;
+    margin-right: 4rem;
+}
+
+.rounded-button-primary {
+    margin: 16px 12px 0px 0%;
+    padding: 12px 24px;
+    border-radius: 4px;
+}
+
+.sign-in {
+    background-color: #0E8136;
+    border: 1px solid #0E8136;
+    color: #fff;
+}
+
+.sign-in:hover {
+    background-color: #15A449;
+    border-color: #15A449;
+}
+
+.sign-up {
+    border: 1px solid #0E8136;
+    color: #0E8136;
+    background-color: #fff;
+}
+
+.sign-up:hover {
+    border-color: #15A449;
+    color:#15A449;
+}
+
+.content-info-description span {
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -0.48px;
+}
+
+.footer {
+    font-size: 14px;
+    background-color: #dedede;
+    line-height: 28px;
+    min-width: 32rem;
+    padding: 15px 20px;
+    width: 100%;
+}
+
+.employer-footer {
+    margin: 0 auto;
+    max-width: 75rem;
+    min-width: 28rem;
+    display: block;
+}
+
+.employer-footer a{
+    color: #1C1C1C;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: -.04em;
+    padding: 0 12px;
+}
+
+.employer-footer a:hover {
+    text-decoration: underline;
+}
+
+.employer-copyright {
+    color: #1c1c1c;
+    font-size: 1.4rem;
+    letter-spacing: -.04em;
+    padding-top: 8px;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .employer-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 0;
+    }
+    .employer-copyright {
+        margin-left: 1rem;
+    }
+}
