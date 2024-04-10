@@ -1,49 +1,33 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from "react";
+import React, { useId } from "react";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 
 import "./index.css";
 
-function DropdownButton({ options, onSelect }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState("");
-
-  const toggleDropdown = () => setIsOpen(!isOpen);
-
-  const handleSelect = (option) => {
-    setSelected(option);
-    if (onSelect) {
-      onSelect(option);
-    }
-    setIsOpen(false);
-  };
-
-  let buttonClass = "dropdown-button";
-  if (isOpen) {
-    buttonClass += " open";
-  }
-
+function CustomDropdown({ name, options, onSelect, title, value }) {
+  const id = useId();
   return (
-    <div className="dropdown-button-container">
-      <button type="button" className={buttonClass} onClick={toggleDropdown}>
-        {selected || "Chọn một thể loại việc"}
-      </button>
-      {isOpen && (
-        <div className="dropdown-content">
-          {options.map((option, index) => (
-            <div
-              key={index}
-              className="dropdown-item"
-              onClick={() => handleSelect(option)}
-            >
-              {option}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+    <>
+      <div>{name}</div>
+      <DropdownButton
+        id={id}
+        title={title}
+        onSelect={(e) => onSelect(e)}
+        autoClose="inside"
+      >
+        {options.map((e) => {
+          const active = value === e.id.toString();
+          return (
+            <Dropdown.Item key={e.id} eventKey={e.id} active={active}>
+              {e.label}
+            </Dropdown.Item>
+          );
+        })}
+      </DropdownButton>
+    </>
   );
 }
 
-export default DropdownButton;
+export default CustomDropdown;

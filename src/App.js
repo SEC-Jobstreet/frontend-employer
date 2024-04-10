@@ -5,7 +5,6 @@ import { jwtDecode } from "jwt-decode";
 import NavBar from "./components/appnav";
 import AppRouter from "./components/approuter";
 import Footer from "./components/footer";
-import JobPosting from "./components/jobposting/job-posting";
 import { loginAccount, logoutAccount } from "./store/user";
 
 import "./App.css";
@@ -39,7 +38,6 @@ function App() {
         <NavBar />
         <div className="app-content">
           <AppRouter />
-          <JobPosting />
         </div>
         <Footer />
       </div>
