@@ -1,0 +1,78 @@
+.wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  align-items: flex-end;
+  margin-bottom: 1.6rem;
+}
+
+.input {
+  text-align: left;
+  margin-right: 1.6rem;
+  width: 100%;
+}
+
+.input label {
+  margin-bottom: 0;
+}
+.placeInput input {
+  background-image: url("../../../assets/svg/map_icon.svg");
+}
+
+.input input {
+  background-position: center right 1.2rem;
+  padding: 0 1.6rem;
+  padding-right: 3.52rem !important;
+  background-repeat: no-repeat;
+  font-size: 1.6rem;
+  height: 4.8rem;
+}
+.keyInput input {
+  background-image: url("../../../assets/svg/find_icon.svg");
+}
+
+.input input:focus {
+  box-shadow: none !important;
+}
+
+.submitButton {
+  height: 4.8rem !important;
+  padding-inline: 2.4rem !important;
+  font-size: 1.6rem !important;
+  font-weight: 500 !important;
+  color: var(--text-pop, #fff) !important;
+  border: 0px !important;
+  background-color: var(--bg-highlight, #0e8136) !important;
+  width: 100%;
+  flex: 1 1 20%;
+  text-wrap: nowrap;
+}
+
+.submitButton:hover {
+  background-color: #15a449 !important;
+}
+
+.closeButton {
+  position: absolute;
+  background: transparent url("../../../assets/cancel.png") center / 1em auto
+    no-repeat !important;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 990px) {
+  .wrapper {
+    flex-flow: column;
+    align-items: center;
+    margin: 0 auto;
+    /* padding-inline: 1.6rem; */
+  }
+
+  .input {
+    margin-right: 0px;
+    margin-bottom: 1.6rem;
+  }
+
+  .submitButton {
+    flex: none !important;
+  }
+}

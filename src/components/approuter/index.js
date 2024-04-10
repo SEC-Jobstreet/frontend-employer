@@ -8,6 +8,7 @@ import JobDetail from "../../pages/jobdetail";
 import LoginPage from "../../pages/login";
 import NotFound from "../../pages/notfound";
 import Register from "../../pages/register/register";
+import Search from "../../pages/search";
 import { selectUser } from "../../store/user";
 import DeletionConfirmation from "../deletioncomfirmation";
 import EditSetting from "../editsetting";
@@ -15,7 +16,6 @@ import JobsAlerts from "../jobalerts";
 import CreateJobAlert from "../jobalerts/pages/CreateJobAlert";
 import Profile from "../profile";
 import SavedJobs from "../savedjobs";
-import Search from "../searchresult/joblisting";
 import Setting from "../setting";
 
 import ProtectedRoute from "./protectedroute";

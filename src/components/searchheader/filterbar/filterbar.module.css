@@ -1,0 +1,93 @@
+.filterBarContainer {
+  font-size: 14px;
+  margin-top: 1.6rem;
+  display: flex;
+  justify-content: left;
+}
+
+.dropdownContainer {
+  position: relative;
+  display: inline-block;
+  margin-right: 2.4rem;
+  text-align: left;
+}
+
+.filterBar {
+  display: flex;
+  align-items: center;
+}
+
+.dropdowns {
+  display: flex;
+  column-gap: 0.8rem;
+  margin-right: 2.4rem;
+}
+
+.sortLink {
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  color: var(--text-cool, #0f62c7);
+  cursor: pointer !important;
+}
+
+.sortLink.active {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  cursor: default !important;
+}
+
+.dropdown-button {
+  border-radius: 4px;
+  padding: 12px 14px 12px 12px;
+  margin-right: 24px;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quickApplyFilter {
+  margin-right: 16px;
+  display: flex !important;
+  flex-flow: row-reverse;
+  align-items: center;
+}
+
+.quickApplyFilter input {
+  border: 0px;
+  background-color: var(--text-muted, #626262);
+  height: 32px !important;
+  width: 52px !important;
+  --bs-form-switch-bg: url("../../../assets/svg/toggle_circle.svg") !important;
+}
+
+.quickApplyFilter input:checked {
+  background-color: var(--bg-toggle, #22c365) !important;
+}
+
+.quickApplyFilter label {
+  font-size: 1.4rem;
+  margin-right: 0.8rem;
+  color: var(--text-body, #1c1c1c);
+  font-weight: 400;
+}
+
+.resetFilters {
+  text-decoration: none;
+  color: #000;
+  margin-left: 1.2rem;
+  background-color: transparent;
+}
+
+.resetFilters:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+@media (max-width: 990px) {
+  .filterBar {
+    display: none;
+  }
+}

@@ -1,0 +1,196 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.findButton {
+  background-color: var(--bg-inset, #f0f0f0) !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 1.6rem !important;
+  border: 0px !important;
+  width: 100%;
+  line-height: 4.8rem !important;
+
+  font-size: 1.6rem !important;
+  font-weight: 400 !important;
+  color: var(--text-body, #1c1c1c) !important;
+}
+
+.findButton:hover {
+  background-color: var(--bg-inset, #f0f0f0);
+  color: var(--text-body, #1c1c1c);
+}
+
+.filterButton {
+  background-position: center left 1.2rem;
+  padding-left: 3.2rem !important;
+  background-image: url("../../../assets/svg/filter-icon.svg");
+  background-repeat: no-repeat;
+  color: var(--text-highlight, #0e8136) !important;
+  padding-block: 1.2rem;
+  padding-right: 0.8rem;
+  background-color: rgba(0, 0, 0, 0) !important;
+  border-color: rgba(0, 0, 0, 0) !important;
+  text-wrap: nowrap;
+  font-size: 1.4rem !important;
+  font-weight: normal;
+  justify-content: center;
+}
+
+.modalContainer {
+  overflow-y: scroll;
+  padding: 1.6rem;
+}
+
+.backButton {
+  background-image: url("../../../assets/svg/left-arrow-icon.svg") !important;
+  background-position: center left 1.2rem !important;
+  padding-left: 3.2rem !important;
+  background-color: transparent !important;
+  background-repeat: no-repeat !important;
+  border: 0px !important;
+  color: var(--text-body, #1c1c1c) !important;
+  text-wrap: nowrap;
+  padding-right: 1.2rem !important;
+  padding-block: 0.8rem !important;
+  border-radius: 27px !important;
+  font-size: 1.4rem !important;
+  font-weight: normal;
+}
+
+.backButton:hover {
+  background-color: var(--border-line, #dedede) !important;
+}
+
+.searchForm {
+  margin-top: 1.2rem;
+  margin-bottom: 1.6rem;
+}
+.recentResearch {
+  padding-top: 1.6rem;
+  margin-bottom: 1.6rem;
+}
+
+.modalContainerFM {
+  overflow-y: scroll;
+  padding: 0 !important;
+}
+
+.fieldset {
+  border-bottom: 1px solid var(--border-line, #dedede);
+  padding-bottom: 2.4rem;
+  padding-top: 2.4rem;
+  padding-inline: 1.6rem;
+}
+
+.fieldset h4 {
+  margin-bottom: 1.2rem;
+  color: var(--text-body, #1c1c1c);
+  font-weight: 500;
+  font-size: 1.68rem;
+  line-height: 1.6;
+}
+
+.headerFM {
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerFM div {
+  font-size: 1.82rem;
+  font-weight: 700;
+}
+
+.deleteButton {
+  background-color: var(--bg-muted-1, #dedede) !important;
+  padding: 0.8rem 1.6rem !important;
+  min-width: 7rem;
+  border-radius: 27px !important;
+  border: 0px !important;
+  font-size: 1.4rem !important;
+  color: var(--text-body, #1c1c1c) !important;
+}
+
+.deleteButton:hover {
+  background-color: #a4a4a4 !important;
+}
+
+.deleteButton:focus {
+  background-color: #626262 !important;
+}
+.option {
+  margin-right: 0;
+}
+.option input {
+  visibility: hidden;
+}
+
+.option label {
+  border: 1px solid var(--border-line, #dedede);
+  color: var(--text-body, #1c1c1c);
+  padding: 0.8rem 1.6rem;
+  align-items: center;
+  border-radius: 27px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: normal;
+  margin-left: -1.6rem;
+  margin-bottom: 1rem;
+}
+
+.activeOption label {
+  color: var(--text-highlight-light, #0e8136);
+  background-color: var(--bg-highlight-light, #f2fdf7);
+  border-color: var(--border-highlight, #0e8136) !important;
+}
+
+.option label:hover {
+  background-color: var(--border-line, #dedede);
+}
+
+.activeOption label:hover {
+  background-color: var(--bg-highlight-light, #f2fdf7);
+}
+
+.distanceContainer {
+  width: 90%;
+  margin-inline: auto;
+  margin-top: 2rem;
+  margin-bottom: 12rem;
+}
+
+.applyFilter {
+  background-color: var(--bg-highlight, #0e8136) !important;
+  border: 0px !important;
+  width: -webkit-fill-available;
+  font-size: 1.6rem !important;
+  height: 4.8rem;
+  margin: 1.6rem;
+  font-weight: 500 !important;
+}
+
+.applyFilter:hover {
+  background-color: #15a449 !important;
+}
+
+.distanceHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.actionsContainer {
+  position: sticky;
+  bottom: 0;
+  border-top: 1px solid var(--border-line, #dedede);
+  z-index: 5;
+  background-color: var(--bg-body, #fff);
+}
+
+@media (min-width: 990px) {
+  .modal {
+    display: none !important;
+  }
+}
