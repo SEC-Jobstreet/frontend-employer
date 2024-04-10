@@ -1,11 +1,20 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
+import hidePasswordIcon from "../../assets/svg/hide_password.svg";
+import showPasswordIcon from "../../assets/svg/show_password.svg";
 import CustomButton from "../../components/custombutton";
+import Input from "../../components/custominput";
 import { loginAccount } from "../../store/user";
 
+import "./login.css";
+
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogin = () => {
@@ -19,14 +28,85 @@ function Login() {
     navigate("/home");
   };
   return (
-    <div>
-      This is login
-      <CustomButton type="submit" color="green" onClick={() => handleLogin()}>
-        Đăng nhập
-      </CustomButton>
-      <CustomButton type="button" onClick={() => navigate("/register")}>
-        Đăng ký
-      </CustomButton>
+    <div className="login-page-container">
+      <div className="login-page-header">Nhà tuyển dụng đăng nhập</div>
+      <div className="login-form">
+        <Input
+          className="input-email-field"
+          label="Email"
+          type="text"
+          input={email}
+          setInput={setEmail}
+          errorMessage={
+            !email
+              ? "Hãy điền địa chỉ email của bạn"
+              : !email.includes("@gmail.") &&
+                "Xin vui lòng nhập một địa chỉ email hợp lệ"
+          }
+        />
+        <Input
+          className="input-password-field"
+          label="Mật khẩu"
+          type={showPassword ? "text" : "password"}
+          input={password}
+          setInput={setPassword}
+          errorMessage={!password && "Hãy điền mật khẩu"}
+        >
+          <div className="password-icon">
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              <img
+                src={showPassword ? hidePasswordIcon : showPasswordIcon}
+                alt=""
+              />{" "}
+            </button>
+          </div>
+        </Input>
+        <Link to="/" className="forgot-password link-to-orther-page">
+          Quên mật khẩu
+        </Link>
+        <CustomButton
+          type="submit"
+          color="green"
+          className="login-page-loginBtn"
+          onClick={() => handleLogin()}
+        >
+          Nhà tuyển dụng đăng nhập
+        </CustomButton>
+        <div className="sign-up-section">
+          <span>
+            Bạn chưa có tài khoản nhà tuyển dụng?{" "}
+            <Link to="/post_job" className="sign-up-link link-to-orther-page">
+              Đăng ký
+            </Link>
+          </span>
+        </div>
+      </div>
+      <div className="candidate-section">
+        <span>Bạn đang tìm việc làm</span>
+        <span>
+          <a
+            href="/"
+            target="_blank"
+            rel="noopener"
+            className="link-to-orther-page"
+          >
+            Đăng nhập
+          </a>{" "}
+          hoặc{" "}
+          <a
+            href="/"
+            target="_blank"
+            rel="noopener"
+            className="link-to-orther-page"
+          >
+            đăng ký
+          </a>{" "}
+          với tư cách là người tìm việc
+        </span>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,108 @@
+.login-page-container {
+  min-width: 320px;
+  max-width: 752px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.login-page-header {
+  font-size: 2rem;
+  font-weight: 400;
+  padding: 1.6rem;
+  padding-top: 0.1rem;
+  letter-spacing: -0.72px;
+  line-height: 2.4rem;
+}
+
+.login-form {
+  width: 100%;
+  background-color: white;
+  padding: 2.4rem 4.4rem 3.2rem;
+}
+
+.input-group {
+  max-width: 43rem;
+}
+
+.input-password-field {
+  margin-top: 2.4rem;
+  position: relative;
+}
+
+.input-password-field .password-icon {
+  position: absolute;
+  top: 3.7rem;
+  right: 1.4rem;
+}
+
+.input-password-field .password-icon button {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent;
+  justify-content: center;
+  padding: 0.2rem;
+  padding-top: 0.1rem;
+}
+
+.input-password-field .password-icon button:focus {
+  border: 1px solid rgb(67, 139, 255);
+}
+
+.link-to-orther-page {
+  font-size: 1.6rem;
+  font-weight: 300;
+  text-decoration: none;
+  color: rgb(15, 98, 199);
+}
+
+.forgot-password {
+  display: block;
+  width: fit-content;
+  margin-top: 0.4rem;
+  margin-bottom: 2.4rem;
+}
+
+.link-to-orther-page:hover {
+  text-decoration: underline;
+}
+
+.sign-up-section {
+  margin-top: 1.2rem;
+}
+
+.sign-up-section span {
+  font-size: 1.6rem;
+  font-weight: 300;
+}
+
+.candidate-section {
+  margin-top: 1.6rem;
+  padding: 2.4rem 4.4rem 3.2rem;
+  background-color: white;
+}
+
+.candidate-section span {
+  display: block;
+  font-size: 1.6rem;
+}
+
+.candidate-section span:first-child {
+  margin-bottom: 1.6rem;
+  font-weight: 400;
+}
+
+.candidate-section span:last-child {
+  font-weight: 300;
+}
+
+@media screen and (max-width: 620px) {
+  .login-form,
+  .candidate-section {
+    padding: 2.4rem 2.4rem 3.2rem;
+  }
+
+  .login-page-loginBtn {
+    width: 100% !important;
+  }
+}
