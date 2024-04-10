@@ -1,0 +1,188 @@
+.jobDetailCont{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 3em;
+    text-align: left;
+}
+
+.jobDetailContLeft{
+    width: 75%;
+    padding-right: 20%;
+}
+
+.jobDetailContLeft .title-jobDetail{
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.jobDetailContLeft .company-jobDetail{
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.jobDetailContLeft .status-jobDetail span{
+    font-size: 14px;
+    padding: 4px 7px;
+    background-color: #dedede;
+    border-radius: 3px;
+}
+
+.jobDetailContLeft .time-jobDetail{
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.jobDetailContLeft .btnView-jobDetail{
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 2em;
+    border: none;
+    background-color: #0e8136;
+    color: white;
+    border-radius: 5px;
+    margin-right: .5em;
+
+}
+
+.jobDetailContLeft .btnSave-jobDetail{
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 1.5em;
+    border: solid .5px #0e8136;
+    background-color: white;
+    color: #0e8136;
+    border-radius: 5px;
+}
+
+.jobDetailContLeft .cont-jobdetail{
+    border-bottom: solid .5px #dedede;
+    padding-bottom: 1em;
+}
+
+.jobDetailContLeft .note-jobDetail{
+    font-size: 11px;
+}
+.jobDetailContLeft .note-jobDetail a{
+    color: #0e8136;
+    text-decoration: none;
+}
+.jobDetailContLeft .note-jobDetail a:hover{
+    color: green;
+    text-decoration: underline;
+}
+
+.jobDetailContLeft .footer-detailjob{
+    border-bottom: solid .5px #dedede;
+    padding-bottom: 1em;
+    margin-bottom: 60px;
+}
+
+.jobDetailContRight{
+    width: 25%;
+}
+
+.jobDetailContRight .contContact{
+    border: solid .5px #dedede;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.jobDetailContRight .title-jobDetail{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+    
+}
+.jobDetailContRight .title-jobDetail p{
+    font-weight: bold;
+    margin: 0;
+}
+.jobDetailContRight .title-jobDetail span{
+    margin-right: 10px;
+}
+
+.jobDetailContRight .form-jobdetail label{
+    display: flex;
+    font-size: 13px;
+    margin: 15px 0;
+}
+
+.jobDetailContRight .form-jobdetail label span{
+    font-size: 14px;
+    font-weight: 100;
+    margin-left: 10px;
+}
+
+.jobDetailContRight .form-jobdetail .inpEmail{
+    width: 100%;
+    padding: 12px 12px;
+    border: solid .5px #999;
+    border-radius: 3px;
+    outline: none;
+    font-size: 16px;
+}
+.jobDetailContRight .form-jobdetail .inpEmail:focus{
+    border: solid .5px green;
+}
+
+.jobDetailContRight .form-jobdetail .btnSubmit{
+    width: 100%;
+    padding: 12px 0;
+    border: solid .5px #0e8136;
+    border-radius: 3px;
+    outline: none;
+    font-size: 16px;
+    background-color: white;
+    color: #0e8136;
+    margin-bottom: 10px;
+}
+
+#btnDialogContinue{
+    margin-right: 1em;
+    padding: 12px 6em;
+    background-color: #0e8136;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.contDialogJobDetail{
+    padding: 0 1.6em;
+}
+.contDialogJobDetail .linkCancelRecommend{
+    text-decoration: none;
+    color: #444;
+}
+.contDialogJobDetail .linkCancelRecommend:hover{
+    text-decoration: underline;
+    color: #666;
+}
+
+.groupButtonDialogJobDetail{
+    margin-bottom: 1.5em;
+}
+.contDialogJobDetail .titleDialogJobDetail{
+    font-weight: bold;
+    font-size: 19px;
+}
+.contDialogJobDetail .txtDialogJobDetail{
+    font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.contDialogJobDetail .txtEndDialogJobDetail{
+    font-size: 11px;
+    margin: 0;
+    margin-bottom: 2em;
+}
+
+.txtEndDialogJobDetail .linkJobDetail{
+    text-decoration: none;
+    color: #0e8136;
+}
+.txtEndDialogJobDetail .linkJobDetail:hover{
+    text-decoration: underline;
+}
