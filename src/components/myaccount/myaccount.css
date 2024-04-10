@@ -1,0 +1,92 @@
+.account-container {
+    width: 752px;
+    max-width: 1000px;
+    margin: auto;
+    position: relative;
+    font-family: "Noto Sans", sans-serif;
+    flex: auto;
+    text-align: left;
+}
+
+.account-info-header {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    letter-spacing: -0.72px;
+    color: rgb(0, 0, 0);
+    padding: 16px 16px 12px;
+}
+
+.account-info {
+    margin-bottom: 20px;
+    background: rgb(255, 255, 255);
+    padding: 24px 32px 32px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 300;
+    color: rgb(0, 0, 0);
+    letter-spacing: -0.48px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 14px;
+    color: #1c1c1c;
+    gap: 8px;
+    font-weight: 300;
+    background: rgb(255, 255, 255);
+    justify-content: center;
+}
+
+.info-action-title:hover{
+    text-decoration: underline;
+}
+
+.account-actions {
+    background: rgb(255, 255, 255);
+    padding: 24px 32px 32px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 300;
+    color: rgb(0, 0, 0);
+    letter-spacing: -0.48px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.account-actions .action-button {
+    border: none;
+    background: rgb(255, 255, 255);
+    font-family: "Noto Sans";
+    color: rgb(15, 98, 199);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    letter-spacing: -0.48px;
+}
+
+.action-button:hover,
+.back-home:hover {
+    text-decoration: underline;
+}
+
+.back-home {
+    display: block;
+    margin-top: 16px;
+    padding-left: 32px;
+    text-decoration: none;
+    color: rgb(15, 98, 199);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    letter-spacing: -0.48px;
+}
+
