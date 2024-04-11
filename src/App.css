@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.App-logo{
+.App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -40,7 +40,7 @@
 .app-content {
   min-height: calc(100vh - 160px);
   text-align: center;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  flex-direction: column
+  flex-direction: column */
 }
