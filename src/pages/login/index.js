@@ -17,6 +17,11 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const emailPattern = /[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/gim;
+  const passwordPattern =
+    /^(?=(.*[a-z]){0,})(?=(.*[A-Z]))(?=(.*[0-9]))(?=(.*[!@#$%^&*()\-__+.]){0,})(?=\S+$).{8,}$/;
+
   const handleLogin = () => {
     // Handle the form submission
     // After verify
@@ -27,6 +32,7 @@ function Login() {
     dispatch(loginAccount(data));
     navigate("/home");
   };
+
   return (
     <div className="login-page-container">
       <div className="login-page-header">Nhà tuyển dụng đăng nhập</div>
@@ -40,7 +46,7 @@ function Login() {
           errorMessage={
             !email
               ? "Hãy điền địa chỉ email của bạn"
-              : !email.includes("@gmail.") &&
+              : !emailPattern.test(email) &&
                 "Xin vui lòng nhập một địa chỉ email hợp lệ"
           }
         />
@@ -50,7 +56,12 @@ function Login() {
           type={showPassword ? "text" : "password"}
           input={password}
           setInput={setPassword}
-          errorMessage={!password && "Hãy điền mật khẩu"}
+          errorMessage={
+            !password
+              ? "Hãy điền mật khẩu"
+              : !passwordPattern.test(password) &&
+                "Mật khẩu phải có ít nhất 8 ký tự và chứa ít nhất một chữ cái viết hoa, một con số và không có dấu cách"
+          }
         >
           <div className="password-icon">
             <button
@@ -71,7 +82,7 @@ function Login() {
           type="submit"
           color="green"
           className="login-page-loginBtn"
-          onClick={() => handleLogin()}
+          onClick={handleLogin}
         >
           Nhà tuyển dụng đăng nhập
         </CustomButton>

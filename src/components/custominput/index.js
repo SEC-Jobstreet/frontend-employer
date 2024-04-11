@@ -20,30 +20,32 @@ function Input({
   const [showError, setShowError] = useState(false);
 
   return (
-    <div className={`input-group ${className}`}>
-      <label htmlFor="name">
-        {label}
-        <input
-          type={type}
-          className={`form-control ${showError && errorMessage && "is-invalid"}`}
-          placeholder={placeholder}
-          name={name}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          required={required}
-          max={max}
-          onBlur={() => setShowError(true)}
-        />
-      </label>
+    <>
+      <div className={`input-group ${className}`}>
+        <label htmlFor="name">
+          {label}
+          <input
+            type={type}
+            className={`form-control ${showError && errorMessage && "is-invalid"}`}
+            placeholder={placeholder}
+            name={name}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            required={required}
+            max={max}
+            onBlur={() => setShowError(true)}
+          />
+        </label>
+
+        {children}
+      </div>
       {showError && errorMessage && (
         <div className="invalid-feedback-input">
-          <span>
-            <img src={warningIcon} alt="" /> {errorMessage}
-          </span>
+          <img src={warningIcon} alt="" />
+          <span>{errorMessage}</span>
         </div>
       )}
-      {children}
-    </div>
+    </>
   );
 }
 
