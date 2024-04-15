@@ -1,0 +1,25 @@
+.PhoneInputInput {
+  padding-left: 65px;
+  height: 5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #a4a4a4 !important;
+}
+
+.PhoneInputInput:focus-visible {
+  border: 1px solid #15a449 !important;
+  outline: none;
+}
+
+.PhoneInputCountry {
+  position: absolute;
+  top: 1.8rem;
+  left: 1.6rem;
+}
+
+.PhoneInput {
+  position: relative;
+}
+
+#select-options {
+  margin-top: 20px;
+}

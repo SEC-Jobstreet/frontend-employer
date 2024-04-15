@@ -1,32 +1,40 @@
-
-.work-eligibility label {
-    font-size: 1.5rem;
-    display: -webkit-inline-box;
-    cursor: pointer;
+.form-check-input:checked {
+  background-color: #ffff !important;
+  border-color: rgb(14, 129, 54) !important;
 }
 
-.work-eligibility label p{
-    font-size: 1.4rem;
+.form-check-input:checked[type="radio"] {
+  --bs-form-check-bg-image: url("../../../assets/svg/green_dot.svg") !important;
+}
+
+/* .work-eligibility label {
+  font-size: 1.5rem;
+  display: -webkit-inline-box;
+  cursor: pointer;
+}
+
+.work-eligibility label p {
+  font-size: 1.4rem;
 }
 
 .work-eligibility input[type="radio"] {
-    width: 1.6rem;
-    height: 1.6rem;
-    margin: 0;
-    margin-right: 1rem;
-    margin-top: .5rem;
-    visibility: hidden;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin: 0;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
+  visibility: hidden;
 }
 
 .work-eligibility input[type="radio"]:checked + span {
-    border: 2px solid rgb(21 164 73);
-}
-  
-.work-eligibility input[type="radio"]:checked + span:after {
-    opacity: 1;
+  border: 2px solid rgb(21 164 73);
 }
 
-.custom-radio {
+.work-eligibility input[type="radio"]:checked + span:after {
+  opacity: 1;
+}
+
+/* .custom-radio {
     left: -8px;
     top: 6px;
     cursor: pointer;
@@ -36,20 +44,20 @@
     border-radius: 50%;
     display: inline-block;
     position: relative;
-}
+    } 
 
-/* for inner filled circle */
 .custom-radio::after {
-    content: '';
-    width: 8px;
-    height: 8px;
-    border: 1px solid rgb(21 164 73);
-    background: #0e8136;
-    position: absolute;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity 0.2s;
-}
+  content: "";
+  width: 8px;
+  height: 8px;
+  border: 1px solid rgb(21 164 73);
+  background: #0e8136;
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s;
+} 
+*/

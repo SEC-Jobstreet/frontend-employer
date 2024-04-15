@@ -1,4 +1,4 @@
-:root {
+/* :root {
   --primary: #0e8136;
   --text-highlight: #0e8136;
   --border-color: rgb(222, 222, 222);
@@ -11,7 +11,7 @@ body {
   padding: 0 1.6rem 1.6rem 1.6rem;
   display: flex;
   flex-direction: column;
-}
+} */
 /* mobile */
 
 .tabs-container {

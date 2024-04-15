@@ -1,12 +1,16 @@
 import { useState } from "react";
 import PhoneInput, { isPossiblePhoneNumber } from "react-phone-number-input";
+import classNames from "classnames/bind";
 
 import Input from "./input/input";
 import Radio from "./radio";
 import WorkShift from "./workshift";
 
-import "./index.css";
 import "react-phone-number-input/style.css";
+import "./phoneinput.css";
+import styles from "./profile.module.css";
+
+const cx = classNames.bind(styles);
 
 function Profile() {
   const [firstName, setFirstName] = useState("");
@@ -78,8 +82,8 @@ function Profile() {
     e.preventDefault();
   };
   return (
-    <div className="my-profile">
-      <h3 className="my-profile-tilte fw-bold fs-2">Tạo hồ sơ</h3>
+    <div className={cx("my-profile")}>
+      <h2 className={cx("my-profile-tilte")}>Tạo hồ sơ</h2>
       <form id="myProfile" onSubmit={handleSubmit}>
         <Input
           setInput={setFirstName}
@@ -101,7 +105,7 @@ function Profile() {
           name="lastName"
           required
         />
-        <div className="phone-number-title">Số điện thoại</div>
+        <div className={cx("phone-number-title")}>Số điện thoại</div>
         <PhoneInput
           international
           countryCallingCodeEditable={false}
@@ -117,10 +121,10 @@ function Profile() {
           (phoneNumber === undefined ||
           phoneNumber === "" ||
           phoneNumber === "+84" ? (
-            <div className="invalid-feedback-input">Mục này bắt buộc</div>
+            <div className={cx("invalid-feedback-input")}>Mục này bắt buộc</div>
           ) : (
             !isPossiblePhoneNumber(phoneNumber || "") && (
-              <div className="invalid-feedback-input">
+              <div className={cx("invalid-feedback-input")}>
                 Vui lòng nhập số điện thoại hợp lệ
               </div>
             )
@@ -136,13 +140,13 @@ function Profile() {
           name="address"
           required
         >
-          <span className="address-description">
+          <span className={cx("address-description")}>
             Chia sẻ địa chỉ của bạn để xem được nhiều hơn các vị trị gần đó. Chỉ
             tên huyện/tỉnh sẽ hiển thị trên hồ sơ của bạn.
           </span>
         </Input>
-        <div className="work-eligibility">
-          <div className="work-eligibility-title">
+        <div className={cx("work-eligibility")}>
+          <div className={cx("work-eligibility-title")}>
             Điều nào sau đây miêu tả đúng nhất thị thực làm việc của bạn ở Việt
             Nam?
           </div>
@@ -159,7 +163,6 @@ function Profile() {
               phép/visa cho tôi.
             </p>
           </Radio>
-
           <Radio
             value={workEligibility}
             checkedValue={2}
@@ -174,10 +177,9 @@ function Profile() {
           </Radio>
 
           {workEligibility === 3 && (
-            <div className="invalid-feedback-input">Mục này bắt buộc</div>
+            <div className={cx("invalid-feedback-input")}>Mục này bắt buộc</div>
           )}
         </div>
-
         <Input
           setInput={setPosition}
           input={position}
@@ -205,7 +207,7 @@ function Profile() {
           errorWorkShift={errorWorkShift}
         />
 
-        <div className="work-eligibility">
+        <div className={cx("work-eligibility")}>
           <h3>Cài đặt Bảo Mật</h3>
 
           <Radio
@@ -243,23 +245,23 @@ function Profile() {
           </Radio>
 
           {secureSetting === 3 && (
-            <div className="invalid-feedback-input">Mục này bắt buộc</div>
+            <div className={cx("invalid-feedback-input")}>Mục này bắt buộc</div>
           )}
         </div>
         <div>
-          <hr className="my-8 h-px border-t-grey-100" />
+          <hr className={cx("my-8 h-px border-t-grey-100")} />
         </div>
-        <div className="button-cancel-submit row">
+        <div className={cx("button-cancel-submit row")}>
           <button
             type="button"
-            className="cancel-create-profile col"
+            className={cx("cancel-create-profile col")}
             onClick={handleCancel}
           >
             Huỷ bỏ
           </button>
           <button
             type="submit"
-            className="submit-create-profile col"
+            className={cx("submit-create-profile col")}
             onClick={handleSubmit}
           >
             Tạo hồ sơ
