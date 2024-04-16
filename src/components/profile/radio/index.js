@@ -12,20 +12,8 @@ function Radio({ value, checkedValue, setValue, id, children }) {
       id={id}
       onChange={() => setValue(checkedValue)}
       label={children}
+      className="radio-custom"
     />
-    // <label htmlFor={`${id}`} className="radio-label">
-    //   <input
-    //     className={`radio-input-${id}`}
-    //     type="radio"
-    //     name={id}
-    //     id={id}
-    //     value={value === checkedValue}
-    //     onChange={() => setValue(checkedValue)}
-    //     checked={value === checkedValue}
-    //   />
-    //   <span className="custom-radio" />
-    //   {children}
-    // </label>
   );
 }
 

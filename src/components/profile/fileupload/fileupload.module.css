@@ -1,0 +1,49 @@
+.file-upload-custom {
+  text-align: left;
+}
+
+.upload-btn {
+  line-height: 4rem !important;
+  padding-inline: 4rem;
+  width: 28rem;
+  white-space: nowrap;
+  font-size: 1.6rem !important;
+}
+
+.outline-button {
+  color: rgb(14 129 54) !important;
+  border: 1px solid rgb(14 129 54) !important;
+  background-color: transparent !important;
+}
+
+.outline-button:hover {
+  color: #15a449 !important;
+}
+
+.file-upload-name {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: rgb(98, 98, 98);
+  margin-top: 3rem;
+  margin-bottom: 1.3rem;
+}
+
+.upload-another-file {
+  background-image: url("../../../assets/upload.png");
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: 15px;
+  padding-left: 23px;
+}
+
+.upload-another-file span {
+  font-size: 1.4rem;
+  color: rgb(98, 98, 98);
+}
+
+.error {
+  font-size: 1.4rem;
+  color: rgb(227, 33, 33);
+  margin-block: 0.4rem;
+}

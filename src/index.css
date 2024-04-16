@@ -26,3 +26,25 @@ html {
   --text-badge-feature: #1c1c1c;
   --text-muted: #626262;
 }
+
+.outline-button {
+  color: rgb(14 129 54) !important;
+  border: 1px solid rgb(14 129 54) !important;
+  background-color: transparent !important;
+  font-size: 1.6rem !important;
+}
+
+.outline-button:hover {
+  color: #15a449 !important;
+}
+
+.filled-button {
+  color: #ffff !important;
+  border: 0px !important;
+  background-color: rgb(14 129 54) !important;
+  font-size: 1.6rem !important;
+}
+
+.filled-button:hover {
+  background-color: #15a449 !important;
+}

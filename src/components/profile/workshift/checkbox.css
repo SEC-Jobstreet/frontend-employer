@@ -1,0 +1,18 @@
+.checkbox-custom input {
+  accent-color: #0e8136;
+  border: 1px solid rgb(118, 118, 118) !important;
+  border-radius: 3px !important;
+}
+
+.checkbox-custom input:focus {
+  box-shadow: none;
+}
+
+.checkbox-custom input:hover {
+  cursor: pointer;
+}
+
+.checkbox-custom input:checked {
+  border: 1px solid #0e8136;
+  background-color: #0e8136;
+}

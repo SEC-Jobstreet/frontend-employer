@@ -1,0 +1,21 @@
+.workshiftTitle {
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
+.timeHeader {
+  background-color: transparent;
+  border: 0px;
+  border-bottom: 2px solid rgb(240, 240, 240);
+  width: 50%;
+  padding-block: 1.2rem;
+}
+
+.activeTime {
+  color: rgb(14, 129, 54);
+  border-bottom: 2px solid rgb(14, 129, 54);
+}
+
+.checkboxContainer {
+  margin-top: 3.2rem;
+}

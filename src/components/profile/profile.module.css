@@ -12,6 +12,71 @@
   margin-bottom: 4.75rem;
 }
 
+.textarea-custom {
+  border-color: rgb(164 164 164);
+}
+
+.textarea-custom:focus {
+  box-shadow: none !important;
+  border: 1px solid #15a449 !important;
+}
+
+textarea {
+  font-size: 1.6rem !important;
+}
+
+.textarea-letter-number {
+  font-size: 1.4rem;
+  color: rgb(98, 98, 98);
+  text-align: right;
+}
+
+.horizontal-line {
+  border-top-color: rgb(240 240 240);
+  height: 2px;
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
+  opacity: 100%;
+}
+
+.tilte {
+  font-weight: 700 !important;
+  font-size: 1.6rem;
+}
+
+.normal-text {
+  font-size: 1.4rem;
+}
+
+.small-text {
+  font-size: 1.2rem;
+}
+
+.text-grey {
+  color: rgb(98 98 98);
+}
+
+.purple-badge {
+  font-size: 1rem;
+  background-color: rgb(236 226 252);
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  margin-left: 3px;
+}
+
+.button-custom {
+  line-height: 4rem !important;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  width: -webkit-fill-available;
+}
+
+.actions-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+}
+
 .button-cancel-submit button {
   padding-left: 2rem;
   padding-right: 2rem;
@@ -22,31 +87,12 @@
   background-image: none;
   cursor: pointer;
 }
-.cancel-create-profile {
-  margin-right: 0.5rem;
-  background-color: rgb(255 255 255);
-  color: #15a449;
-}
 
 .address-description {
   text-align: left;
   margin-top: 1rem;
   color: #626262;
   font-size: 1.4rem;
-}
-
-.cancel-create-profile:hover {
-  opacity: 0.8;
-  color: rgb(21 164 73);
-}
-.submit-create-profile {
-  margin-left: 0.5rem;
-  background-color: #0e8136;
-  color: white;
-}
-.submit-create-profile:hover {
-  opacity: 1;
-  background-color: rgb(21 164 73);
 }
 
 .work-eligibility {
@@ -82,4 +128,10 @@
   width: 100%;
   border: 1px solid #a4a4a4;
   border-radius: 4px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .my-profile {
+    max-width: 100%;
+  }
 }

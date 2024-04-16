@@ -23,3 +23,8 @@
 #select-options {
   margin-top: 20px;
 }
+
+.form-control {
+  padding: 2rem !important;
+}
+
