@@ -33,7 +33,6 @@ function AppRouter() {
         <Route path="account" element={<Account />}>
           <Route path="settings" element={<Setting />} />
           <Route path="update-profile" element={<UpdateProfile />} />
-
           <Route
             path="deletion_confirmation"
             element={<DeletionConfirmation />}

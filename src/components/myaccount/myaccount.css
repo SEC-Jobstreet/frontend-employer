@@ -44,7 +44,7 @@
     justify-content: center;
 }
 
-.info-action-title:hover{
+.info-action-title:hover {
     text-decoration: underline;
 }
 
@@ -65,7 +65,7 @@
 .account-actions .action-button {
     border: none;
     background: rgb(255, 255, 255);
-    font-family: "Noto Sans";
+    font-family: "Noto Sans", sans-serif;
     color: rgb(15, 98, 199);
     font-size: 16px;
     font-weight: 300;
@@ -73,8 +73,7 @@
     letter-spacing: -0.48px;
 }
 
-.action-button:hover,
-.back-home:hover {
+.action-button:hover {
     text-decoration: underline;
 }
 
@@ -90,3 +89,6 @@
     letter-spacing: -0.48px;
 }
 
+.back-home:hover {
+    text-decoration: underline;
+}
