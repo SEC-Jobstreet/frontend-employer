@@ -46,24 +46,19 @@ function WorkShift({
     setSessions((prev) => ({ ...prev, [session]: value }));
   };
 
-  React.useLayoutEffect(() => {
-    const checkLogic = (session) => {
-      const col = sessionIdx[session];
-      const firstValue = particularTime[col][0];
-      for (let i = 1; i < 7; i += 1) {
-        if (particularTime[col][i] !== firstValue) {
-          if (sessions[session] === true) {
-            setSessionValue(session, false);
-          }
-          return;
+  const checkLogic = (session) => {
+    const col = sessionIdx[session];
+    const firstValue = particularTime[col][0];
+    for (let i = 1; i < 7; i += 1) {
+      if (particularTime[col][i] !== firstValue) {
+        if (sessions[session]) {
+          setSessionValue(session, false);
         }
+        return;
       }
-      setSessionValue(session, firstValue);
-    };
-    checkLogic("morning");
-    checkLogic("afternoon");
-    checkLogic("evening");
-  }, [particularTime[0], particularTime[1], particularTime[2]]);
+    }
+    setSessionValue(session, firstValue);
+  };
 
   const setOneColParticularTime = (index, value) => {
     const temp = [
@@ -88,10 +83,16 @@ function WorkShift({
   };
 
   const handleAllCheckBoxChange = (session) => {
-    const prevValue = sessions[sessionIdx[session]];
+    const prevValue = sessions[session];
     setOneColParticularTime(sessionIdx[session], !prevValue);
     setSessionValue(session, !prevValue);
   };
+
+  React.useLayoutEffect(() => {
+    checkLogic("morning");
+    checkLogic("afternoon");
+    checkLogic("evening");
+  }, [particularTime[0], particularTime[1], particularTime[2]]);
 
   return (
     <div>
@@ -120,14 +121,17 @@ function WorkShift({
               <Form.Check // prettier-ignore
                 type="checkbox"
                 className="col checkbox-custom"
-                value={sessions[sessionIdx[session]]}
-                checked={sessions[sessionIdx[session]]}
+                value={sessions[session]}
+                checked={sessions[session]}
                 key={session}
                 onChange={() => handleAllCheckBoxChange(session)}
               />
             ))}
           </div>
-          <div className="row" style={{ marginBottom: "2rem" }}>
+          <div
+            className="row"
+            style={{ marginBottom: "2rem", fontSize: "1.4rem" }}
+          >
             <div className="col" />
             <div className="col">Sáng</div>
             <div className="col">Chiều</div>
@@ -146,7 +150,7 @@ function WorkShift({
                     checked={particularTime[sIdx][dIdx]}
                     key={`${day} ${session}`}
                     onChange={() =>
-                      setOneCheckbox(sIdx, dIdx, !particularTime[0][dIdx])
+                      setOneCheckbox(sIdx, dIdx, !particularTime[sIdx][dIdx])
                     }
                   />
                 );

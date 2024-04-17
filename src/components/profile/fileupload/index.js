@@ -31,8 +31,6 @@ function FileUpload() {
     }
   };
 
-  console.log(file);
-
   return (
     <div className={cx("file-upload-custom")}>
       <input
