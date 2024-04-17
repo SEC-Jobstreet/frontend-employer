@@ -46,6 +46,7 @@ function MyAccount() {
       <div className="account-actions">
         <button className="action-button" type="button">
           Cập nhật lại mật khẩu
+          <Link to="/account/update-password" />
         </button>
         <button className="action-button" type="button">
           Xóa tài khoản

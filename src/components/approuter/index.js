@@ -11,6 +11,7 @@ import NotFound from "../../pages/notfound";
 import PostJob from "../../pages/postjob";
 import Register from "../../pages/register";
 import Setting from "../../pages/setting";
+import UpdatePassword from "../../pages/updatepassword";
 import UpdateProfile from "../../pages/updateprofile";
 import { selectUser } from "../../store/user";
 
@@ -33,6 +34,7 @@ function AppRouter() {
         <Route path="account" element={<Account />}>
           <Route path="settings" element={<Setting />} />
           <Route path="update-profile" element={<UpdateProfile />} />
+          <Route path="update-password" element={<UpdatePassword />} />
           <Route
             path="deletion_confirmation"
             element={<DeletionConfirmation />}
