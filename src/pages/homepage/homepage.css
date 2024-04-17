@@ -5,7 +5,7 @@
 }
 
 .content {
-    width: 75rem;
+    max-width: 75rem;
     margin: 0 auto;
     
 }
@@ -93,3 +93,14 @@
     line-height: 24px;
     letter-spacing: -0.48px;
 }
+
+@media screen and (max-width: 618px) {
+    .content-image {
+        display: none;
+    }
+    .rounded-button-primary {
+        width: 100%;
+    }
+
+  }
+  
