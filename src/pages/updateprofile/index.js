@@ -1,10 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
 import DropdownButton from "../../components/customdropdown";
 import CustomInput from "../../components/custominput/input";
 import SuggestionInfo from "../../components/suggestioninfo";
+import { selectUser } from "../../store/user";
 
 import countryCodes from "./countrycode";
 
@@ -18,6 +21,8 @@ const dropdownOptions = Object.entries(countryCodes).map(
 );
 
 function UpdateProfile() {
+  const profile = useSelector(selectUser);
+
   const [inputName, setInputName] = useState("");
   const [errorInputName, setErrorInputName] = useState(false);
 
@@ -35,6 +40,16 @@ function UpdateProfile() {
 
   const [phoneCode, setPhoneCode] = useState("VN +84");
 
+  useEffect(() => {
+    if (profile) {
+      setInputName(profile.name);
+      setInputSurName(profile.surname);
+      setInputEmail(profile.email);
+      setInputConfirmEmail(profile.email);
+      setInputPhone(profile.phone);
+    }
+  }, [profile]);
+
   const handleSelectPhoneCode = (eventKey) => {
     const selectedOption = dropdownOptions.find(
       (option) => option.id === parseInt(eventKey, 10)
@@ -43,6 +58,13 @@ function UpdateProfile() {
       setPhoneCode(selectedOption.label);
     }
   };
+
+  const navigate = useNavigate();
+
+  const handleCancel = () => {
+    navigate("/account");
+  };
+
   return (
     <div className="update-profile-page">
       <div className="update-profile-header">Cập nhật thông tin tài khoản</div>
@@ -171,7 +193,11 @@ function UpdateProfile() {
           <button type="submit" className="rounded-button-primary btn-update">
             Cập nhật thông tin
           </button>
-          <button type="submit" className="rounded-button-primary btn-cancel">
+          <button
+            type="submit"
+            className="rounded-button-primary btn-cancel"
+            onClick={handleCancel}
+          >
             Hủy bỏ
           </button>
         </div>

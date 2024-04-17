@@ -113,6 +113,7 @@ div.custom-dropdown.dropdown button {
     border-radius: 6px;
     letter-spacing: -.04em;
     padding: 14px 45px 13px 16px;
+    height: 50.2px;
 }
 
 .custom-dropdown .dropdown-menu {
@@ -136,10 +137,6 @@ div.custom-dropdown.dropdown button {
 .custom-dropdown-item:hover,
 .custom-dropdown-item:focus {
     background-color: blue;
-}
-
-.custom-dropdown.dropdown button {
-    height: 50.2px;
 }
 
 .custom-dropdown .dropdown-toggle {

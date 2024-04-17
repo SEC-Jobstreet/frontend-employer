@@ -27,10 +27,17 @@ export const userSlice = createSlice({
         picture: newState.picture,
       };
     },
+    setProfileData: (state, action) => {
+      state.account = {
+        ...state.account,
+        ...action.payload,
+      };
+    },
   },
 });
 
-export const { loginAccount, logoutAccount } = userSlice.actions;
+export const { loginAccount, logoutAccount, setProfileData } =
+  userSlice.actions;
 
 export const selectUser = (state) => state.user.account;
 

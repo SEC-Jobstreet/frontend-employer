@@ -1,26 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { ReactComponent as EditIcon } from "../../assets/svg/edit_icon.svg";
-import { logoutAccount } from "../../store/user";
+import { logoutAccount, setProfileData } from "../../store/user";
 
 import "./myaccount.css";
 
 function MyAccount() {
   const dispatch = useDispatch();
 
+  const [name] = useState("Duy An");
+  const [surname] = useState(" Lê");
+  const [email] = useState("ptbt1092@gmail.com");
+  const [phone] = useState("+84354532051");
+
+  const handleEditClick = () => {
+    dispatch(
+      setProfileData({
+        name,
+        surname,
+        email,
+        phone,
+      })
+    );
+  };
+
   return (
     <div className="account-container">
       <div className="account-info-header">Tài khoản</div>
       <div className="account-info">
         <div className="info-section">
-          <span className="info-name">Duy An </span>
-          <span className="info-surname">Lê</span>
-          <div className="info-email">ptbt1092@gmail.com</div>
-          <div className="info-phone">+84354532051</div>
+          <span className="info-name">{name}</span>
+          <span className="info-surname">{surname}</span>
+          <div className="info-email">{email}</div>
+          <div className="info-phone">{phone}</div>
         </div>
-        <button className="info-action" type="button">
+        <button className="info-action" type="button" onClick={handleEditClick}>
           <Link to="/account/update-profile">
             <EditIcon />
             <div className="info-action-title">Chỉnh sửa</div>
