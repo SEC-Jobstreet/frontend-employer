@@ -9,8 +9,7 @@ body {
 } */
 
 .login-widget {
-  height: 610px;
-  width: 320px;
+  width: 32rem;
   position: absolute;
   right: 40px;
   top: 74px;
@@ -18,8 +17,7 @@ body {
   box-shadow: #a4a4a4 0px 24px 48px 0px;
   color: #1c1c1c;
   grid-area: auto;
-  line-height: 25.6px;
-  padding: 16px;
+  padding: 1.6rem;
   display: none;
   z-index: 15;
 }
@@ -236,4 +234,20 @@ p {
   grid-area: auto;
   line-height: 25.6px;
   padding: 16px;
+}
+
+.jora-sign-up {
+  cursor: pointer;
+}
+
+.facebook-login {
+  cursor: pointer;
+}
+
+.apple-login {
+  cursor: pointer;
+}
+
+.google-login {
+  cursor: pointer;
 }
