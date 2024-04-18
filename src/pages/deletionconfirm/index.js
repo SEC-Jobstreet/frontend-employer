@@ -1,5 +1,5 @@
 function DeletionConfirmation() {
-  return <div>This is edit setting page </div>;
+  return <div>This is delete confirmation page </div>;
 }
 
 export default DeletionConfirmation;

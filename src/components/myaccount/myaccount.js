@@ -1,46 +1,58 @@
-import { useDispatch } from "react-redux";
-import { NavLink, useLocation } from "react-router-dom";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-import { logoutAccount } from "../../store/user";
+import { ReactComponent as EditIcon } from "../../assets/svg/edit_icon.svg";
+import { logoutAccount, selectUser } from "../../store/user";
+
+import "./myaccount.css";
 
 function MyAccount() {
-  const currentPage = useLocation().pathname;
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
+
   return (
-    <div>
-      <div>Tài khoản của tôi</div>
-      <div
-        className={
-          currentPage === "/account/update-profile"
-            ? "nav-link active"
-            : "nav-link"
-        }
-      >
-        <NavLink to="profile" className="account-navlink">
-          Chỉnh sửa
-        </NavLink>
+    <div className="account-container">
+      <div className="account-info-header">Tài khoản</div>
+      <div className="account-info">
+        <div className="info-section">
+          <span className="info-name">{user.firstName}</span>
+          <span className="info-surname">{user.lastName}</span>
+          <div className="info-email">{user.email}</div>
+          <div className="info-phone">{user.phone}</div>
+        </div>
+        <Link to="/account/update-profile">
+          <button className="info-action" type="button">
+            <EditIcon />
+            <p className="info-action-title">Chỉnh sửa</p>
+          </button>
+        </Link>
       </div>
-      <div
-        className={
-          currentPage === "/account/deletion_confirmation"
-            ? "nav-link active"
-            : "nav-link"
-        }
-      >
-        <NavLink to="deletion_confirmation" className="account-navlink">
-          Xoá tài khoản
-        </NavLink>
+      <div className="account-actions">
+        <Link to="/account/update-password">
+          <button className="action-button" type="button">
+            Cập nhật lại mật khẩu
+          </button>
+        </Link>
+        <Link to="/account/deletion_confirmation">
+          <button className="action-button" type="button">
+            Xóa tài khoản
+          </button>
+        </Link>
+        <button
+          className="action-button"
+          type="button"
+          onClick={() => {
+            localStorage.removeItem("access-token");
+            dispatch(logoutAccount());
+          }}
+        >
+          Đăng xuất
+        </button>
       </div>
-      <button
-        className="logout"
-        type="button"
-        onClick={() => {
-          localStorage.removeItem("access-token");
-          dispatch(logoutAccount());
-        }}
-      >
-        Đăng xuất
-      </button>
+      <Link to="/home" className="back-home">
+        Trở về trang chủ
+      </Link>
     </div>
   );
 }

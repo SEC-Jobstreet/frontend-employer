@@ -22,7 +22,7 @@ label input:focus {
     border: 1px solid #0e8136;
     background-color: rgba(0, 0, 0, 0);
     box-shadow: none !important;
-
+    color: black !important;
 }
 
 .invalid-feedback-input {
@@ -30,4 +30,12 @@ label input:focus {
     color: rgb(227 33 33);
     font-size: 1.4rem;
     margin-top: .25rem;
+}
+
+.invalid-feedback-input span {
+    line-height: 1.6rem;
+}
+
+.is-invalid {
+    color: rgb(227 33 33) !important;
 }
