@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 import HomeIcon from "../../assets/svg/homeicon";
 
 import "./homepage.css";
 
 function HomePage() {
+  const navigate = useNavigate();
   return (
     <div className="joraemployer">
       <div className="content">
@@ -17,10 +20,22 @@ function HomePage() {
             <div className="content-signup">
               Đăng ký để đăng việc <span>MIỄN PHÍ</span> ngay hôm nay.
             </div>
-            <button type="button" className="rounded-button-primary sign-in">
+            <button
+              type="button"
+              className="rounded-button-primary sign-in"
+              onClick={() => {
+                navigate("/register");
+              }}
+            >
               Đăng kí ngay
             </button>
-            <button type="button" className="rounded-button-primary sign-up">
+            <button
+              type="button"
+              className="rounded-button-primary sign-up"
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
               Đăng nhập
             </button>
           </div>
@@ -69,7 +84,13 @@ function HomePage() {
             <div className="content-info-description">
               Đăng ký để đăng việc <span>MIỄN PHÍ</span> ngay hôm nay.
             </div>
-            <button type="button" className="rounded-button-primary sign-in">
+            <button
+              type="button"
+              className="rounded-button-primary sign-in"
+              onClick={() => {
+                navigate("/register");
+              }}
+            >
               Đăng kí ngay
             </button>
           </div>
