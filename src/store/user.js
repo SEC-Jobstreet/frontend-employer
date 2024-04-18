@@ -4,8 +4,10 @@ const init = {
   account: {
     email: "",
     email_verified: false,
-    name: "",
+    firstName: "",
+    lastName: "",
     picture: "",
+    phone: "",
   },
 };
 
@@ -22,9 +24,11 @@ export const userSlice = createSlice({
       const newState = action.payload;
       state.account = {
         email: newState.email,
-        name: newState.name,
+        firstName: newState.firstName,
+        lastName: newState.lastName,
         email_verified: newState.email_verified,
         picture: newState.picture,
+        phone: newState.phone,
       };
     },
   },

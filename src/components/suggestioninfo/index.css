@@ -1,0 +1,63 @@
+p {
+    margin-bottom: 0 !important;
+}
+
+.job-title-content {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 12px;
+    background-color: rgb(222, 240, 252);
+    padding: 16px;
+}
+
+.info {
+    background-color: rgb(255, 247, 225) !important;
+}
+
+.job-title-icon {
+    align-items: stretch;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0px solid black;
+    box-sizing: border-box;
+    display: flex;
+    list-style: none;
+    margin: 0px;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 0px;
+    position: relative;
+    text-decoration: none;
+    z-index: 0;
+    flex-shrink: 0;
+    margin-right: 12px;
+    margin-top: 4px;
+}
+
+.job-title-texts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.6rem !important;
+    line-height: 24px;
+    font-weight: 300;
+    color: rgb(0, 0, 0);
+    letter-spacing: -0.48px;
+    text-align: left;
+}
+
+.job-title-texts p {
+    font-size: 1.6rem !important;
+    line-height: 24px;
+    font-weight: 300;
+    color: rgb(0, 0, 0);
+    font-family: "Noto Sans", sans-serif;
+}
+
+.job-title-desc {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 1.6rem !important;
+    line-height: 24px;
+    font-weight: 300;
+    color: rgb(0, 0, 0);
+    white-space: pre-line;
+}

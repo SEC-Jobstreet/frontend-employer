@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import warningIcon from "../../assets/svg/warning_icon.svg";
+import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
 
 import "./index.css";
 
@@ -41,7 +41,7 @@ function Input({
       </div>
       {showError && errorMessage && (
         <div className="invalid-feedback-input">
-          <img src={warningIcon} alt="" />
+          <ErrorIcon />
           <span>{errorMessage}</span>
         </div>
       )}
