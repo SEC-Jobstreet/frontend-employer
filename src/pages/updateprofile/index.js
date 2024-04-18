@@ -1,10 +1,10 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from "react";
+import vi from "react-phone-number-input/locale/vi.json";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import CountrySelect from "../../components/countryselect";
 import CustomButton from "../../components/custombutton";
-// import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
 import CustomInput from "../../components/custominput/input";
 import SuggestionInfo from "../../components/suggestioninfo";
 import { selectUser } from "../../store/user";
@@ -27,8 +27,9 @@ function UpdateProfile() {
   const [inputConfirmEmail, setInputConfirmEmail] = useState("");
   const [errorInputConfirmEmail, setErrorInputConfirmEmail] = useState(false);
 
-  // const [inputPhone, setInputPhone] = useState("");
-  // const [errorInputPhone, setErrorInputPhone] = useState(false);
+  const [country, setCountry] = useState("VN");
+  const [inputPhone, setInputPhone] = useState("");
+  const [errorInputPhone, setErrorInputPhone] = useState(false);
 
   useEffect(() => {
     if (profile) {
@@ -120,18 +121,22 @@ function UpdateProfile() {
           errorMessage="Hãy điền địa chỉ email của bạn."
           name="input-info"
         />
-        <div className="phone-number-container">
-          <label htmlFor="input-info-phone" className="phone-number-label">
-            Số điện thoại di động
-          </label>
-        </div>
-
-        {/* {errorInputPhone && (
-          <div className="invalid-feedback-input">
-            <ErrorIcon />
-            Xin vui lòng nhập số điện thoại của bạn.
-          </div>
-        )} */}
+        <div className="phone-number-container">Số điện thoại di động</div>
+        <CountrySelect labels={vi} value={country} onChange={setCountry} />
+        <CustomInput
+          input={inputPhone}
+          setInput={(e) => {
+            setErrorInputPhone(false);
+            setInputPhone(e.target.value);
+          }}
+          setBlur={() => {
+            if (inputPhone === "") setErrorInputPhone(true);
+          }}
+          type="text"
+          name="input-info-phone"
+          error={errorInputPhone}
+          className="input-info-phone"
+        />
 
         <div className="btn-container">
           <CustomButton
