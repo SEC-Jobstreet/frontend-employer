@@ -1,0 +1,106 @@
+.joraemployer {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, Helvetica, sans-serif;
+    background-color: #f0f0f0;
+    height: auto;
+}
+
+.content {
+    max-width: 75rem;
+    margin: 0 auto;
+    
+}
+
+.content-title {
+    line-height: 24px;
+    font-size: 20px;
+    text-align: left;
+    margin: 1.6rem 0 1.6rem 0;
+    padding-left: 2rem;
+    font-weight: 400;
+    letter-spacing: -0.72px
+}
+
+.content-path {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.content-info {
+    text-align: left;
+    width: 100%;
+    padding: 24px 16px 32px 32px;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.48px;
+}
+.content-info-title {
+    font-weight: 400;
+}
+
+.content-info-description {
+    margin-top: 1.6rem;
+    font-weight: 300;
+}
+
+.content-signup {
+    margin-top: 1.6rem;
+    font-weight: 300;
+}
+
+.content-signup span {
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -0.48px;
+}
+
+.content-image {
+    margin-top: 6.5rem;
+    margin-right: 4rem;
+}
+
+.rounded-button-primary {
+    margin: 16px 12px 0px 0%;
+    padding: 12px 24px;
+    border-radius: 4px;
+}
+
+.sign-in {
+    background-color: #0E8136;
+    border: 1px solid #0E8136;
+    color: #fff;
+}
+
+.sign-in:hover {
+    background-color: #15A449;
+    border-color: #15A449;
+}
+
+.sign-up {
+    border: 1px solid #0E8136;
+    color: #0E8136;
+    background-color: #fff;
+}
+
+.sign-up:hover {
+    border-color: #15A449;
+    color:#15A449;
+}
+
+.content-info-description span {
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -0.48px;
+}
+
+@media screen and (max-width: 618px) {
+    .content-image {
+        display: none;
+    }
+    .rounded-button-primary {
+        width: 100%;
+    }
+
+  }
+  

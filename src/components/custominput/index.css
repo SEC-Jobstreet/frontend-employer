@@ -1,0 +1,49 @@
+.input-group {
+  width: 100%;
+  position: relative;
+}
+
+.input-group label {
+  width: 100%;
+  text-align: left;
+  color: black;
+  font-size: 1.6rem;
+  font-weight: 300;
+}
+
+.input-group label input {
+  height: 50px;
+  font-size: 1.6rem;
+  font-weight: 300;
+  padding: 0 1.6rem !important;
+  background-image: none !important;
+  border-radius: 8px;
+  border-color: rgb(128, 128, 128);
+}
+
+.input-group label input:focus {
+  outline: none !important;
+  outline-color: none !important;
+  border: 1px solid #0e8136 !important;
+  box-shadow: none !important;
+  color: black !important;
+}
+
+.invalid-feedback-input {
+  opacity: 1;
+  color: rgb(227 33 33);
+  font-size: 1.4rem;
+  font-weight: 300;
+  letter-spacing: -0.42px;
+  margin-top: 0.25rem;
+  display: flex;
+  gap: 0.8rem;
+}
+
+.invalid-feedback-input span {
+  line-height: 1.6rem;
+}
+
+.is-invalid {
+  color: rgb(227 33 33) !important;
+}
