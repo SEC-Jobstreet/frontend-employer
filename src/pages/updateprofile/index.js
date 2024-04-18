@@ -44,19 +44,11 @@ function UpdateProfile() {
       <div className="update-profile-header">Cập nhật thông tin tài khoản</div>
       <div className="update-profile-container">
         <SuggestionInfo type="suggestion">
-          <p
-            style={{
-              lineHeight: "1.6",
-            }}
-          >
+          <p>
             Thông tin tài khoản của bạn sẽ không được hiển thị trên bất kỳ quảng
             cáo việc nào của bạn.
           </p>
-          <p
-            style={{
-              lineHeight: "1.6",
-            }}
-          >
+          <p>
             Tất cả các hồ sơ xin việc mới sẽ được gửi đến địa chỉ email này.
           </p>
         </SuggestionInfo>
