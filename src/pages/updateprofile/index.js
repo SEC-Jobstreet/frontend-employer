@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import CustomButton from "../../components/custombutton";
 // import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
 import CustomInput from "../../components/custominput/input";
 import SuggestionInfo from "../../components/suggestioninfo";
@@ -141,16 +142,25 @@ function UpdateProfile() {
         )} */}
 
         <div className="btn-container">
-          <button type="submit" className="rounded-button-primary btn-update">
-            Cập nhật thông tin
-          </button>
-          <button
+          <CustomButton
             type="submit"
-            className="rounded-button-primary btn-cancel"
+            className="update-profile-submit"
+            color="green"
+            width="190.89px"
+            height="50px"
+            onClick={() => {}}
+          >
+            Cập nhật thông tin
+          </CustomButton>
+          <CustomButton
+            type="submit"
+            color="white"
+            width="111.35px"
+            height="50px"
             onClick={() => navigate("/account")}
           >
             Hủy bỏ
-          </button>
+          </CustomButton>
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import hidePasswordIcon from "../../assets/svg/hide_password.svg";
 import showPasswordIcon from "../../assets/svg/show_password.svg";
 import CustomButton from "../../components/custombutton";
-import Input from "../../components/custominput";
+import Input from "../../components/custominputlogin";
 import { loginAccount } from "../../store/user";
 
 import "./login.css";

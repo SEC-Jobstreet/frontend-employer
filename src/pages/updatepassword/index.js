@@ -65,9 +65,13 @@ function UpdatePassword() {
           }}
           type="password"
           label="Mật khẩu mới"
-          errorMessage="Mật khẩu phải có ít nhất 8 ký tự, chứa ít nhất một chữ cái viết hoa, một con số và không có dấu cách."
+          errorMessage="Hãy điền mật khẩu."
           name="input-info"
         />
+        <div style={{ fontSize: "1.3rem" }}>
+          Mật khẩu phải có ít nhất 8 ký tự, chứa ít nhất một chữ cái viết hoa,
+          một con số và không có dấu cách.
+        </div>
         <CustomInput
           input={inputConfirmNewPassword}
           error={errorInputConfirmNewPassword}
