@@ -34,7 +34,7 @@ function MyAccount() {
             Cập nhật lại mật khẩu
           </button>
         </Link>
-        <Link to="/account/deletion_confirmation">
+        <Link to="/account/delete-account">
           <button className="action-button" type="button">
             Xóa tài khoản
           </button>

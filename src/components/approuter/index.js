@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import Account from "../../pages/account/account";
 import Business from "../../pages/business";
+import DeleteAccount from "../../pages/deleteaccount";
 import DeletionConfirmation from "../../pages/deletionconfirm";
 import Homepage from "../../pages/homepage";
 import HomepageLogin from "../../pages/homepagelogin";
@@ -35,6 +36,7 @@ function AppRouter() {
           <Route path="settings" element={<Setting />} />
           <Route path="update-profile" element={<UpdateProfile />} />
           <Route path="update-password" element={<UpdatePassword />} />
+          <Route path="delete-account" element={<DeleteAccount />} />
           <Route
             path="deletion_confirmation"
             element={<DeletionConfirmation />}

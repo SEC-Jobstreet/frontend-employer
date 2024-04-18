@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import CustomInput from "../../components/custominput/input";
 
@@ -23,6 +24,12 @@ function UpdatePassword() {
     const minLength = password.length >= 8;
 
     return hasUpperCase && hasNumber && noSpaces && minLength;
+  };
+
+  const navigate = useNavigate();
+
+  const handleCancel = () => {
+    navigate("/account");
   };
 
   return (
@@ -92,6 +99,18 @@ function UpdatePassword() {
           errorMessage="Mật khẩu không khớp."
           name="input-info"
         />
+        <div className="btn-container">
+          <button type="submit" className="rounded-button-primary btn-update">
+            Cập nhật lại mật khẩu
+          </button>
+          <button
+            type="submit"
+            className="rounded-button-primary btn-cancel"
+            onClick={handleCancel}
+          >
+            Hủy bỏ
+          </button>
+        </div>
       </div>
     </div>
   );

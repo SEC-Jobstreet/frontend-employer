@@ -1,4 +1,4 @@
-.update-container {
+.delete-container {
     width: 752px;
     max-width: 1000px;
     margin: auto;
@@ -8,7 +8,7 @@
     text-align: left;
 }
 
-.update-header {
+.delete-header {
     font-size: 20px;
     line-height: 24px;
     font-weight: 400;
@@ -17,19 +17,10 @@
     padding: 16px 16px 12px;
 }
 
-.update-info {
+.delete-info {
     background-color: rgb(255, 255, 255);
     font-weight: 300;
-    padding: 12px 40px 24px;
-
-}
-
-p {
-    color: #626262;
-    font-size: 1.4rem !important;
-    font-weight: 300;
-    letter-spacing: -.04em;
-    line-height: 16px;
+    padding: 20px 44px 30px;
 }
 
 .btn-container {
@@ -54,14 +45,14 @@ p {
     line-height: normal;
 }
 
-.btn-update {
+.btn-delete {
     background-color: #0e8136;
     color: #ffffff;
-    width: 212.5px !important;
+    width: 144px !important;
     height: 50.2px;
 }
 
-.btn-update:hover {
+.btn-delete:hover {
     background-color: #15a449;
 }
 
@@ -70,10 +61,18 @@ p {
     background-color: #ffffff;
     border: 1px solid #0e8136 !important;
     margin-left: 16px;
-    width: 111.35px;
+    width: 101px !important;
     height: 50.2px;
 }
 
 .btn-cancel:hover {
     color: #15a449;
+}
+
+p.information {
+    color: rgb(0, 0, 0);
+    font-size: 1.6rem !important;
+    font-weight: 300;
+    letter-spacing: -.04em;
+    line-height: 2.6;
 }
