@@ -1,56 +1,44 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { ReactComponent as EditIcon } from "../../assets/svg/edit_icon.svg";
-import { logoutAccount, setProfileData } from "../../store/user";
+import { logoutAccount, selectUser } from "../../store/user";
 
 import "./myaccount.css";
 
 function MyAccount() {
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
-
-  const [name] = useState("Duy An");
-  const [surname] = useState(" Lê");
-  const [email] = useState("ptbt1092@gmail.com");
-  const [phone] = useState("+84354532051");
-
-  const handleEditClick = () => {
-    dispatch(
-      setProfileData({
-        name,
-        surname,
-        email,
-        phone,
-      })
-    );
-  };
 
   return (
     <div className="account-container">
       <div className="account-info-header">Tài khoản</div>
       <div className="account-info">
         <div className="info-section">
-          <span className="info-name">{name}</span>
-          <span className="info-surname">{surname}</span>
-          <div className="info-email">{email}</div>
-          <div className="info-phone">{phone}</div>
+          <span className="info-name">{user.firstName}</span>
+          <span className="info-surname">{user.lastName}</span>
+          <div className="info-email">{user.email}</div>
+          <div className="info-phone">{user.phone}</div>
         </div>
-        <button className="info-action" type="button" onClick={handleEditClick}>
-          <Link to="/account/update-profile">
+        <Link to="/account/update-profile">
+          <button className="info-action" type="button">
             <EditIcon />
-            <div className="info-action-title">Chỉnh sửa</div>
-          </Link>
-        </button>
+            <p className="info-action-title">Chỉnh sửa</p>
+          </button>
+        </Link>
       </div>
       <div className="account-actions">
-        <button className="action-button" type="button">
-          Cập nhật lại mật khẩu
-          <Link to="/account/update-password" />
-        </button>
-        <button className="action-button" type="button">
-          Xóa tài khoản
-        </button>
+        <Link to="/account/update-password">
+          <button className="action-button" type="button">
+            Cập nhật lại mật khẩu
+          </button>
+        </Link>
+        <Link to="/account/deletion_confirmation">
+          <button className="action-button" type="button">
+            Xóa tài khoản
+          </button>
+        </Link>
         <button
           className="action-button"
           type="button"
@@ -62,9 +50,9 @@ function MyAccount() {
           Đăng xuất
         </button>
       </div>
-      <a href="/home" className="back-home">
+      <Link to="/home" className="back-home">
         Trở về trang chủ
-      </a>
+      </Link>
     </div>
   );
 }

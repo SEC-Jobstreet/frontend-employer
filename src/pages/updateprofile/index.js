@@ -3,24 +3,15 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
-import DropdownButton from "../../components/customdropdown";
+// import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
 import CustomInput from "../../components/custominput/input";
 import SuggestionInfo from "../../components/suggestioninfo";
 import { selectUser } from "../../store/user";
 
-import countryCodes from "./countrycode";
-
 import "./index.css";
 
-const dropdownOptions = Object.entries(countryCodes).map(
-  ([key, value], index) => ({
-    label: `${key} +${value}`,
-    id: index + 1,
-  })
-);
-
 function UpdateProfile() {
+  const navigate = useNavigate();
   const profile = useSelector(selectUser);
 
   const [inputName, setInputName] = useState("");
@@ -35,35 +26,17 @@ function UpdateProfile() {
   const [inputConfirmEmail, setInputConfirmEmail] = useState("");
   const [errorInputConfirmEmail, setErrorInputConfirmEmail] = useState(false);
 
-  const [inputPhone, setInputPhone] = useState("");
-  const [errorInputPhone, setErrorInputPhone] = useState(false);
-
-  const [phoneCode, setPhoneCode] = useState("VN +84");
+  // const [inputPhone, setInputPhone] = useState("");
+  // const [errorInputPhone, setErrorInputPhone] = useState(false);
 
   useEffect(() => {
     if (profile) {
-      setInputName(profile.name);
-      setInputSurName(profile.surname);
+      setInputName(profile.firstName);
+      setInputSurName(profile.lastName);
       setInputEmail(profile.email);
       setInputConfirmEmail(profile.email);
-      setInputPhone(profile.phone);
     }
   }, [profile]);
-
-  const handleSelectPhoneCode = (eventKey) => {
-    const selectedOption = dropdownOptions.find(
-      (option) => option.id === parseInt(eventKey, 10)
-    );
-    if (selectedOption) {
-      setPhoneCode(selectedOption.label);
-    }
-  };
-
-  const navigate = useNavigate();
-
-  const handleCancel = () => {
-    navigate("/account");
-  };
 
   return (
     <div className="update-profile-page">
@@ -158,36 +131,14 @@ function UpdateProfile() {
           <label htmlFor="input-info-phone" className="phone-number-label">
             Số điện thoại di động
           </label>
-          <div className="phone-number-input">
-            <DropdownButton
-              title={phoneCode}
-              options={dropdownOptions}
-              onSelect={handleSelectPhoneCode}
-              value={phoneCode}
-              className="custom-dropdown"
-            />
-            <CustomInput
-              input={inputPhone}
-              setInput={(e) => {
-                setErrorInputPhone(false);
-                setInputPhone(e.target.value);
-              }}
-              setBlur={() => {
-                if (inputPhone === "") setErrorInputPhone(true);
-              }}
-              type="text"
-              name="input-info-phone"
-              className="input-info-phone"
-            />
-          </div>
         </div>
 
-        {errorInputPhone && (
+        {/* {errorInputPhone && (
           <div className="invalid-feedback-input">
             <ErrorIcon />
             Xin vui lòng nhập số điện thoại của bạn.
           </div>
-        )}
+        )} */}
 
         <div className="btn-container">
           <button type="submit" className="rounded-button-primary btn-update">
@@ -196,7 +147,7 @@ function UpdateProfile() {
           <button
             type="submit"
             className="rounded-button-primary btn-cancel"
-            onClick={handleCancel}
+            onClick={() => navigate("/account")}
           >
             Hủy bỏ
           </button>

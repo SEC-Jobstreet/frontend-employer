@@ -44,6 +44,11 @@
     justify-content: center;
 }
 
+.info-action-title {
+    color: black;
+    text-decoration: none;
+}
+
 .info-action-title:hover {
     text-decoration: underline;
 }

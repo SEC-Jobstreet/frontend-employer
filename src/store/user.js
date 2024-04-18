@@ -4,8 +4,10 @@ const init = {
   account: {
     email: "",
     email_verified: false,
-    name: "",
+    firstName: "",
+    lastName: "",
     picture: "",
+    phone: "",
   },
 };
 
@@ -22,22 +24,17 @@ export const userSlice = createSlice({
       const newState = action.payload;
       state.account = {
         email: newState.email,
-        name: newState.name,
+        firstName: newState.firstName,
+        lastName: newState.lastName,
         email_verified: newState.email_verified,
         picture: newState.picture,
-      };
-    },
-    setProfileData: (state, action) => {
-      state.account = {
-        ...state.account,
-        ...action.payload,
+        phone: newState.phone,
       };
     },
   },
 });
 
-export const { loginAccount, logoutAccount, setProfileData } =
-  userSlice.actions;
+export const { loginAccount, logoutAccount } = userSlice.actions;
 
 export const selectUser = (state) => state.user.account;
 
