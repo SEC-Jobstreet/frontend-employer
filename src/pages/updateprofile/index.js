@@ -3,6 +3,7 @@ import vi from "react-phone-number-input/locale/vi.json";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
 import CountrySelect from "../../components/countryselect";
 import CustomButton from "../../components/custombutton";
 import CustomInput from "../../components/custominput/input";
@@ -16,20 +17,22 @@ function UpdateProfile() {
   const profile = useSelector(selectUser);
 
   const [inputName, setInputName] = useState("");
-  const [errorInputName, setErrorInputName] = useState(false);
+  const [errorInputName, setErrorInputName] = useState("");
 
   const [inputSurName, setInputSurName] = useState("");
-  const [errorInputSurName, setErrorInputSurName] = useState(false);
+  const [errorInputSurName, setErrorInputSurName] = useState("");
 
   const [inputEmail, setInputEmail] = useState("");
-  const [errorInputEmail, setErrorInputEmail] = useState(false);
+  const [errorInputEmail, setErrorInputEmail] = useState("");
 
   const [inputConfirmEmail, setInputConfirmEmail] = useState("");
-  const [errorInputConfirmEmail, setErrorInputConfirmEmail] = useState(false);
+  const [errorInputConfirmEmail, setErrorInputConfirmEmail] = useState("");
 
   const [country, setCountry] = useState("VN");
   const [inputPhone, setInputPhone] = useState("");
-  const [errorInputPhone, setErrorInputPhone] = useState(false);
+  const [errorInputPhone, setErrorInputPhone] = useState("");
+
+  const [errorLine, setErrorLine] = useState("");
 
   useEffect(() => {
     if (profile) {
@@ -37,8 +40,36 @@ function UpdateProfile() {
       setInputSurName(profile.lastName);
       setInputEmail(profile.email);
       setInputConfirmEmail(profile.email);
+      setInputPhone(profile.phone);
     }
   }, [profile]);
+
+  useEffect(() => {
+    if (!inputName) setErrorInputName("Vui lòng nhập tên của bạn");
+    else setErrorInputName("");
+  }, [inputName]);
+  useEffect(() => {
+    if (!inputSurName) setErrorInputSurName("Vui lòng nhập họ của bạn");
+    else setErrorInputSurName("");
+  }, [inputSurName]);
+  useEffect(() => {
+    if (!inputEmail) setErrorInputEmail("Hãy điền địa chỉ email của bạn");
+    else setErrorInputEmail("");
+  }, [inputEmail]);
+  useEffect(() => {
+    if (!inputConfirmEmail)
+      setErrorInputConfirmEmail("Hãy điền địa chỉ email của bạn");
+    else if (inputConfirmEmail !== inputEmail)
+      setErrorInputConfirmEmail(
+        "Vui lòng kiểm tra xem các email có khớp không"
+      );
+    else setErrorInputConfirmEmail("");
+  }, [inputConfirmEmail]);
+  useEffect(() => {
+    if (!inputPhone)
+      setErrorInputPhone("Xin vui lòng nhập số điện thoại của bạn");
+    else setErrorInputPhone("");
+  }, [inputPhone]);
 
   return (
     <div className="update-profile-page">
@@ -57,45 +88,30 @@ function UpdateProfile() {
           input={inputName}
           error={errorInputName}
           setInput={(e) => {
-            setErrorInputName(false);
             setInputName(e.target.value);
-          }}
-          setBlur={() => {
-            if (inputName === "") setErrorInputName(true);
           }}
           type="text"
           label="Tên"
-          errorMessage="Vui lòng nhập tên của bạn."
           name="input-info"
         />
         <CustomInput
           input={inputSurName}
           error={errorInputSurName}
           setInput={(e) => {
-            setErrorInputSurName(false);
             setInputSurName(e.target.value);
-          }}
-          setBlur={() => {
-            if (inputSurName === "") setErrorInputSurName(true);
           }}
           type="text"
           label="Họ"
-          errorMessage="Vui lòng nhập họ của bạn."
           name="input-info"
         />
         <CustomInput
           input={inputEmail}
           error={errorInputEmail}
           setInput={(e) => {
-            setErrorInputEmail(false);
             setInputEmail(e.target.value);
-          }}
-          setBlur={() => {
-            if (inputEmail === "") setErrorInputEmail(true);
           }}
           type="text"
           label="Email"
-          errorMessage="Hãy điền địa chỉ email của bạn."
           name="input-info"
         />
         <p
@@ -110,34 +126,26 @@ function UpdateProfile() {
           input={inputConfirmEmail}
           error={errorInputConfirmEmail}
           setInput={(e) => {
-            setErrorInputConfirmEmail(false);
             setInputConfirmEmail(e.target.value);
-          }}
-          setBlur={() => {
-            if (inputConfirmEmail === "") setErrorInputConfirmEmail(true);
           }}
           type="text"
           label="Xác nhận email"
-          errorMessage="Hãy điền địa chỉ email của bạn."
           name="input-info"
         />
         <div className="phone-number-container">Số điện thoại di động</div>
-        <CountrySelect labels={vi} value={country} onChange={setCountry} />
-        <CustomInput
-          input={inputPhone}
-          setInput={(e) => {
-            setErrorInputPhone(false);
-            setInputPhone(e.target.value);
-          }}
-          setBlur={() => {
-            if (inputPhone === "") setErrorInputPhone(true);
-          }}
-          type="text"
-          name="input-info-phone"
-          error={errorInputPhone}
-          className="input-info-phone"
-        />
-
+        <div className="phone-number-content">
+          <CountrySelect labels={vi} value={country} onChange={setCountry} />
+          <CustomInput
+            input={inputPhone}
+            setInput={(e) => {
+              setInputPhone(e.target.value);
+            }}
+            type="text"
+            name="input-info-phone"
+            error={errorInputPhone}
+            className="input-info-phone-container"
+          />
+        </div>
         <div className="btn-container">
           <CustomButton
             type="submit"
@@ -145,7 +153,22 @@ function UpdateProfile() {
             color="green"
             width="190.89px"
             height="50px"
-            onClick={() => {}}
+            onClick={() => {
+              if (
+                !errorInputName &&
+                !errorInputSurName &&
+                !errorInputEmail &&
+                !errorInputConfirmEmail &&
+                !errorInputPhone
+              ) {
+                console.log("UPDATE SUCCEED");
+              } else {
+                setErrorLine(
+                  "Có lỗi trên trang này. Xin vui lòng sửa lại lỗi được đánh dấu"
+                );
+                console.log("UPDATE FAILED");
+              }
+            }}
           >
             Cập nhật thông tin
           </CustomButton>
@@ -159,6 +182,17 @@ function UpdateProfile() {
             Hủy bỏ
           </CustomButton>
         </div>
+        {errorLine &&
+          (errorInputName ||
+            errorInputSurName ||
+            errorInputEmail ||
+            errorInputConfirmEmail ||
+            errorInputPhone) && (
+            <div className="error-line invalid-feedback-input">
+              <ErrorIcon />
+              <span>{errorLine}</span>
+            </div>
+          )}
       </div>
     </div>
   );

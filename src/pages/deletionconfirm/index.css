@@ -1,0 +1,47 @@
+.deletion-confirmation-container {
+  max-width: 752px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.deletion-confirmation-header {
+  font-size: 20px;
+  color: #1c1c1c;
+  padding: 8px 14px 11px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+}
+
+.deletion-confirmation-content {
+  background-color: white;
+  padding: 2.4rem 4.4rem 3.2rem;
+}
+
+.question-line,
+.warning-line {
+  margin-bottom: 1.6rem;
+  font-weight: 300;
+  letter-spacing: -0.64px;
+}
+
+.btns-container {
+  margin-top: 4rem;
+  display: flex;
+  gap: 1.6rem;
+}
+
+@media screen and (max-width: 615px) {
+  .deletion-confirmation-content {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+
+  .btns-container {
+    flex-direction: column;
+  }
+
+  .btns-container button {
+    width: 100%;
+  }
+}

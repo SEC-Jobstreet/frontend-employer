@@ -10,36 +10,38 @@ function CustomInput({
   placeholder,
   type,
   label,
-  errorMessage,
   name,
   children,
   required,
   max,
+  className,
 }) {
   return (
-    <div className="input-group">
-      <label htmlFor={name}>
-        {label}
-        <input
-          type={type}
-          className={`form-control ${name} ${error && input === "" && "is-invalid"}`}
-          placeholder={placeholder}
-          name={name}
-          id={name}
-          value={input}
-          onChange={(e) => setInput(e)}
-          onBlur={setBlur}
-          required={required}
-          max={max}
-        />
-      </label>
-      {error && input === "" && (
+    <div style={{ width: "100%" }} className={`${className}`}>
+      <div className="input-group">
+        <label htmlFor={name}>
+          {label}
+          <input
+            type={type}
+            className={`form-control ${name} ${error && input === "" && "is-invalid"}`}
+            placeholder={placeholder}
+            name={name}
+            id={name}
+            value={input}
+            onChange={(e) => setInput(e)}
+            onBlur={setBlur}
+            required={required}
+            max={max}
+          />
+        </label>
+        {children}
+      </div>
+      {error && (
         <div className="invalid-feedback-input">
           <ErrorIcon />
-          {errorMessage}
+          <span>{error}</span>
         </div>
       )}
-      {children}
     </div>
   );
 }

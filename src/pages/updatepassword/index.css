@@ -1,33 +1,68 @@
 .update-container {
-    width: 752px;
-    max-width: 1000px;
-    margin: auto;
-    position: relative;
-    font-family: "Noto Sans", sans-serif;
-    flex: auto;
-    text-align: left;
+  max-width: 752px;
+  margin: 0 auto;
+  position: relative;
+  font-family: "Noto Sans", sans-serif;
+  text-align: left;
 }
 
 .update-header {
-    font-size: 20px;
-    line-height: 24px;
-    font-weight: 400;
-    letter-spacing: -0.72px;
-    color: rgb(0, 0, 0);
-    padding: 16px 16px 12px;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: -0.72px;
+  color: rgb(0, 0, 0);
+  padding: 16px 16px 12px;
 }
 
-.update-info{
-    background-color: rgb(255,255,255);
-    font-weight: 300;
-    padding: 12px 40px 24px;
-
+.update-info {
+  background-color: rgb(255, 255, 255);
+  font-weight: 300;
+  padding: 12px 40px 24px;
 }
 
 p {
-    color: #626262;
-    font-size: 1.4rem !important;
-    font-weight: 300;
-    letter-spacing: -.04em;
-    line-height: 16px;
+  color: #626262;
+  font-size: 1.4rem !important;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 16px;
+}
+
+.btns-contaniner {
+  margin-top: 2.4rem;
+  display: flex;
+  gap: 1.6rem;
+}
+
+.input-password-field .password-icon {
+  position: absolute;
+  top: 3.7rem;
+  right: 1.4rem;
+}
+
+.input-password-field .password-icon button {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent;
+  justify-content: center;
+  padding: 0.2rem;
+  padding-top: 0.1rem;
+}
+
+.input-password-field .password-icon button:focus {
+  border: 1px solid rgb(67, 139, 255);
+}
+
+.input-info {
+  margin-bottom: 4px !important;
+}
+
+.invalid-feedback-input {
+  margin-top: 0 !important;
+}
+
+.error-line {
+  margin-top: 1.6rem !important;
 }
