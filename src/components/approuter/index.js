@@ -13,6 +13,7 @@ import Register from "../../pages/register";
 import Setting from "../../pages/setting";
 import UpdatePassword from "../../pages/updatepassword";
 import UpdateProfile from "../../pages/updateprofile";
+import VerifyEmail from "../../pages/verifyemail";
 import { selectUser } from "../../store/user";
 
 import ProtectedRoute from "./protectedroute";
@@ -25,6 +26,7 @@ function AppRouter() {
         <Route exact path="/" element={<Homepage />} />
         <Route exact path="login" element={<Login />} />
         <Route exact path="register" element={<Register />} />
+        <Route exact path="verify-email" element={<VerifyEmail />} />
       </Route>
 
       <Route element={<ProtectedRoute isAllowed={!!user?.email} />}>

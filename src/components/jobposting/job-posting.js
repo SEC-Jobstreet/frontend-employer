@@ -2,6 +2,11 @@ import React, { Fragment, memo } from "react";
 import ReactQuill from "react-quill";
 
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
+import {
+  dropdownOptions,
+  experienceOptions,
+  experienceSuggestions,
+} from "../../utils/postjob";
 import DropdownButton from "../customdropdown";
 import CustomInput from "../custominput/input";
 import CustomRadio from "../customradio";
@@ -13,27 +18,6 @@ import Workshift from "./workshift";
 
 import "./job-posting-style.css";
 import "react-quill/dist/quill.snow.css";
-
-const dropdownOptions = [
-  { label: "Toàn thời gian", id: 1 },
-  { label: "Bán thời gian", id: 2 },
-  { label: "Tạm thời/thời vụ", id: 3 },
-];
-
-const experienceOptions = [
-  { label: "Không cần kinh nghiệm", id: 1 },
-  { label: "Ít nhất 1 năm kinh nghiệm", id: 2 },
-  { label: "2–3 năm kinh nghiệm", id: 3 },
-  { label: "4 năm kinh nghiệm trở lên", id: 4 },
-];
-
-const experienceSuggestions = [
-  "",
-  "Lựa chọn “Không yêu cầu kinh nghiệm” sẽ được hiển thị là “Không yêu cầu kinh nghiệm cho vị trí này” trong mẩu tin tuyển dụng.",
-  "Lựa chọn “1 năm kinh nghiệm” sẽ được hiển thị là “1 năm kinh nghiệm làm việc có liên quan cho vị trí này” trong mẩu tin tuyển dụng.",
-  "Lựa chọn “2–3 năm kinh nghiệm” sẽ được hiển thị là “2–3 năm kinh nghiệm làm việc có liên quan cho vị trí này” trong mẩu tin tuyển dụng.",
-  "Lựa chọn “Hơn 4 năm kinh nghiệm” sẽ được hiển thị là “Hơn 4 năm kinh nghiệm làm việc có liên quan cho vị trí này” trong mẩu tin tuyển dụng.",
-];
 
 function JobPosting({
   jobTitle,
@@ -80,22 +64,24 @@ function JobPosting({
   errorJobDescription,
   setErrorJobDescription,
   quillRef,
+  setErrorNextStep,
 }) {
+  console.log("312312321");
   return (
     <>
       <CustomInput
         input={jobTitle}
         error={errorJobTitle}
         setInput={(e) => {
-          setErrorJobTitle(false);
+          setErrorJobTitle("");
           setJobTitle(e.target.value);
         }}
         setBlur={() => {
-          if (jobTitle === "") setErrorJobTitle(true);
+          if (jobTitle === "")
+            setErrorJobTitle("Vui lòng nhập chức danh công việc");
         }}
         type="text"
         label="Chức danh công việc"
-        errorMessage="Vui lòng nhập chức danh công việc"
         name="job-title"
       />
       <SuggestionInfo type="suggestion">
@@ -166,7 +152,10 @@ function JobPosting({
             <CustomRadio
               value={workExperience}
               checkedValue={e.id}
-              setValue={setWorkExperience}
+              setValue={(ele) => {
+                setErrorNextStep(false);
+                setWorkExperience(ele);
+              }}
               id={`workexperience${e.id}`}
             >
               <div>{e.label}</div>

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { isValidPhoneNumber } from "react-phone-number-input";
 import vi from "react-phone-number-input/locale/vi.json";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
-import CountrySelect from "../../components/countryselect";
+import CountrySelect from "../../components/countryselectforphone";
 import CustomButton from "../../components/custombutton";
 import CustomInput from "../../components/custominput/input";
 import SuggestionInfo from "../../components/suggestioninfo";
@@ -138,7 +139,15 @@ function UpdateProfile() {
           <CustomInput
             input={inputPhone}
             setInput={(e) => {
+              if (!isValidPhoneNumber(e.target.value, country))
+                setErrorInputPhone("Vui lòng nhập số điện thoại hợp lệ");
+              else setErrorInputPhone("");
               setInputPhone(e.target.value);
+            }}
+            setBlur={() => {
+              if (inputPhone === "") {
+                setErrorInputPhone("Xin vui lòng nhập số điện thoại của bạn.");
+              }
             }}
             type="text"
             name="input-info-phone"

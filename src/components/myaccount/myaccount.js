@@ -21,7 +21,7 @@ function MyAccount() {
           <div className="info-email">{user.email}</div>
           <div className="info-phone">{user.phone}</div>
         </div>
-        <Link to="/account/update-profile">
+        <Link to="/account/update-profile" style={{ textDecoration: "none" }}>
           <button className="info-action" type="button">
             <EditIcon />
             <p className="info-action-title">Chỉnh sửa</p>

@@ -6,16 +6,27 @@ import { Dropdown, DropdownButton } from "react-bootstrap";
 
 import "./index.css";
 
-function CustomDropdown({ name, options, onSelect, title, value }) {
+function CustomDropdown({
+  name,
+  options,
+  onSelect,
+  onBlur,
+  title,
+  value,
+  error,
+  autoClose = "inside",
+}) {
   const id = useId();
   return (
     <>
       <div>{name}</div>
       <DropdownButton
+        className={`${error && "invalid-custom-dropdown"}`}
         id={id}
         title={title}
         onSelect={(e) => onSelect(e)}
-        autoClose="inside"
+        autoClose={autoClose}
+        onBlur={onBlur}
       >
         {options.map((e) => {
           const active = value === e.id.toString();
