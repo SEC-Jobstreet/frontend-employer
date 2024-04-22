@@ -23,7 +23,7 @@ function CustomInput({
           {label}
           <input
             type={type}
-            className={`form-control ${name} ${error && input === "" && "is-invalid"}`}
+            className={`form-control ${name} ${error && "is-invalid"}`}
             placeholder={placeholder}
             name={name}
             id={name}

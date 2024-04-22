@@ -7,6 +7,8 @@ import CustomButton from "../../components/custombutton";
 import Enterprisecreating from "../../components/enterprisecreating";
 import JobPosting from "../../components/jobposting/job-posting";
 
+import "./index.css";
+
 function Register() {
   const navigate = useNavigate();
 
@@ -118,6 +120,28 @@ function Register() {
     errorEmployerRole,
   ]);
 
+  useEffect(() => {
+    if (
+      errorNextStep &&
+      !errorFirstName &&
+      !errorLastName &&
+      !errorEmail &&
+      !errorEmailConfirmation &&
+      !errorInputPhone &&
+      !errorPassword &&
+      !errorpasswordConfirmation
+    )
+      setErrorNextStep(false);
+  }, [
+    errorFirstName,
+    errorLastName,
+    errorEmail,
+    errorEmailConfirmation,
+    errorInputPhone,
+    errorPassword,
+    errorpasswordConfirmation,
+  ]);
+
   const handleButtonStep1 = () => {
     // verify
     let next = true;
@@ -208,6 +232,56 @@ function Register() {
 
   const submit = () => {
     // verify account
+    // -> check fields
+    let next = true;
+    if (!firstName) {
+      next = false;
+      setErrorFirstName("Vui lòng nhập tên của bạn.");
+    }
+    if (!lastName) {
+      next = false;
+      setErrorLastName("Vui lòng nhập họ của bạn.");
+    }
+    if (!email) {
+      next = false;
+      setErrorEmail("Hãy điền địa chỉ email của bạn.");
+    }
+    if (!inputPhone) {
+      next = false;
+      setErrorInputPhone("Xin vui lòng nhập số điện thoại của bạn.");
+    }
+    if (!password) {
+      next = false;
+      setErrorPassword("Hãy điền mật khẩu");
+    }
+    if (!passwordConfirmation) {
+      next = false;
+      setErrorPasswordConfirmation("Hãy điền mật khẩu");
+    }
+    // -> set err "Có lỗi trên trang này. Xin vui lòng sửa lại lỗi được đánh dấu."
+    if (
+      errorFirstName ||
+      errorLastName ||
+      errorEmail ||
+      errorEmailConfirmation ||
+      errorInputPhone ||
+      errorPassword ||
+      errorpasswordConfirmation
+    )
+      next = false;
+    if (next) {
+      console.log({
+        firstName,
+        lastName,
+        email,
+        emailConfirmation,
+        inputPhone,
+        password,
+        passwordConfirmation,
+      });
+      setErrorNextStep(false);
+      navigate("/verify-email");
+    } else setErrorNextStep(true);
 
     // post job
 
@@ -216,7 +290,6 @@ function Register() {
     // post account
 
     // navigate to verify email
-    navigate("/verify-email");
   };
 
   return (
@@ -370,6 +443,7 @@ function Register() {
               errorpasswordConfirmation={errorpasswordConfirmation}
               setErrorPasswordConfirmation={setErrorPasswordConfirmation}
             />
+
             <CustomButton type="button" color="green" onClick={submit}>
               Tiếp
             </CustomButton>

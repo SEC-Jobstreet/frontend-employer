@@ -1,0 +1,22 @@
+.register-page {
+  max-width: 752px;
+  margin: 0 auto;
+}
+
+.register-page h2 {
+  padding: 0.6rem 2rem 1.1rem;
+  font-family: inherit;
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: left;
+  letter-spacing: -1.2px;
+}
+
+.register-container {
+  background-color: white;
+  padding: 2.4rem 4rem 3.2rem;
+}
+
+.register-header {
+  margin-bottom: 2.2rem;
+}

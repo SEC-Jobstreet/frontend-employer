@@ -1,0 +1,241 @@
+* {
+  font-family: "Noto Sans", sans-serif;
+  box-sizing: border-box;
+}
+
+label {
+  font-weight: 300 !important;
+  font-size: 16px;
+}
+
+.account-creation-container p {
+  color: #626262;
+  font-size: 1.6rem;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 16px;
+  margin-top: 0.6rem;
+}
+
+.input-group {
+  margin-top: 0.9em;
+}
+
+.account-creation-container {
+  text-align: left;
+}
+
+.form-control {
+  width: 430px;
+  height: 50.2px;
+  border: 1px solid gray;
+  border-radius: 6px;
+  font-size: 1.6rem;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+}
+
+.form-control.input-info {
+  width: 430px;
+  height: 50.2px;
+  border: 1px solid gray;
+  border-radius: 6px;
+  font-size: 1.6rem;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  padding: 14px 16px 13px;
+}
+
+.form-control.input-info-phone {
+  width: 100% !important;
+  border: 1px solid gray;
+  border-radius: 6px;
+  font-size: 1.6rem;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  padding: 14px 16px 13px;
+  margin-top: 0 !important;
+}
+
+.phone-number-container {
+  display: flex;
+  flex-direction: column;
+  width: 430px;
+  font-weight: 300;
+}
+
+.phone-number-label {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.phone-number-input {
+  display: flex;
+  flex-direction: row;
+}
+
+.phone-number-input .input-group {
+  margin-top: 0 !important;
+}
+
+/* Add a custom class to your DropdownButton component to style it */
+.custom-dropdown {
+  position: relative;
+  margin-right: 8px;
+}
+
+div.custom-dropdown.dropdown button {
+  background: rgb(255, 255, 255);
+  color: #1c1c1c;
+  font-size: 16px;
+  font-weight: 300;
+  border: 1px solid gray;
+  border-radius: 6px;
+  letter-spacing: -0.04em;
+  padding: 14px 45px 13px 16px;
+  height: 50.2px;
+}
+
+.custom-dropdown .dropdown-menu {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1px solid #ccc;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  background-color: #fff;
+}
+
+.custom-dropdown-item.active,
+.custom-dropdown-item:active {
+  color: #fff;
+}
+
+.custom-dropdown-item:hover,
+.custom-dropdown-item:focus {
+  background-color: blue;
+}
+
+.custom-dropdown .dropdown-toggle {
+  position: relative;
+  padding-right: 30px;
+}
+
+.custom-dropdown .dropdown-toggle::after {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.custom-dropdown .dropdown-toggle:focus,
+.custom-dropdown .dropdown-toggle:active,
+.custom-dropdown .dropdown-toggle.active {
+  background-color: #fff !important;
+  border-color: #0e8036;
+  box-shadow: none;
+  outline: none;
+}
+
+.custom-dropdown .dropdown-item {
+  color: #333;
+  padding: 3px 8px;
+  font-size: 15px;
+}
+
+.custom-dropdown .dropdown-item:hover,
+.custom-dropdown .dropdown-item:focus {
+  color: #fff;
+  background-color: #0268d5;
+}
+
+/* For selected item style */
+.custom-dropdown .dropdown-item.active,
+.custom-dropdown .dropdown-item:active {
+  color: #fff;
+  background-color: #0268d5;
+}
+
+.invalid-feedback-input {
+  opacity: 1;
+  color: rgb(227 33 33);
+  font-size: 1.4rem;
+  margin-top: 0.25rem;
+}
+
+.btn-container {
+  padding-top: 24px;
+}
+
+.update-profile-submit {
+  margin-right: 2rem;
+}
+
+select {
+  width: 128px;
+  height: 5.02rem;
+  font-weight: 300;
+  padding: 0 1.6rem;
+  border-radius: 6px;
+}
+
+.phone-number-content {
+  width: 430px;
+  display: flex;
+  gap: 1rem;
+}
+
+.input-info-phone-container .input-group {
+  margin-top: 0;
+  width: 100%;
+}
+
+.input-info-phone-container .invalid-feedback-input {
+  position: relative;
+  left: -138px;
+}
+
+.input-password-field .password-icon {
+  position: absolute;
+  top: 3.7rem;
+  right: 1.4rem;
+}
+
+.account-creation-container .input-password-field .password-icon button {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent;
+  justify-content: center;
+  padding: 0.2rem;
+  padding-top: 0.1rem;
+}
+
+.input-password-field .password-icon button:focus {
+  border: 1px solid rgb(67, 139, 255);
+}
+
+@media screen and (max-width: 770px) {
+  .form-control.input-info {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 528px) {
+  .form-control.input-info {
+    width: 100%;
+  }
+
+  .phone-number-container {
+    width: 100%;
+  }
+
+  .phone-number-content {
+    width: 100%;
+  }
+}
