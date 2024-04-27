@@ -61,16 +61,18 @@ function EnterpriseCreating({
         name="enterprise-name"
       />
 
-      <DropdownButton
-        name="Quốc gia"
-        title={
-          countries.find((e) => e.id.toString() === country.toString()).label
-        }
-        options={countries}
-        onSelect={setCountry}
-        value={country}
-        autoClose
-      />
+      <div style={{ marginTop: "10px" }}>
+        <DropdownButton
+          name="Quốc gia"
+          title={
+            countries.find((e) => e.id.toString() === country.toString()).label
+          }
+          options={countries}
+          onSelect={setCountry}
+          value={country}
+          autoClose
+        />
+      </div>
 
       {/* Change into Google-Auto-Complete when needed */}
       <CustomInput
@@ -94,39 +96,42 @@ function EnterpriseCreating({
           <SearchBarIcon />
         </div>
       </CustomInput>
-      <span>
+      <div className="small-text" style={{ marginBottom: "20px" }}>
         Ví dụ: 41 Nguyễn Thị Minh Khai, Phường Bến Nghé, Quận 1, Hồ Chí Minh
         (không bao gồm thông tin về số tầng cụ thể)
-      </span>
+      </div>
       <SuggestionInfo type="suggestion">
         Đừng lo, chúng tôi chỉ hiển thị thành phố và tỉnh trong địa chỉ doanh
         nghiệp của bạn Ví dụ Quận 1, Hồ Chí Minh.
       </SuggestionInfo>
 
-      <DropdownButton
-        name="Lĩnh vực của doanh nghiệp"
-        error={errorEnterpriseField}
-        title={
-          fields.find((e) => e.id.toString() === enterpriseField.toString())
-            ?.label
-        }
-        options={fields}
-        onSelect={(e) => {
-          setEnterpriseField(e);
-        }}
-        onBlur={() => {
-          if (enterpriseField.toString() === "0") setErrorEnterpriseField(true);
-          else setErrorEnterpriseField(false);
-        }}
-        value={enterpriseField}
-        autoClose
-      />
-      {errorEnterpriseField && (
-        <div className="invalid-feedback-input">
-          <ErrorIcon />
-          Vui lòng chọn một ngành.
-        </div>
-      )}
+      <div style={{ marginTop: "20px", marginBottom: "15px" }}>
+        <DropdownButton
+          name="Lĩnh vực của doanh nghiệp"
+          error={errorEnterpriseField}
+          title={
+            fields.find((e) => e.id.toString() === enterpriseField.toString())
+              ?.label
+          }
+          options={fields}
+          onSelect={(e) => {
+            setEnterpriseField(e);
+          }}
+          onBlur={() => {
+            if (enterpriseField.toString() === "0")
+              setErrorEnterpriseField(true);
+            else setErrorEnterpriseField(false);
+          }}
+          value={enterpriseField}
+          autoClose
+        />
+        {errorEnterpriseField && (
+          <div className="invalid-feedback-input">
+            <ErrorIcon />
+            Vui lòng chọn một ngành.
+          </div>
+        )}
+      </div>
 
       <DropdownButton
         name="Quy mô của doanh nghiệp"
@@ -153,29 +158,32 @@ function EnterpriseCreating({
         </div>
       )}
 
-      <DropdownButton
-        name="Vai trò của bạn trong doanh nghiệp này"
-        error={errorEmployerRole}
-        title={
-          sizes.find((e) => e.id.toString() === employerRole.toString())?.label
-        }
-        options={sizes}
-        onSelect={(e) => {
-          setEmployerRole(e);
-        }}
-        onBlur={() => {
-          if (employerRole.toString() === "0") setErrorEmployerRole(true);
-          else setErrorEmployerRole(false);
-        }}
-        value={employerRole}
-        autoClose
-      />
-      {errorEmployerRole && (
-        <div className="invalid-feedback-input">
-          <ErrorIcon />
-          Vui lòng chọn vai trò trong doanh nghiệp.
-        </div>
-      )}
+      <div style={{ marginBlock: "15px" }}>
+        <DropdownButton
+          name="Vai trò của bạn trong doanh nghiệp này"
+          error={errorEmployerRole}
+          title={
+            sizes.find((e) => e.id.toString() === employerRole.toString())
+              ?.label
+          }
+          options={sizes}
+          onSelect={(e) => {
+            setEmployerRole(e);
+          }}
+          onBlur={() => {
+            if (employerRole.toString() === "0") setErrorEmployerRole(true);
+            else setErrorEmployerRole(false);
+          }}
+          value={employerRole}
+          autoClose
+        />
+        {errorEmployerRole && (
+          <div className="invalid-feedback-input">
+            <ErrorIcon />
+            Vui lòng chọn vai trò trong doanh nghiệp.
+          </div>
+        )}
+      </div>
 
       <CustomInput
         input={enterpriseURL}
@@ -186,9 +194,9 @@ function EnterpriseCreating({
         label="Trang web hoặc trang mạng xã hội của doanh nghiệp"
         name="enterprise-url"
       />
-      <span>
+      <div className="small-text">
         Ví dụ https://www.jobstreet.vn hoặc www.facebook.com/jobstreetvn
-      </span>
+      </div>
 
       <CustomInput
         input={enterpriseLicense}

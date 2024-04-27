@@ -1,6 +1,15 @@
 .enterprise-address-icon {
-    position: absolute;
-    top: 37px;
-    right: 15px;
-    width: 25px;
+  position: absolute;
+  top: 37px;
+  right: 15px;
+  width: 25px;
+}
+
+.small-text {
+  color: #626262;
+  font-size: 1.4rem;
+  letter-spacing: -0.04em;
+  line-height: 16px;
+  font-weight: 300;
+  text-align: left;
 }
