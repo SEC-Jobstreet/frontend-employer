@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useId } from "react";
-import { Dropdown, DropdownButton } from "react-bootstrap";
+import { Dropdown, DropdownMenu, DropdownToggle } from "react-bootstrap";
 
 import "./index.css";
 
@@ -16,28 +16,38 @@ function CustomDropdown({
   error,
   autoClose = "inside",
 }) {
+  const [open, setOpen] = React.useState(false);
+
+  const toggleDropdown = () => {
+    setOpen((prev) => !prev); // Khi được gọi, hàm này sẽ đảo ngược trạng thái đóng/mở của dropdown
+  };
+
   const id = useId();
   return (
-    <>
-      <div>{name}</div>
-      <DropdownButton
+    <div style={{ textAlign: "left" }}>
+      <div className="dropdown-title">{name}</div>
+      <Dropdown
         className={`${error && "invalid-custom-dropdown"}`}
         id={id}
-        title={title}
         onSelect={(e) => onSelect(e)}
         autoClose={autoClose}
         onBlur={onBlur}
+        show={open}
+        onToggle={toggleDropdown}
       >
-        {options.map((e) => {
-          const active = value === e.id.toString();
-          return (
-            <Dropdown.Item key={e.id} eventKey={e.id} active={active}>
-              {e.label}
-            </Dropdown.Item>
-          );
-        })}
-      </DropdownButton>
-    </>
+        <DropdownToggle className={open ? "open" : ""}>{title}</DropdownToggle>
+        <DropdownMenu>
+          {options.map((e) => {
+            const active = value === e.id.toString();
+            return (
+              <Dropdown.Item key={e.id} eventKey={e.id} active={active}>
+                {e.label}
+              </Dropdown.Item>
+            );
+          })}
+        </DropdownMenu>
+      </Dropdown>
+    </div>
   );
 }
 

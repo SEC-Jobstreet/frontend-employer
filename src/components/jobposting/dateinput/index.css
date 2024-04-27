@@ -1,0 +1,22 @@
+.custom-inputdate {
+  width: 100%;
+  text-align: start;
+}
+
+.custom-inputdate input {
+  --placeholderTextColor: #626262;
+  padding: 12px 16px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: rgb(128, 128, 128);
+  height: 50px;
+  outline-style: none;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  color: rgb(0, 0, 0);
+  letter-spacing: -0.48px;
+  width: 100%;
+  max-width: 430px;
+}

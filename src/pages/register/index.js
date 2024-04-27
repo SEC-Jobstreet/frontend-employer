@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
 import Accountcreation from "../../components/accountcreation";
@@ -7,7 +7,15 @@ import CustomButton from "../../components/custombutton";
 import Enterprisecreating from "../../components/enterprisecreating";
 import JobPosting from "../../components/jobposting/job-posting";
 
+import Line from "./line";
+
 import "./index.css";
+
+const steps = {
+  1: "Tạo công việc",
+  2: "Tạo doanh nghiệp",
+  3: "Tạo tài khoản",
+};
 
 function Register() {
   const navigate = useNavigate();
@@ -292,20 +300,44 @@ function Register() {
     // navigate to verify email
   };
 
+  const handleButtonStepClick = (nextStep) => {
+    setStep(parseInt(nextStep, 10));
+  };
+
   return (
     <div className="register-page">
       <h2>Đăng tin tuyển dụng miễn phí</h2>
       <div className="register-container">
-        <div className="register-header" style={{ display: "flex" }}>
-          <div className={`header-step1 ${step === 1 && "active"}`}>
-            Tạo công việc
-          </div>
-          <div className={`header-step2 ${step === 2 && "active"}`}>
-            Tạo doanh nghiệp
-          </div>
-          <div className={`header-step3 ${step === 3 && "active"}`}>
-            Tạo tài khoản
-          </div>
+        <div className="register-header">
+          {Object.keys(steps).map((key) => (
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "nowrap",
+                width: "-webkit-fill-available",
+              }}
+              key={`step ${key}`}
+            >
+              <div
+                className={`step-button-wrapper ${step > key ? "done" : ""}
+                  ${step === key ? "active" : ""}`}
+              >
+                <div>
+                  <button
+                    onClick={() => handleButtonStepClick(key)}
+                    //   disabled={!(step > key)}
+                    type="button"
+                  >
+                    {key}
+                  </button>
+                </div>
+                <NavLink className="step-title" to="">
+                  {steps[key]}
+                </NavLink>
+              </div>
+              {key < 3 && <Line type="solid" />}
+            </div>
+          ))}
         </div>
         {step === 1 && (
           <>

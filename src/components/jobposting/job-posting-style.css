@@ -1,95 +1,117 @@
 .register-widget {
-    background: rgb(255, 255, 255);
-    padding: 20px;
-    width: 752px;
-    max-width: 1000px;
-    margin: auto;
-    position: relative;
+  background: rgb(255, 255, 255);
+  padding: 20px;
+  width: 752px;
+  max-width: 1000px;
+  margin: auto;
+  position: relative;
+}
+
+.custom-title {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  color: rgb(0, 0, 0);
+  letter-spacing: -0.48px;
+  text-align: left;
+}
+
+.small-label label {
+  font-size: 1.4rem;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
 }
 
 .job-title,
 .job-category,
 .job-visa {
-    text-align: left;
-    padding: 0 12px;
+  text-align: left;
+  padding: 0 12px;
 }
 
 .job-title-form,
 .job-category-title,
 .job-visa-header {
-    font-family: "Noto Sans", sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 300;
-    color: rgb(0, 0, 0);
-    letter-spacing: -0.48px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  color: rgb(0, 0, 0);
+  letter-spacing: -0.48px;
 }
 
 .job-title-input {
-    --placeholderTextColor: #626262;
-    padding: 12px 16px;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 8px;
-    border-color: rgb(128, 128, 128);
-    height: 50px;
-    width: 430px;
-    outline-style: none;
-    font-family: "Noto Sans", sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 300;
-    color: rgb(0, 0, 0);
-    letter-spacing: -0.48px;
+  --placeholderTextColor: #626262;
+  padding: 12px 16px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: rgb(128, 128, 128);
+  height: 50px;
+  width: 430px;
+  outline-style: none;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  color: rgb(0, 0, 0);
+  letter-spacing: -0.48px;
 }
 
 .job-title-input:focus {
-    outline: 1px solid #197fe6;
-    outline-offset: 2px;
-    z-index: 3000;
+  outline: 1px solid #197fe6;
+  outline-offset: 2px;
+  z-index: 3000;
 }
 
 .job-category {
-    margin-top: 24px;
+  margin-top: 24px;
 }
 
-.job-visa-content{
-    display: flex;
-    margin-top: 10px;
-    cursor: pointer;
+.job-visa-content {
+  display: flex;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
-.job-visa-desc{
-    margin-left: 12px;
-    font-family: "Noto Sans", sans-serif;
-    font-size: 14px;
-    font-weight: 300;
+.job-visa-desc {
+  margin-left: 12px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
 }
 
 .job-visa-input[type="checkbox"] {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    height: 20px;
-    width: 20px;
-    border-radius: 4px;
-    border: 2px solid #dcdcdc;
-    background-color: #fff;
-    cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 4px;
+  border: 2px solid #dcdcdc;
+  background-color: #fff;
+  cursor: pointer;
 }
 
 .job-visa-input[type="checkbox"]:checked {
-    border-color: #0e8136;
-    background-color: #0e8136;
+  border-color: #0e8136;
+  background-color: #0e8136;
 }
 
 .job-visa-input[type="checkbox"]:checked::after {
-    content: '✓';
-    display: block;
-    text-align: center;
-    position: relative;
-    top: -5px;
-    font-size: 16px;
-    padding-left: 4px;
-    color: #fff;
+  content: "✓";
+  display: block;
+  text-align: center;
+  position: relative;
+  top: -5px;
+  font-size: 16px;
+  padding-left: 4px;
+  color: #fff;
 }

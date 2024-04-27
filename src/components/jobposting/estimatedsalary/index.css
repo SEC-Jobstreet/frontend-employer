@@ -1,0 +1,44 @@
+.estimated-salary-wrapper {
+  text-align: left;
+}
+
+.change-currency-btn {
+  border: 0px !important;
+  background: transparent !important;
+
+  color: rgb(15, 98, 199);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 16px;
+  letter-spacing: -0.42px;
+  text-align: left;
+}
+
+.change-currency-btn:hover {
+  text-decoration: underline;
+}
+
+.custom-modal .modal-dialog {
+  width: 100%;
+  max-width: 714px;
+  min-width: 320px;
+}
+
+.custom-modal .modal-header {
+  background-color: rgb(240, 240, 240);
+  border: 0px !important;
+  padding: 16px 32px;
+}
+
+.custom-modal .modal-title {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.custom-modal .modal-body {
+  padding: 24px 24px 32px 32px;
+}
+
+.custom-modal .modal-body div {
+  margin-bottom: 8px;
+}

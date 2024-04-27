@@ -7,6 +7,8 @@ import CustomDropdown from "../../customdropdown";
 import CustomRadio from "../../customradio";
 import SuggestionInfo from "../../suggestioninfo";
 
+import "./index.css";
+
 const salaryLevels = [
   { label: "Chính xác", id: 1 },
   { label: "Khoảng lương", id: 2 },
@@ -51,11 +53,10 @@ function EstimatedSalary({
   const currentCurrency = currencyOptions.find((e) => e.id === currency);
 
   return (
-    <>
-      <h3>Mức lương dự kiến (Tuỳ chọn)</h3>
+    <div className="estimated-salary-wrapper">
       <button
         type="button"
-        className="change-currency"
+        className="change-currency-btn"
         onClick={() => setShowModal(true)}
       >
         Thay đổi tiền tệ: {currentCurrency.label} {currentCurrency.id}
@@ -164,13 +165,18 @@ function EstimatedSalary({
           </p>
         )}
       </SuggestionInfo>
-      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+      <Modal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        centered
+        className="custom-modal"
+      >
         <Modal.Header closeButton>
           <Modal.Title>Thay đổi tiền tệ</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="row">
           {currencyOptions.map((e) => (
-            <Fragment key={e.id}>
+            <div key={e.id} className="col-6">
               <CustomRadio
                 value={currency}
                 checkedValue={e.id}
@@ -181,12 +187,11 @@ function EstimatedSalary({
                   {e.label} {e.id}
                 </div>
               </CustomRadio>
-            </Fragment>
+            </div>
           ))}
         </Modal.Body>
-        <Modal.Footer />
       </Modal>
-    </>
+    </div>
   );
 }
 

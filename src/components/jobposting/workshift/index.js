@@ -1,8 +1,12 @@
 import React from "react";
+import { Form } from "react-bootstrap";
 
-import "./index.css";
+import "./checkbox.css";
+import styles from "./workshift.module.css";
 
 const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const sessionsList = ["morning", "afternoon", "evening"];
+const sessionIdx = { morning: 0, afternoon: 1, evening: 2 };
 
 function WorkShift({
   whenever,
@@ -10,182 +14,144 @@ function WorkShift({
   particularTime,
   setParticularTime,
   errorWorkShift,
-  setErrorWorkShift,
 }) {
-  const morning =
-    particularTime[0][0] &&
-    particularTime[0][1] &&
-    particularTime[0][2] &&
-    particularTime[0][3] &&
-    particularTime[0][4] &&
-    particularTime[0][5] &&
-    particularTime[0][6];
+  const [sessions, setSessions] = React.useState({
+    morning:
+      particularTime[sessionIdx.morning][0] &&
+      particularTime[sessionIdx.morning][1] &&
+      particularTime[sessionIdx.morning][2] &&
+      particularTime[sessionIdx.morning][3] &&
+      particularTime[sessionIdx.morning][4] &&
+      particularTime[sessionIdx.morning][5] &&
+      particularTime[sessionIdx.morning][6],
+    afternoon:
+      particularTime[sessionIdx.afternoon][0] &&
+      particularTime[sessionIdx.afternoon][1] &&
+      particularTime[sessionIdx.afternoon][2] &&
+      particularTime[sessionIdx.afternoon][3] &&
+      particularTime[sessionIdx.afternoon][4] &&
+      particularTime[sessionIdx.afternoon][5] &&
+      particularTime[sessionIdx.afternoon][6],
+    evening:
+      particularTime[sessionIdx.evening][0] &&
+      particularTime[sessionIdx.evening][1] &&
+      particularTime[sessionIdx.evening][2] &&
+      particularTime[sessionIdx.evening][3] &&
+      particularTime[sessionIdx.evening][4] &&
+      particularTime[sessionIdx.evening][5] &&
+      particularTime[sessionIdx.evening][6],
+  });
 
-  const afternoon =
-    particularTime[1][0] &&
-    particularTime[1][1] &&
-    particularTime[1][2] &&
-    particularTime[1][3] &&
-    particularTime[1][4] &&
-    particularTime[1][5] &&
-    particularTime[1][6];
+  const setSessionValue = (session, value) => {
+    setSessions((prev) => ({ ...prev, [session]: value }));
+  };
 
-  const evening =
-    particularTime[2][0] &&
-    particularTime[2][1] &&
-    particularTime[2][2] &&
-    particularTime[2][3] &&
-    particularTime[2][4] &&
-    particularTime[2][5] &&
-    particularTime[2][6];
+  const checkLogic = (session) => {
+    const col = sessionIdx[session];
+    const firstValue = particularTime[col][0];
+    for (let i = 1; i < 7; i += 1) {
+      if (particularTime[col][i] !== firstValue) {
+        if (sessions[session]) {
+          setSessionValue(session, false);
+        }
+        return;
+      }
+    }
+    setSessionValue(session, firstValue);
+  };
+
+  const setOneColParticularTime = (index, value) => {
+    const temp = [
+      [...particularTime[0]],
+      [...particularTime[1]],
+      [...particularTime[2]],
+    ];
+    for (let i = 0; i < 7; i += 1) {
+      temp[index][i] = value;
+    }
+    setParticularTime(temp);
+  };
+
+  const setOneCheckbox = (x, y, value) => {
+    const temp = [
+      [...particularTime[0]],
+      [...particularTime[1]],
+      [...particularTime[2]],
+    ];
+    temp[x][y] = value;
+    setParticularTime(temp);
+  };
+
+  const handleAllCheckBoxChange = (session) => {
+    const prevValue = sessions[session];
+    setOneColParticularTime(sessionIdx[session], !prevValue);
+    setSessionValue(session, !prevValue);
+  };
+
+  React.useLayoutEffect(() => {
+    checkLogic("morning");
+    checkLogic("afternoon");
+    checkLogic("evening");
+  }, [particularTime[0], particularTime[1], particularTime[2]]);
 
   return (
     <div>
-      <h3>Thời gian làm việc</h3>
-      <div className="row">
+      <p className={styles.workshiftTitle}>Thời gian làm việc</p>
+      <div style={{ display: "flex", gap: "15px", paddingBlock: "16px" }}>
         <button
           type="button"
           onClick={() => setWhenever(false)}
-          className={`working-time-button col ${whenever === false ? "active" : ""}`}
+          className={`${styles.timeHeader} ${whenever === false ? styles.activeTime : ""}`}
         >
           Thời gian cụ thể
         </button>
         <button
           type="button"
           onClick={() => setWhenever(true)}
-          className={`working-time-button col ${whenever === true ? "active" : ""}`}
+          className={`${styles.timeHeader} ${whenever === true ? styles.activeTime : ""}`}
         >
           Bất cứ lúc nào
         </button>
       </div>
       {!whenever && (
-        <>
+        <div className={styles.checkboxContainer}>
           <div className="row">
-            <div className="col">All</div>
-            <input
-              className="col"
-              type="checkbox"
-              value={morning}
-              checked={morning}
-              onChange={() => {
-                if (morning) {
-                  setParticularTime((prev) => [
-                    [false, false, false, false, false, false, false],
-                    [...prev[1]],
-                    [...prev[2]],
-                  ]);
-                } else {
-                  setErrorWorkShift(false);
-                  setParticularTime((prev) => [
-                    [true, true, true, true, true, true, true],
-                    [...prev[1]],
-                    [...prev[2]],
-                  ]);
-                }
-              }}
-            />
-            <input
-              className="col"
-              type="checkbox"
-              value={afternoon}
-              checked={afternoon}
-              onChange={() => {
-                if (afternoon) {
-                  setParticularTime((prev) => [
-                    [...prev[0]],
-                    [false, false, false, false, false, false, false],
-                    [...prev[2]],
-                  ]);
-                } else {
-                  setErrorWorkShift(false);
-                  setParticularTime((prev) => [
-                    [...prev[0]],
-                    [true, true, true, true, true, true, true],
-                    [...prev[2]],
-                  ]);
-                }
-              }}
-            />
-            <input
-              className="col"
-              type="checkbox"
-              value={evening}
-              checked={evening}
-              onChange={() => {
-                if (evening) {
-                  setParticularTime((prev) => [
-                    [...prev[0]],
-                    [...prev[1]],
-                    [false, false, false, false, false, false, false],
-                  ]);
-                } else {
-                  setErrorWorkShift(false);
-                  setParticularTime((prev) => [
-                    [...prev[0]],
-                    [...prev[1]],
-                    [true, true, true, true, true, true, true],
-                  ]);
-                }
-              }}
-            />
+            <div className="col text-start">Tất cả</div>
+            {sessionsList.map((session) => (
+              <Form.Check // prettier-ignore
+                type="checkbox"
+                className="col checkbox-custom"
+                value={sessions[session]}
+                checked={sessions[session]}
+                key={session}
+                onChange={() => handleAllCheckBoxChange(session)}
+              />
+            ))}
           </div>
-          <div className="row">
+          <div className="row" style={{ marginBlock: "1.8rem" }}>
             <div className="col" />
             <div className="col">Sáng</div>
             <div className="col">Chiều</div>
             <div className="col">Tối</div>
           </div>
-          {days.map((e, index) => (
-            <div className="row" key={e}>
-              <div className="col">{e}</div>
-              <input
-                className="col"
-                type="checkbox"
-                value={particularTime[0][index]}
-                checked={particularTime[0][index]}
-                onChange={() => {
-                  const temp = [
-                    [...particularTime[0]],
-                    [...particularTime[1]],
-                    [...particularTime[2]],
-                  ];
-                  temp[0][index] = !temp[0][index];
-                  setErrorWorkShift(false);
-                  setParticularTime([...temp]);
-                }}
-              />
-              <input
-                className="col"
-                type="checkbox"
-                value={particularTime[1][index]}
-                checked={particularTime[1][index]}
-                onChange={() => {
-                  const temp = [
-                    [...particularTime[0]],
-                    [...particularTime[1]],
-                    [...particularTime[2]],
-                  ];
-                  temp[1][index] = !temp[1][index];
-                  setErrorWorkShift(false);
-                  setParticularTime([...temp]);
-                }}
-              />
-              <input
-                className="col"
-                type="checkbox"
-                value={particularTime[2][index]}
-                checked={particularTime[2][index]}
-                onChange={() => {
-                  const temp = [
-                    [...particularTime[0]],
-                    [...particularTime[1]],
-                    [...particularTime[2]],
-                  ];
-                  temp[2][index] = !temp[2][index];
-                  setErrorWorkShift(false);
-                  setParticularTime([...temp]);
-                }}
-              />
+          {days.map((day, dIdx) => (
+            <div className="row" style={{ marginBottom: "3.75rem" }} key={day}>
+              <div className="col text-start">{day}</div>
+              {sessionsList.map((session) => {
+                const sIdx = sessionIdx[session];
+                return (
+                  <Form.Check
+                    className="col checkbox-custom"
+                    type="checkbox"
+                    value={particularTime[sIdx][dIdx]}
+                    checked={particularTime[sIdx][dIdx]}
+                    key={`${day} ${session}`}
+                    onChange={() =>
+                      setOneCheckbox(sIdx, dIdx, !particularTime[sIdx][dIdx])
+                    }
+                  />
+                );
+              })}
             </div>
           ))}
           {errorWorkShift && (
@@ -193,7 +159,7 @@ function WorkShift({
               Vui lòng chọn thời gian bạn có thể làm việc.
             </div>
           )}
-        </>
+        </div>
       )}
     </div>
   );

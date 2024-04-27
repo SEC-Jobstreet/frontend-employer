@@ -1,4 +1,5 @@
-import React, { Fragment, memo } from "react";
+import React, { memo } from "react";
+import { Form } from "react-bootstrap";
 import ReactQuill from "react-quill";
 
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
@@ -18,6 +19,7 @@ import Workshift from "./workshift";
 
 import "./job-posting-style.css";
 import "react-quill/dist/quill.snow.css";
+import "./workshift/checkbox.css";
 
 function JobPosting({
   jobTitle,
@@ -66,9 +68,8 @@ function JobPosting({
   quillRef,
   setErrorNextStep,
 }) {
-  console.log("312312321");
   return (
-    <>
+    <div className="register-wrapper">
       <CustomInput
         input={jobTitle}
         error={errorJobTitle}
@@ -84,6 +85,7 @@ function JobPosting({
         label="Chức danh công việc"
         name="job-title"
       />
+
       <SuggestionInfo type="suggestion">
         <p>
           Chọn một tiêu đề mô tả đúng nhất công việc để xuất hiện trong các tìm
@@ -91,23 +93,27 @@ function JobPosting({
         </p>
         <p>Ví dụ Tư vấn bán hàng qua điện thoại</p>
       </SuggestionInfo>
-      <DropdownButton
-        name="Thể loại việc"
-        title={
-          jobType === 0 || jobType === 4
-            ? "Chọn một thể loại việc"
-            : dropdownOptions[jobType - 1].label
-        }
-        options={dropdownOptions}
-        onSelect={setJobType}
-        value={jobType}
-      />
+
+      <div style={{ marginBlock: "24px" }}>
+        <DropdownButton
+          name="Thể loại việc"
+          title={
+            jobType === 0 || jobType === 4
+              ? "Chọn một thể loại việc"
+              : dropdownOptions[jobType - 1].label
+          }
+          options={dropdownOptions}
+          onSelect={setJobType}
+          value={jobType}
+        />
+      </div>
       {jobType === 4 && (
         <div className="invalid-feedback-input">
           <ErrorIcon />
           Xin vui lòng chọn thể loại công việc.
         </div>
       )}
+
       {jobType > 0 && jobType < 4 && (
         <Workshift
           whenever={whenever}
@@ -118,19 +124,19 @@ function JobPosting({
           setErrorWorkShift={setErrorWorkShift}
         />
       )}
-      <h3 className="visa">Quyền làm việc</h3>
-      <label htmlFor="checkbox-visa" style={{ paddingLeft: "10px" }}>
-        <input
-          type="checkbox"
-          id="checkbox-visa"
-          name="checkbox-visa"
-          onChange={() => setVisa(!visa)}
+
+      <h3 className="visa custom-title">Quyền làm việc</h3>
+      <div style={{ marginLeft: "3px" }}>
+        <Form.Check
+          className="checkbox-custom small-label"
           checked={visa}
           value={visa}
-          style={{ height: "auto", marginRight: "1rem" }}
+          onChange={() => setVisa(!visa)}
+          type="checkbox"
+          label="Visa làm việc có thể được cấp nếu cần"
         />
-        Visa làm việc có thể được cấp nếu cần
-      </label>
+      </div>
+
       <SuggestionInfo type="suggestion">
         {visa ? (
           <p>
@@ -145,10 +151,14 @@ function JobPosting({
         )}
       </SuggestionInfo>
 
-      <div className="work-experience">
-        <h3>Yêu cầu kinh nghiệm làm việc</h3>
+      <div className="work-experience mt-20">
+        <h3 className="custom-title">Yêu cầu kinh nghiệm làm việc</h3>
         {experienceOptions.map((e) => (
-          <Fragment key={e.id}>
+          <div
+            key={e.id}
+            className="small-label"
+            style={{ marginBottom: "1rem" }}
+          >
             <CustomRadio
               value={workExperience}
               checkedValue={e.id}
@@ -160,7 +170,7 @@ function JobPosting({
             >
               <div>{e.label}</div>
             </CustomRadio>
-          </Fragment>
+          </div>
         ))}
 
         {workExperience > 0 && workExperience < 5 && (
@@ -176,27 +186,35 @@ function JobPosting({
           </div>
         )}
       </div>
-      <DateInput
-        startDate={startDate}
-        setStartDate={setStartDate}
-        errorStartDate={errorStartDate}
-        setErrorStartDate={setErrorStartDate}
-      />
 
-      <EstimatedSalary
-        currency={currency}
-        setCurrency={setCurrency}
-        salaryLevelDisplay={salaryLevelDisplay}
-        setSalaryLevelDisplay={setSalaryLevelDisplay}
-        salary={salary}
-        setSalary={setSalary}
-        salaryRange={salaryRange}
-        setSalaryRange={setSalaryRange}
-        paidPeriod={paidPeriod}
-        setPaidPeriod={setPaidPeriod}
-        errorSalaryRange={errorSalaryRange}
-        setErrorSalaryRange={setErrorSalaryRange}
-      />
+      <div className="start-date mt-20">
+        <h3 className="custom-title"> Ngày dự kiến bắt đầu công việc</h3>
+        <DateInput
+          startDate={startDate}
+          setStartDate={setStartDate}
+          errorStartDate={errorStartDate}
+          setErrorStartDate={setErrorStartDate}
+        />
+      </div>
+
+      <div className="start-salary mt-20">
+        <h3 className="custom-title">Mức lương dự kiến (Tuỳ chọn)</h3>
+        <EstimatedSalary
+          currency={currency}
+          setCurrency={setCurrency}
+          salaryLevelDisplay={salaryLevelDisplay}
+          setSalaryLevelDisplay={setSalaryLevelDisplay}
+          salary={salary}
+          setSalary={setSalary}
+          salaryRange={salaryRange}
+          setSalaryRange={setSalaryRange}
+          paidPeriod={paidPeriod}
+          setPaidPeriod={setPaidPeriod}
+          errorSalaryRange={errorSalaryRange}
+          setErrorSalaryRange={setErrorSalaryRange}
+        />
+      </div>
+
       <div>Mô tả công việc</div>
       <div>
         <ReactQuill
@@ -252,7 +270,7 @@ function JobPosting({
           thoại hoặc địa chỉ email.
         </p>
       </SuggestionInfo>
-    </>
+    </div>
   );
 }
 
