@@ -55,6 +55,7 @@
 .salary-range {
   display: flex;
   flex-wrap: nowrap;
+  max-width: 430px;
 }
 
 .salary-range input {
@@ -79,4 +80,22 @@
   line-height: 24px;
   font-weight: 300;
   letter-spacing: -0.48px;
+}
+
+.salary-time,
+.salary-type-view {
+  width: 25%;
+}
+
+@media screen and (max-width: 770px) {
+  .salary-time,
+  .salary-type-view {
+    width: 100%;
+  }
+  .salary-range-wrapper {
+    width: 100%;
+  }
+  .estimated-salary {
+    flex-flow: column;
+  }
 }

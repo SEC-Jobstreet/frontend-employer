@@ -62,7 +62,7 @@ function EstimatedSalary({
         Thay đổi tiền tệ: {currentCurrency.label} {currentCurrency.id}
       </button>
       <div className="estimated-salary" style={{ marginTop: "20px" }}>
-        <div style={{ width: "25%" }}>
+        <div className="salary-type-view">
           <CustomDropdown
             name="Hiển thị mức lương"
             options={salaryLevels}
@@ -140,7 +140,7 @@ function EstimatedSalary({
             </div>
           )}
         </div>
-        <div style={{ width: "25%" }}>
+        <div className="salary-time">
           <CustomDropdown
             name="Lương tính theo"
             options={timeOptions}

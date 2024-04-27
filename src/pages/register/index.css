@@ -69,3 +69,9 @@
 .step-button-wrapper.done .step-title:hover {
   text-decoration: underline;
 }
+
+@media screen and (max-width: 600px) {
+  .register-container {
+    padding: 24px 16px 32px;
+  }
+}
