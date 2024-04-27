@@ -1,0 +1,151 @@
+.verify-page {
+    width: 752px;
+    max-width: 1000px;
+    margin: auto;
+    position: relative;
+    font-family: "Noto Sans", sans-serif;
+    flex: auto;
+    text-align: left;
+}
+
+.verify-header {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    letter-spacing: -0.72px;
+    color: rgb(0, 0, 0);
+    padding: 16px 16px 12px;
+}
+
+.card {
+    background-color: rgb(255, 255, 255) !important;
+    font-weight: 300;
+    padding: 24px 40px;
+}
+
+.progress-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.progress-step:not(:last-child):after { 
+    content: '';
+    display: block;
+    height: 4px;
+    background-color: #0E8136;
+    position: absolute;
+    left: 70%; 
+    top: 18px; 
+    width: calc(50% + 32px);
+    z-index: 0; 
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex: 1;
+}
+
+.circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid #0E8136;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.progress-line {
+    height: 4px;
+    background-color: #0E8136;
+    flex-grow: 1;
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: -1;
+}
+
+.step-label {
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    color: rgb(14, 129, 54);
+    letter-spacing: -0.42px;
+    text-align: center;
+    margin-top: 8px;
+    height: 32px;
+    width: 100px;
+}
+
+.email-verification {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.verify-img {
+    max-width: 152px;
+    max-height: 200px;
+}
+
+.title {
+    margin-top: 20px;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: -.06em;
+    line-height: 32px;
+    margin-top: 16px;
+    text-align: center;
+}
+
+.sub-title {
+    margin-top: 8px;
+    font-size: 1.6rem;
+    letter-spacing: -.06em;
+    line-height: 32px;
+    text-align: center;
+}
+
+.submit-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    border-radius: 4px;
+    padding: 1px 24px;
+    margin: 0px 0px 16px 0px;
+    border: none;
+    font-size: 16px;
+    text-align: center;
+    height: 50.2px;
+    width: 103px;
+    cursor: pointer;
+    background-color: #0e8136;
+    color: #ffffff;
+}
+
+.btn-action {
+    margin-top: 16px;
+}
+
+button.resend-button {
+    border: none;
+    background: rgb(255, 255, 255);
+    color: rgb(15, 98, 199);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    letter-spacing: -0.48px;
+    margin-left: 24px;
+}
+
+.resend-button:hover {
+    text-decoration: underline;
+}

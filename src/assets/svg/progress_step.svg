@@ -1,0 +1,18 @@
+<svg
+              viewBox="3 3 18 18"
+              stroke="#0E8136"
+              fill="rgba(0,0,0,0)"
+              height="36"
+              width="36"
+            >
+              <path
+                d="M12 20.5a8.5 8.5 0 100-17 8.5 8.5 0 000 17z"
+                strokeMiterlimit="10"
+              />
+              <path
+                d="M7.5 13.5l3 2 6-7"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>

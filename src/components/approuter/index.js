@@ -13,6 +13,7 @@ import Register from "../../pages/register";
 import Setting from "../../pages/setting";
 import UpdatePassword from "../../pages/updatepassword";
 import UpdateProfile from "../../pages/updateprofile";
+import VerifyEmail from "../../pages/verifyemail";
 import { selectUser } from "../../store/user";
 
 import ProtectedRoute from "./protectedroute";
@@ -32,6 +33,7 @@ function AppRouter() {
         <Route path="post_job" element={<PostJob />} />
         <Route path="business" element={<Business />} />
         <Route path="account" element={<Account />}>
+          <Route path="verify-email" element={<VerifyEmail />} />
           <Route path="settings" element={<Setting />} />
           <Route path="update-profile" element={<UpdateProfile />} />
           <Route path="update-password" element={<UpdatePassword />} />
