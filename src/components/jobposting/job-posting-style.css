@@ -29,6 +29,34 @@
   margin-bottom: 20px;
 }
 
+.job-description .ql-toolbar {
+  text-align: left;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-color: black !important;
+}
+
+.job-description .ql-container {
+  height: 184px;
+  padding-bottom: 4px;
+  border-color: black !important;
+}
+
+.character-number {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border: 1px solid black;
+  border-top: 0px;
+  margin-top: -1px;
+  text-align: end;
+  padding: 12px;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 300;
+  color: rgb(98, 98, 98);
+  letter-spacing: -0.42px;
+}
+
 .job-title,
 .job-category,
 .job-visa {

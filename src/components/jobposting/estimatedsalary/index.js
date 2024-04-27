@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import CurrencyInput from "react-currency-input-field";
 
@@ -61,29 +61,34 @@ function EstimatedSalary({
       >
         Thay đổi tiền tệ: {currentCurrency.label} {currentCurrency.id}
       </button>
-      <div className="estimated-salary">
-        <CustomDropdown
-          name="Hiển thị mức lương"
-          options={salaryLevels}
-          onSelect={setSalaryLevelDisplay}
-          value={salaryLevelDisplay}
-          title={salaryLevels[salaryLevelDisplay - 1].label}
-        />
+      <div className="estimated-salary" style={{ marginTop: "20px" }}>
+        <div style={{ width: "25%" }}>
+          <CustomDropdown
+            name="Hiển thị mức lương"
+            options={salaryLevels}
+            onSelect={setSalaryLevelDisplay}
+            value={salaryLevelDisplay}
+            title={salaryLevels[salaryLevelDisplay - 1].label}
+          />
+        </div>
 
-        <div>
-          <div>Mức lương</div>
+        <div className="salary-range-wrapper">
+          <div className="custom-title">Mức lương</div>
+
           {salaryLevelDisplay.toString() === "1" ? (
-            <CurrencyInput
-              prefix={`${currentCurrency.label} `}
-              id="input-salary"
-              name="Mức lương"
-              placeholder={`${currentCurrency.label} Tổng cộng`}
-              defaultValue={salary}
-              decimalsLimit={0}
-              onValueChange={(value) => setSalary(value)}
-            />
+            <div className="salary-range">
+              <CurrencyInput
+                prefix={`${currentCurrency.label} `}
+                id="input-salary"
+                name="Mức lương"
+                placeholder={`${currentCurrency.label} Tổng cộng`}
+                defaultValue={salary}
+                decimalsLimit={0}
+                onValueChange={(value) => setSalary(value)}
+              />
+            </div>
           ) : (
-            <>
+            <div className="salary-range">
               <CurrencyInput
                 prefix={`${currentCurrency.label} `}
                 id="input-salary-range1"
@@ -103,6 +108,16 @@ function EstimatedSalary({
                     setErrorSalaryRange(true);
                 }}
               />
+              <div
+                className="custom-title"
+                style={{
+                  width: "30%",
+                  textAlign: "center",
+                  alignContent: "center",
+                }}
+              >
+                tới
+              </div>
               <CurrencyInput
                 prefix={`${currentCurrency.label} `}
                 id="input-salary-range2"
@@ -122,17 +137,18 @@ function EstimatedSalary({
                     setErrorSalaryRange(true);
                 }}
               />
-            </>
+            </div>
           )}
         </div>
-
-        <CustomDropdown
-          name="Lương tính theo"
-          options={timeOptions}
-          onSelect={setPaidPeriod}
-          value={paidPeriod}
-          title={timeOptions[paidPeriod - 1].label}
-        />
+        <div style={{ width: "25%" }}>
+          <CustomDropdown
+            name="Lương tính theo"
+            options={timeOptions}
+            onSelect={setPaidPeriod}
+            value={paidPeriod}
+            title={timeOptions[paidPeriod - 1].label}
+          />
+        </div>
       </div>
       {errorSalaryRange && (
         <div className="invalid-feedback-input">
@@ -154,11 +170,11 @@ function EstimatedSalary({
             Nhập một khoảng lương sẽ hiển thị &quot;Mức lương dự kiến:{" "}
             {currentCurrency.label}{" "}
             {salaryRange[0] === undefined || salaryRange[0] === ""
-              ? "[Total]"
+              ? "[Min] "
               : salaryRange[0]}
             – {currentCurrency.label}{" "}
             {salaryRange[1] === undefined || salaryRange[1] === ""
-              ? "[Total]"
+              ? "[Max]"
               : salaryRange[1]}{" "}
             cho mỗi {timeOptions[paidPeriod - 1].label}&quot; trong mẩu tin
             quảng cáo việc làm.

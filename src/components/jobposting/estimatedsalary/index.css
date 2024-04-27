@@ -42,3 +42,41 @@
 .custom-modal .modal-body div {
   margin-bottom: 8px;
 }
+
+.estimated-salary {
+  display: flex;
+  column-gap: 15px;
+}
+
+.salary-range-wrapper {
+  width: 50%;
+}
+
+.salary-range {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.salary-range input {
+  width: 100%;
+  min-height: 50px;
+  border-radius: 8px !important;
+  border-width: 1px !important;
+  border-color: rgb(128, 128, 128) !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  font-weight: 300 !important;
+  padding: 12px 16px;
+}
+
+.salary-range input:focus-visible {
+  border-color: rgb(14, 129, 54) !important;
+  outline: none !important;
+}
+
+.custom-title {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  letter-spacing: -0.48px;
+}

@@ -136,7 +136,6 @@ function JobPosting({
           label="Visa làm việc có thể được cấp nếu cần"
         />
       </div>
-
       <SuggestionInfo type="suggestion">
         {visa ? (
           <p>
@@ -215,8 +214,8 @@ function JobPosting({
         />
       </div>
 
-      <div>Mô tả công việc</div>
-      <div>
+      <div className="mt-20">
+        <h3 className="custom-title">Mô tả công việc</h3>
         <ReactQuill
           ref={quillRef}
           className="job-description"
@@ -241,7 +240,7 @@ function JobPosting({
             },
           }}
         />
-        <div>
+        <div className="character-number">
           Số ký tự:{" "}
           {quillRef.current
             ? quillRef.current.unprivilegedEditor.getLength() - 1
