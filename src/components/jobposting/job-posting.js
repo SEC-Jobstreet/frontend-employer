@@ -4,9 +4,9 @@ import ReactQuill from "react-quill";
 
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
 import {
-  dropdownOptions,
   experienceOptions,
   experienceSuggestions,
+  jobTypes,
 } from "../../utils/postjob";
 import DropdownButton from "../customdropdown";
 import CustomInput from "../custominput/input";
@@ -100,9 +100,9 @@ function JobPosting({
           title={
             jobType === 0 || jobType === 4
               ? "Chọn một thể loại việc"
-              : dropdownOptions[jobType - 1].label
+              : jobTypes[jobType - 1].label
           }
-          options={dropdownOptions}
+          options={jobTypes}
           onSelect={setJobType}
           value={jobType}
         />

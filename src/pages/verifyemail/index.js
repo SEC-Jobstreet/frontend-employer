@@ -24,7 +24,7 @@ function VerifyEmail() {
   const [errorSubmit, setErrorSubmit] = useState(false);
 
   // show loading page
-  // const [showLoading, setShowLoading] = useState(false)
+  const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => {
     setErrorSubmit(false);
@@ -34,7 +34,7 @@ function VerifyEmail() {
 
   const submitVerificationCode = async () => {
     if (verificationCode.length !== 6) return;
-
+    setShowLoading(true);
     try {
       await confirmSignUp({
         username: email,
@@ -45,6 +45,7 @@ function VerifyEmail() {
       const signInOutput = await autoSignIn();
       if (signInOutput.isSignedIn) {
         dispatch(loginAccount({ email, email_verified: true }));
+        setShowLoading(false);
       }
     } catch (error) {
       if (
@@ -57,126 +58,144 @@ function VerifyEmail() {
           password: pass,
         });
         if (res.isSignedIn === true) {
+          localStorage.removeItem("pass");
           dispatch(loginAccount({ email }));
         }
       }
+      setShowLoading(false);
       setErrorSubmit(true);
       console.log("error confirming sign up", error);
     }
   };
 
   return (
-    <div className="register-page">
-      <h2>Đăng tin tuyển dụng miễn phí</h2>
-      <div className="register-container">
-        <RegisterHeader step={4} handleButtonStepClick={() => {}} />
-        {step === 1 ? (
-          <>
-            <div className="verify-email-header">
-              <div style={{ width: "130px" }}>
-                <VerifyEmailIcon />
+    <>
+      <div className="register-page">
+        <h2>Đăng tin tuyển dụng miễn phí</h2>
+        <div className="register-container">
+          <RegisterHeader step={4} handleButtonStepClick={() => {}} />
+          {step === 1 ? (
+            <>
+              <div className="verify-email-header">
+                <div style={{ width: "130px" }}>
+                  <VerifyEmailIcon />
+                </div>
+                <b
+                  style={{
+                    fontSize: "1.75rem",
+                    fontWeight: "500",
+                    marginTop: "2rem",
+                    marginBotton: "1.5rem",
+                  }}
+                >
+                  Xác nhận địa chỉ email để xác minh tài khoản của bạn
+                </b>
+                <span
+                  style={{
+                    fontSize: "1.7rem",
+                    fontWeight: "300",
+                    color: "#1c1c1c",
+                  }}
+                >
+                  Chúng tôi đã gửi mã xác nhận đến: <b>{email}</b>
+                </span>
               </div>
-              <b
-                style={{
-                  fontSize: "1.75rem",
-                  fontWeight: "500",
-                  marginTop: "2rem",
-                  marginBotton: "1.5rem",
+              <CustomInput
+                input={verificationCode}
+                error={errorVerificationCode}
+                setInput={(e) => {
+                  if (e.target.value.length !== 6) {
+                    setErrorVerificationCode("Vui lòng nhập mã hợp lệ.");
+                  } else {
+                    setErrorVerificationCode("");
+                  }
+                  setVerificationCode(e.target.value);
                 }}
-              >
-                Xác nhận địa chỉ email để xác minh tài khoản của bạn
-              </b>
-              <span
-                style={{
-                  fontSize: "1.7rem",
-                  fontWeight: "300",
-                  color: "#1c1c1c",
+                setBlur={() => {
+                  if (verificationCode === "")
+                    setErrorVerificationCode(
+                      "Vui lòng nhập mã trong email của bạn."
+                    );
                 }}
-              >
-                Chúng tôi đã gửi mã xác nhận đến: <b>{email}</b>
-              </span>
-            </div>
-            <CustomInput
-              input={verificationCode}
-              error={errorVerificationCode}
-              setInput={(e) => {
-                if (e.target.value.length !== 6) {
-                  setErrorVerificationCode("Vui lòng nhập mã hợp lệ.");
-                } else {
-                  setErrorVerificationCode("");
-                }
-                setVerificationCode(e.target.value);
-              }}
-              setBlur={() => {
-                if (verificationCode === "")
-                  setErrorVerificationCode(
-                    "Vui lòng nhập mã trong email của bạn."
-                  );
-              }}
-              type="number"
-              label="Nhập mã"
-              name="input-info employer-firstname"
-            />
-            <div style={{ textAlign: "left", margin: "1rem 0" }}>
-              <CustomButton
-                type="button"
-                color="green"
-                onClick={submitVerificationCode}
-              >
-                Gửi đi
-              </CustomButton>
-              <button className="resend-email" type="button" onClick={() => {}}>
-                Gửi lại email
-              </button>
-            </div>
-            {errorSubmit && (
-              <div className="invalid-feedback-input">
-                <ErrorIcon />
-                <span>Vui lòng nhập mã hợp lệ</span>
+                type="number"
+                label="Nhập mã"
+                name="input-info employer-firstname"
+              />
+              <div style={{ textAlign: "left", margin: "1rem 0" }}>
+                <CustomButton
+                  type="button"
+                  color="green"
+                  onClick={submitVerificationCode}
+                >
+                  Gửi đi
+                </CustomButton>
+                <button
+                  className="resend-email"
+                  type="button"
+                  onClick={() => {}}
+                >
+                  Gửi lại email
+                </button>
               </div>
-            )}
-          </>
-        ) : (
-          <>
-            <div className="verify-email-header">
-              <div style={{ width: "200px" }}>
-                <VerifyEmailDoneIcon />
+              {errorSubmit && (
+                <div className="invalid-feedback-input">
+                  <ErrorIcon />
+                  <span>Vui lòng nhập mã hợp lệ</span>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              <div className="verify-email-header">
+                <div style={{ width: "200px" }}>
+                  <VerifyEmailDoneIcon />
+                </div>
+                <b
+                  style={{
+                    fontSize: "2rem",
+                    fontWeight: "500",
+                    marginTop: "2rem",
+                    marginBottom: "1rem",
+                  }}
+                >
+                  Email của bạn đã được xác minh.
+                </b>
+                <span
+                  style={{
+                    fontSize: "1.7rem",
+                    fontWeight: "300",
+                    color: "#1c1c1c",
+                  }}
+                >
+                  Bây giờ bạn có thể tiếp tục đăng tin tuyển dụng.
+                </span>
               </div>
-              <b
-                style={{
-                  fontSize: "2rem",
-                  fontWeight: "500",
-                  marginTop: "2rem",
-                  marginBottom: "1rem",
-                }}
-              >
-                Email của bạn đã được xác minh.
-              </b>
-              <span
-                style={{
-                  fontSize: "1.7rem",
-                  fontWeight: "300",
-                  color: "#1c1c1c",
-                }}
-              >
-                Bây giờ bạn có thể tiếp tục đăng tin tuyển dụng.
-              </span>
-            </div>
-            <div style={{ textAlign: "left", margin: "2rem 0" }}>
-              <CustomButton
-                type="button"
-                color="green"
-                onClick={() => {
-                  navigate("/home");
-                }}
-              >
-                Tiếp tục
-              </CustomButton>
-            </div>
-          </>
-        )}
+              <div style={{ textAlign: "left", margin: "2rem 0" }}>
+                <CustomButton
+                  type="button"
+                  color="green"
+                  onClick={() => {
+                    navigate("/home");
+                  }}
+                >
+                  Tiếp tục
+                </CustomButton>
+              </div>
+            </>
+          )}
+        </div>
       </div>
-    </div>
+      {showLoading && (
+        <div className="submit-loading">
+          <div className="lds-ring">
+            <div />
+            <div />
+            <div />
+            <div />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

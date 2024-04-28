@@ -8,6 +8,8 @@ import Accountcreation from "../../components/accountcreation";
 import CustomButton from "../../components/custombutton";
 import Enterprisecreating from "../../components/enterprisecreating";
 import JobPosting from "../../components/jobposting/job-posting";
+import { createEnterprise, postJob } from "../../services/axiosAPI";
+import { jobTypes } from "../../utils/postjob";
 
 import RegisterHeader from "./header";
 
@@ -16,7 +18,7 @@ import "./index.css";
 function Register() {
   const navigate = useNavigate();
 
-  const [step, setStep] = useState(3); // 1: Tạo công việc, 2: Tạo doanh nghiệp, 3: Tạo tài khoản, 4: verify, 5: next
+  const [step, setStep] = useState(1); // 1: Tạo công việc, 2: Tạo doanh nghiệp, 3: Tạo tài khoản, 4: verify, 5: next
   const [errorNextStep, setErrorNextStep] = useState(false); // 1: Tạo công việc, 2: Tạo doanh nghiệp, 3: Tạo tài khoản, 4: verify
 
   const [jobTitle, setJobTitle] = useState("");
@@ -96,7 +98,7 @@ function Register() {
     useState("");
 
   // show loading page
-  // const [showLoading, setShowLoading] = useState(false)
+  const [showLoading, setShowLoading] = useState(false);
   const [errorSubmit, setErrorSubmit] = useState("");
 
   useEffect(() => {
@@ -287,7 +289,7 @@ function Register() {
         phone = inputPhone.slice(1);
       }
       console.log(`+${getCountryCallingCode(phoneCountry)}${phone}`);
-
+      setShowLoading(true);
       try {
         const res = await signUp({
           username: email,
@@ -303,12 +305,63 @@ function Register() {
             autoSignIn: true, // or SignInOptions e.g { authFlowType: "USER_SRP_AUTH" }
           },
         });
-
         console.log(res);
+
+        const enterprise = {
+          name: enterpriseName,
+          country,
+          address: enterpriseAddress,
+          field: enterpriseField,
+          size: enterpriseSize,
+          url: enterpriseURL,
+          license: enterpriseLicense,
+          employer_role: employerRole,
+          employer_id: res.userId,
+        };
+
+        let dateString = startDate;
+
+        const dateParts = dateString.split("/");
+
+        dateString = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+
+        const job = {
+          title: jobTitle,
+          employer_id: res.userId,
+          type: jobTypes[jobType - 1].key,
+          work_whenever: whenever,
+          work_shift: JSON.stringify(particularTime),
+          description: jobDescription,
+          visa,
+          experience: workExperience,
+          start_date: Math.floor(dateString.getTime() / 1000),
+          currency,
+
+          enterprise_name: enterpriseName,
+          enterprise_address: enterpriseAddress,
+        };
+
+        if (salaryLevelDisplay.toString() === "1") {
+          job.exact_salary = salary;
+        } else {
+          job.range_salary = JSON.stringify(salaryRange);
+        }
+
+        console.log(enterprise);
+        await createEnterprise(enterprise).then((enterpriseResponse) => {
+          console.log(enterpriseResponse);
+          console.log(enterpriseResponse.data.id);
+          job.enterprise_id = enterpriseResponse.data.id;
+          console.log(job);
+          const jobResponse = postJob(job);
+          console.log(jobResponse);
+        });
+
         localStorage.setItem("email", email);
         setErrorNextStep(false);
         navigate("/verify-email");
       } catch (error) {
+        setShowLoading(false);
         if (error.message === "Invalid phone number format.")
           setErrorSubmit("Xin vui lòng nhập số điện thoại hợp lệ");
         else if (error.message === "User already exists")
@@ -331,169 +384,181 @@ function Register() {
   };
 
   return (
-    <div className="register-page">
-      <h2>Đăng tin tuyển dụng miễn phí</h2>
-      <div className="register-container">
-        <RegisterHeader
-          step={step}
-          handleButtonStepClick={handleButtonStepClick}
-        />
-        {step === 1 && (
-          <>
-            <JobPosting
-              jobTitle={jobTitle}
-              setJobTitle={setJobTitle}
-              errorJobTitle={errorJobTitle}
-              setErrorJobTitle={setErrorJobTitle}
-              jobType={jobType}
-              setJobType={setJobType}
-              whenever={whenever}
-              setWhenever={setWhenever}
-              particularTime={particularTime}
-              setParticularTime={setParticularTime}
-              errorWorkShift={errorWorkShift}
-              setErrorWorkShift={setErrorWorkShift}
-              visa={visa}
-              setVisa={setVisa}
-              workExperience={workExperience}
-              setWorkExperience={setWorkExperience}
-              startDate={startDate}
-              setStartDate={setStartDate}
-              errorStartDate={errorStartDate}
-              setErrorStartDate={setErrorStartDate}
-              currency={currency}
-              setCurrency={setCurrency}
-              salaryLevelDisplay={salaryLevelDisplay}
-              setSalaryLevelDisplay={setSalaryLevelDisplay}
-              salary={salary}
-              setSalary={setSalary}
-              salaryRange={salaryRange}
-              setSalaryRange={setSalaryRange}
-              paidPeriod={paidPeriod}
-              setPaidPeriod={setPaidPeriod}
-              errorSalaryRange={errorSalaryRange}
-              setErrorSalaryRange={setErrorSalaryRange}
-              jobDescription={jobDescription}
-              setJobDescription={setJobDescription}
-              errorJobDescription={errorJobDescription}
-              setErrorJobDescription={setErrorJobDescription}
-              quillRef={quillRef}
-              setErrorNextStep={setErrorNextStep}
-            />
-            <CustomButton
-              type="button"
-              color="green"
-              onClick={handleButtonStep1}
-            >
-              Tiếp
-            </CustomButton>
-            {errorNextStep && (
-              <div className="invalid-feedback-input">
-                <ErrorIcon />
-                Có lỗi trên trang này. Xin vui lòng sửa lại lỗi được đánh dấu.
-              </div>
-            )}
-          </>
-        )}
-        {step === 2 && (
-          <>
-            <Enterprisecreating
-              enterpriseName={enterpriseName}
-              setEnterpriseName={setEnterpriseName}
-              errorEnterpriseName={errorEnterpriseName}
-              setErrorEnterpriseName={setErrorEnterpriseName}
-              country={country}
-              setCountry={setCountry}
-              enterpriseAddress={enterpriseAddress}
-              setEnterpriseAddress={setEnterpriseAddress}
-              errorEnterpriseAddress={errorEnterpriseAddress}
-              setErrorEnterpriseAddress={setErrorEnterpriseAddress}
-              enterpriseField={enterpriseField}
-              setEnterpriseField={setEnterpriseField}
-              errorEnterpriseField={errorEnterpriseField}
-              setErrorEnterpriseField={setErrorEnterpriseField}
-              enterpriseSize={enterpriseSize}
-              setEnterpriseSize={setEnterpriseSize}
-              errorEnterpriseSize={errorEnterpriseSize}
-              setErrorEnterpriseSize={setErrorEnterpriseSize}
-              employerRole={employerRole}
-              setEmployerRole={setEmployerRole}
-              errorEmployerRole={errorEmployerRole}
-              setErrorEmployerRole={setErrorEmployerRole}
-              enterpriseURL={enterpriseURL}
-              setEnterpriseURL={setEnterpriseURL}
-              enterpriseLicense={enterpriseLicense}
-              setEnterpriseLicense={setEnterpriseLicense}
-            />
-            <CustomButton
-              type="button"
-              color="green"
-              onClick={handleButtonStep2}
-            >
-              Tiếp
-            </CustomButton>
-            {errorNextStep && (
-              <div className="invalid-feedback-input">
-                <ErrorIcon />
-                Có lỗi trên trang này. Xin vui lòng sửa lại lỗi được đánh dấu.
-              </div>
-            )}
-          </>
-        )}
-        {step === 3 && (
-          <>
-            <Accountcreation
-              firstName={firstName}
-              setFirstName={setFirstName}
-              errorFirstName={errorFirstName}
-              setErrorFirstName={setErrorFirstName}
-              lastName={lastName}
-              setLastName={setLastName}
-              errorLastName={errorLastName}
-              setErrorLastName={setErrorLastName}
-              email={email}
-              setEmail={setEmail}
-              errorEmail={errorEmail}
-              setErrorEmail={setErrorEmail}
-              emailConfirmation={emailConfirmation}
-              setEmailConfirmation={setEmailConfirmation}
-              errorEmailConfirmation={errorEmailConfirmation}
-              setErrorEmailConfirmation={setErrorEmailConfirmation}
-              phoneCountry={phoneCountry}
-              setPhoneCountry={setPhoneCountry}
-              inputPhone={inputPhone}
-              setInputPhone={setInputPhone}
-              errorInputPhone={errorInputPhone}
-              setErrorInputPhone={setErrorInputPhone}
-              password={password}
-              setPassword={setPassword}
-              errorPassword={errorPassword}
-              setErrorPassword={setErrorPassword}
-              passwordConfirmation={passwordConfirmation}
-              setPasswordConfirmation={setPasswordConfirmation}
-              errorpasswordConfirmation={errorpasswordConfirmation}
-              setErrorPasswordConfirmation={setErrorPasswordConfirmation}
-            />
+    <>
+      <div className="register-page">
+        <h2>Đăng tin tuyển dụng miễn phí</h2>
+        <div className="register-container">
+          <RegisterHeader
+            step={step}
+            handleButtonStepClick={handleButtonStepClick}
+          />
+          {step === 1 && (
+            <>
+              <JobPosting
+                jobTitle={jobTitle}
+                setJobTitle={setJobTitle}
+                errorJobTitle={errorJobTitle}
+                setErrorJobTitle={setErrorJobTitle}
+                jobType={jobType}
+                setJobType={setJobType}
+                whenever={whenever}
+                setWhenever={setWhenever}
+                particularTime={particularTime}
+                setParticularTime={setParticularTime}
+                errorWorkShift={errorWorkShift}
+                setErrorWorkShift={setErrorWorkShift}
+                visa={visa}
+                setVisa={setVisa}
+                workExperience={workExperience}
+                setWorkExperience={setWorkExperience}
+                startDate={startDate}
+                setStartDate={setStartDate}
+                errorStartDate={errorStartDate}
+                setErrorStartDate={setErrorStartDate}
+                currency={currency}
+                setCurrency={setCurrency}
+                salaryLevelDisplay={salaryLevelDisplay}
+                setSalaryLevelDisplay={setSalaryLevelDisplay}
+                salary={salary}
+                setSalary={setSalary}
+                salaryRange={salaryRange}
+                setSalaryRange={setSalaryRange}
+                paidPeriod={paidPeriod}
+                setPaidPeriod={setPaidPeriod}
+                errorSalaryRange={errorSalaryRange}
+                setErrorSalaryRange={setErrorSalaryRange}
+                jobDescription={jobDescription}
+                setJobDescription={setJobDescription}
+                errorJobDescription={errorJobDescription}
+                setErrorJobDescription={setErrorJobDescription}
+                quillRef={quillRef}
+                setErrorNextStep={setErrorNextStep}
+              />
+              <CustomButton
+                type="button"
+                color="green"
+                onClick={handleButtonStep1}
+              >
+                Tiếp
+              </CustomButton>
+              {errorNextStep && (
+                <div className="invalid-feedback-input">
+                  <ErrorIcon />
+                  Có lỗi trên trang này. Xin vui lòng sửa lại lỗi được đánh dấu.
+                </div>
+              )}
+            </>
+          )}
+          {step === 2 && (
+            <>
+              <Enterprisecreating
+                enterpriseName={enterpriseName}
+                setEnterpriseName={setEnterpriseName}
+                errorEnterpriseName={errorEnterpriseName}
+                setErrorEnterpriseName={setErrorEnterpriseName}
+                country={country}
+                setCountry={setCountry}
+                enterpriseAddress={enterpriseAddress}
+                setEnterpriseAddress={setEnterpriseAddress}
+                errorEnterpriseAddress={errorEnterpriseAddress}
+                setErrorEnterpriseAddress={setErrorEnterpriseAddress}
+                enterpriseField={enterpriseField}
+                setEnterpriseField={setEnterpriseField}
+                errorEnterpriseField={errorEnterpriseField}
+                setErrorEnterpriseField={setErrorEnterpriseField}
+                enterpriseSize={enterpriseSize}
+                setEnterpriseSize={setEnterpriseSize}
+                errorEnterpriseSize={errorEnterpriseSize}
+                setErrorEnterpriseSize={setErrorEnterpriseSize}
+                employerRole={employerRole}
+                setEmployerRole={setEmployerRole}
+                errorEmployerRole={errorEmployerRole}
+                setErrorEmployerRole={setErrorEmployerRole}
+                enterpriseURL={enterpriseURL}
+                setEnterpriseURL={setEnterpriseURL}
+                enterpriseLicense={enterpriseLicense}
+                setEnterpriseLicense={setEnterpriseLicense}
+              />
+              <CustomButton
+                type="button"
+                color="green"
+                onClick={handleButtonStep2}
+              >
+                Tiếp
+              </CustomButton>
+              {errorNextStep && (
+                <div className="invalid-feedback-input">
+                  <ErrorIcon />
+                  Có lỗi trên trang này. Xin vui lòng sửa lại lỗi được đánh dấu.
+                </div>
+              )}
+            </>
+          )}
+          {step === 3 && (
+            <>
+              <Accountcreation
+                firstName={firstName}
+                setFirstName={setFirstName}
+                errorFirstName={errorFirstName}
+                setErrorFirstName={setErrorFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                errorLastName={errorLastName}
+                setErrorLastName={setErrorLastName}
+                email={email}
+                setEmail={setEmail}
+                errorEmail={errorEmail}
+                setErrorEmail={setErrorEmail}
+                emailConfirmation={emailConfirmation}
+                setEmailConfirmation={setEmailConfirmation}
+                errorEmailConfirmation={errorEmailConfirmation}
+                setErrorEmailConfirmation={setErrorEmailConfirmation}
+                phoneCountry={phoneCountry}
+                setPhoneCountry={setPhoneCountry}
+                inputPhone={inputPhone}
+                setInputPhone={setInputPhone}
+                errorInputPhone={errorInputPhone}
+                setErrorInputPhone={setErrorInputPhone}
+                password={password}
+                setPassword={setPassword}
+                errorPassword={errorPassword}
+                setErrorPassword={setErrorPassword}
+                passwordConfirmation={passwordConfirmation}
+                setPasswordConfirmation={setPasswordConfirmation}
+                errorpasswordConfirmation={errorpasswordConfirmation}
+                setErrorPasswordConfirmation={setErrorPasswordConfirmation}
+              />
 
-            <CustomButton type="button" color="green" onClick={submit}>
-              Tiếp
-            </CustomButton>
-            {errorNextStep && (
-              <div className="invalid-feedback-input">
-                <ErrorIcon />
-                Có lỗi trên trang này. Xin vui lòng sửa lại lỗi được đánh dấu.
-              </div>
-            )}
-            {errorSubmit !== "" && (
-              <div className="invalid-feedback-input">
-                <ErrorIcon />
-                {errorSubmit}
-              </div>
-            )}
-          </>
-        )}
+              <CustomButton type="button" color="green" onClick={submit}>
+                Tiếp
+              </CustomButton>
+              {errorNextStep && (
+                <div className="invalid-feedback-input">
+                  <ErrorIcon />
+                  Có lỗi trên trang này. Xin vui lòng sửa lại lỗi được đánh dấu.
+                </div>
+              )}
+              {errorSubmit !== "" && (
+                <div className="invalid-feedback-input">
+                  <ErrorIcon />
+                  {errorSubmit}
+                </div>
+              )}
+            </>
+          )}
+        </div>
       </div>
-    </div>
+      {showLoading && (
+        <div className="submit-loading">
+          <div className="lds-ring">
+            <div />
+            <div />
+            <div />
+            <div />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

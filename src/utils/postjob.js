@@ -1,7 +1,7 @@
-export const dropdownOptions = [
-  { label: "Toàn thời gian", id: 1 },
-  { label: "Bán thời gian", id: 2 },
-  { label: "Tạm thời/thời vụ", id: 3 },
+export const jobTypes = [
+  { label: "Toàn thời gian", id: 1, key: "FULLTIME" },
+  { label: "Bán thời gian", id: 2, key: "PARTIME" },
+  { label: "Tạm thời/thời vụ", id: 3, key: "SEASONAL" },
 ];
 
 export const experienceOptions = [
