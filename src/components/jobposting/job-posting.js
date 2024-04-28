@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import { Form } from "react-bootstrap";
 import ReactQuill from "react-quill";
 
@@ -273,4 +273,4 @@ function JobPosting({
   );
 }
 
-export default memo(JobPosting);
+export default JobPosting;

@@ -1,0 +1,18 @@
+.verify-email-header {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.resend-email {
+    margin-left: 2rem;
+    border: none;
+    color: #0f62c7;
+    background: transparent;
+    font-weight: 300;
+}
+
+.resend-email:hover {
+    text-decoration: underline;
+}

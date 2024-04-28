@@ -22,11 +22,15 @@ function AppRouter() {
   const user = useSelector(selectUser);
   return (
     <Routes>
-      <Route element={<ProtectedRoute isAllowed={!user?.email} />}>
+      <Route path="verify-email" element={<VerifyEmail />} />
+      <Route
+        element={
+          <ProtectedRoute isAllowed={user.email === ""} redirectPath="/home" />
+        }
+      >
         <Route exact path="/" element={<Homepage />} />
         <Route exact path="login" element={<Login />} />
         <Route exact path="register" element={<Register />} />
-        <Route exact path="verify-email" element={<VerifyEmail />} />
       </Route>
 
       <Route element={<ProtectedRoute isAllowed={!!user?.email} />}>

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { jwtDecode } from "jwt-decode";
+import { decodeJWT, getCurrentUser } from "aws-amplify/auth";
 
 import NavBar from "./components/appnav";
 import AppRouter from "./components/approuter";
 import Footer from "./components/footer";
-import { loginAccount, logoutAccount } from "./store/user";
+import { loginAccount } from "./store/user";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,19 +15,31 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const checkToken = () => {
-      const accessToken = localStorage.getItem("access-token");
+    const checkToken = async () => {
+      try {
+        const res = await getCurrentUser();
+        let userinfo = {
+          username: res.username,
+        };
+        try {
+          const idToken = localStorage.getItem(
+            `CognitoIdentityServiceProvider.${process.env.REACT_APP_COGNITO_USER_POOL_CLIENT_ID}.${res.username}.idToken`
+          );
 
-      if (accessToken) {
-        const exp = new Date(jwtDecode(accessToken).exp);
-        if (new Date() > new Date(exp * 1000)) {
-          localStorage.removeItem("access-token");
-          dispatch(logoutAccount());
+          const data = decodeJWT(idToken);
+          userinfo = {
+            ...userinfo,
+            email: data.payload.email,
+          };
+        } catch (err) {
+          console.log(err);
         }
-        const data = jwtDecode(accessToken);
-        dispatch(loginAccount(data));
+        dispatch(loginAccount(userinfo));
+      } catch (err) {
+        console.log(err);
       }
     };
+
     checkToken();
     setReHyddated(true);
   }, []);

@@ -8,6 +8,7 @@ function CustomButton({
   width = "auto",
   height = "auto",
   children,
+  disabled,
 }) {
   return (
     <button
@@ -15,6 +16,7 @@ function CustomButton({
       className={`${color === "white" ? "white-css" : "green-css"} ${className}`}
       style={{ width: `${width}`, height: `${height}` }}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>

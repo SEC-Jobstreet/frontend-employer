@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { signOut } from "aws-amplify/auth";
 
 import { ReactComponent as EditIcon } from "../../assets/svg/edit_icon.svg";
 import { logoutAccount, selectUser } from "../../store/user";
@@ -42,9 +43,13 @@ function MyAccount() {
         <button
           className="action-button"
           type="button"
-          onClick={() => {
-            localStorage.removeItem("access-token");
-            dispatch(logoutAccount());
+          onClick={async () => {
+            try {
+              await signOut();
+              dispatch(logoutAccount());
+            } catch (error) {
+              console.log("error signing out: ", error);
+            }
           }}
         >
           Đăng xuất

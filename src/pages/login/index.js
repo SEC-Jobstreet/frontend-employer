@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
+import { signIn } from "aws-amplify/auth";
 
+import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
 import hidePasswordIcon from "../../assets/svg/hide_password.svg";
 import showPasswordIcon from "../../assets/svg/show_password.svg";
 import CustomButton from "../../components/custombutton";
@@ -17,21 +18,48 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loginError, setLoginError] = useState(false);
+  const [disabledButton, setDisabledButton] = useState(false);
 
-  const emailPattern = /[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/gim;
+  const emailPattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
   const passwordPattern =
     /^(?=(.*[a-z]){0,})(?=(.*[A-Z]))(?=(.*[0-9]))(?=(.*[!@#$%^&*()\-__+.]){0,})(?=\S+$).{8,}$/;
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     // Handle the form submission
     // After verify
-    const accessToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwicGljdHVyZSI6Imh0dHBzOi8vY2RuLWljb25zLXBuZy5mcmVlcGlrLmNvbS8yNTYvMTA3Ny8xMDc3MTE0LnBuZyIsImV4cCI6MTcyNjI5OTkyMiwiZW1haWwiOiJ0aGFuaHF1eTExMDVAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJzdE5hbWUiOiJUaGFuaCIsImxhc3ROYW1lIjoiUXV5IiwicGhvbmUiOiIwODU4MzYzODQ4In0.FHPVfASkakGLPuZxxB9y9RU12FUuLD8KzLQqN_w1Nq8";
-    localStorage.setItem("access-token", accessToken);
-    const data = jwtDecode(accessToken);
-    dispatch(loginAccount(data));
-    navigate("/home");
+
+    if (!emailPattern.test(email) || !passwordPattern.test(password)) {
+      return;
+    }
+    setDisabledButton(true);
+
+    try {
+      const res = await signIn({
+        username: email,
+        password,
+      });
+      if (
+        res.isSignedIn === false &&
+        res.nextStep?.signInStep === "CONFIRM_SIGN_UP"
+      ) {
+        localStorage.setItem("email", email);
+        localStorage.setItem("pass", password);
+        navigate("/verify-email");
+      } else if (res.isSignedIn === true) {
+        dispatch(loginAccount({ email }));
+        navigate("/home");
+      }
+    } catch (error) {
+      setLoginError(true);
+      setDisabledButton(false);
+      console.log("error signing in", error);
+    }
   };
+
+  useEffect(() => {
+    setLoginError(false);
+  }, [email, password]);
 
   return (
     <div className="login-page-container">
@@ -40,7 +68,7 @@ function Login() {
         <Input
           className="input-email-field"
           label="Email"
-          type="text"
+          type="email"
           input={email}
           setInput={setEmail}
           errorMessage={
@@ -75,14 +103,23 @@ function Login() {
             </button>
           </div>
         </Input>
+        {loginError && (
+          <div className="invalid-feedback-input">
+            <ErrorIcon />
+            <span>Email hoặc mật khẩu không đúng.</span>
+          </div>
+        )}
+
         <Link to="/" className="forgot-password link-to-orther-page">
           Quên mật khẩu
         </Link>
+
         <CustomButton
           type="submit"
           color="green"
           className="login-page-loginBtn"
           onClick={handleLogin}
+          disabled={disabledButton}
         >
           Nhà tuyển dụng đăng nhập
         </CustomButton>

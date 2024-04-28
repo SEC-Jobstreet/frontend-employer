@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { getCountryCallingCode } from "react-phone-number-input";
+import { useNavigate } from "react-router-dom";
+import { signUp } from "aws-amplify/auth";
 
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
 import Accountcreation from "../../components/accountcreation";
@@ -7,20 +9,14 @@ import CustomButton from "../../components/custombutton";
 import Enterprisecreating from "../../components/enterprisecreating";
 import JobPosting from "../../components/jobposting/job-posting";
 
-import Line from "./line";
+import RegisterHeader from "./header";
 
 import "./index.css";
-
-const steps = {
-  1: "Tạo công việc",
-  2: "Tạo doanh nghiệp",
-  3: "Tạo tài khoản",
-};
 
 function Register() {
   const navigate = useNavigate();
 
-  const [step, setStep] = useState(3); // 1: Tạo công việc, 2: Tạo doanh nghiệp, 3: Tạo tài khoản, 4: verify
+  const [step, setStep] = useState(3); // 1: Tạo công việc, 2: Tạo doanh nghiệp, 3: Tạo tài khoản, 4: verify, 5: next
   const [errorNextStep, setErrorNextStep] = useState(false); // 1: Tạo công việc, 2: Tạo doanh nghiệp, 3: Tạo tài khoản, 4: verify
 
   const [jobTitle, setJobTitle] = useState("");
@@ -99,6 +95,10 @@ function Register() {
   const [errorpasswordConfirmation, setErrorPasswordConfirmation] =
     useState("");
 
+  // show loading page
+  // const [showLoading, setShowLoading] = useState(false)
+  const [errorSubmit, setErrorSubmit] = useState("");
+
   useEffect(() => {
     if (errorNextStep) setErrorNextStep(false);
   }, [
@@ -149,6 +149,10 @@ function Register() {
     errorPassword,
     errorpasswordConfirmation,
   ]);
+
+  useEffect(() => {
+    setErrorSubmit("");
+  }, [email, phoneCountry, inputPhone, password]);
 
   const handleButtonStep1 = () => {
     // verify
@@ -238,7 +242,7 @@ function Register() {
     }
   };
 
-  const submit = () => {
+  const submit = async () => {
     // verify account
     // -> check fields
     let next = true;
@@ -278,17 +282,39 @@ function Register() {
     )
       next = false;
     if (next) {
-      console.log({
-        firstName,
-        lastName,
-        email,
-        emailConfirmation,
-        inputPhone,
-        password,
-        passwordConfirmation,
-      });
-      setErrorNextStep(false);
-      navigate("/verify-email");
+      let phone = inputPhone;
+      if (phone[0] === "0") {
+        phone = inputPhone.slice(1);
+      }
+      console.log(`+${getCountryCallingCode(phoneCountry)}${phone}`);
+
+      try {
+        const res = await signUp({
+          username: email,
+          password,
+          options: {
+            userAttributes: {
+              email,
+              phone_number: `+${getCountryCallingCode(phoneCountry)}${phone}`,
+              given_name: firstName, // E.164 number convention
+              family_name: lastName,
+            },
+            // optional
+            autoSignIn: true, // or SignInOptions e.g { authFlowType: "USER_SRP_AUTH" }
+          },
+        });
+
+        console.log(res);
+        localStorage.setItem("email", email);
+        setErrorNextStep(false);
+        navigate("/verify-email");
+      } catch (error) {
+        if (error.message === "Invalid phone number format.")
+          setErrorSubmit("Xin vui lòng nhập số điện thoại hợp lệ");
+        else if (error.message === "User already exists")
+          setErrorSubmit("Email đã tồn tại.");
+        console.log("error signing up:", error);
+      }
     } else setErrorNextStep(true);
 
     // post job
@@ -308,37 +334,10 @@ function Register() {
     <div className="register-page">
       <h2>Đăng tin tuyển dụng miễn phí</h2>
       <div className="register-container">
-        <div className="register-header">
-          {Object.keys(steps).map((key) => (
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "nowrap",
-                width: "-webkit-fill-available",
-              }}
-              key={`step ${key}`}
-            >
-              <div
-                className={`step-button-wrapper ${step > key ? "done" : ""}
-                  ${step === key ? "active" : ""}`}
-              >
-                <div>
-                  <button
-                    onClick={() => handleButtonStepClick(key)}
-                    //   disabled={!(step > key)}
-                    type="button"
-                  >
-                    {key}
-                  </button>
-                </div>
-                <NavLink className="step-title" to="">
-                  {steps[key]}
-                </NavLink>
-              </div>
-              {key < 3 && <Line type="solid" />}
-            </div>
-          ))}
-        </div>
+        <RegisterHeader
+          step={step}
+          handleButtonStepClick={handleButtonStepClick}
+        />
         {step === 1 && (
           <>
             <JobPosting
@@ -483,6 +482,12 @@ function Register() {
               <div className="invalid-feedback-input">
                 <ErrorIcon />
                 Có lỗi trên trang này. Xin vui lòng sửa lại lỗi được đánh dấu.
+              </div>
+            )}
+            {errorSubmit !== "" && (
+              <div className="invalid-feedback-input">
+                <ErrorIcon />
+                {errorSubmit}
               </div>
             )}
           </>

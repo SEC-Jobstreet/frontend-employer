@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import vi from "react-phone-number-input/locale/vi.json";
 
@@ -250,4 +250,4 @@ function AccountCreation({
   );
 }
 
-export default memo(AccountCreation);
+export default AccountCreation;

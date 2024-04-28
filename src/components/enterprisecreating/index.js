@@ -1,8 +1,11 @@
-import { memo } from "react";
-
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
 import { ReactComponent as SearchBarIcon } from "../../assets/svg/searchbar_icon.svg";
-import { countries, fields, sizes } from "../../utils/createenterprise";
+import {
+  countries,
+  employerRoles,
+  fields,
+  sizes,
+} from "../../utils/createenterprise";
 import DropdownButton from "../customdropdown";
 import CustomInput from "../custominput/input";
 import SuggestionInfo from "../suggestioninfo";
@@ -163,10 +166,11 @@ function EnterpriseCreating({
           name="Vai trò của bạn trong doanh nghiệp này"
           error={errorEmployerRole}
           title={
-            sizes.find((e) => e.id.toString() === employerRole.toString())
-              ?.label
+            employerRoles.find(
+              (e) => e.id.toString() === employerRole.toString()
+            )?.label
           }
-          options={sizes}
+          options={employerRoles}
           onSelect={(e) => {
             setEmployerRole(e);
           }}
@@ -211,4 +215,4 @@ function EnterpriseCreating({
   );
 }
 
-export default memo(EnterpriseCreating);
+export default EnterpriseCreating;
