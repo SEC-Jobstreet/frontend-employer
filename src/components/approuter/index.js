@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import Account from "../../pages/account/account";
 import Business from "../../pages/business";
+import Candidates from "../../pages/candidates";
 import DeletionConfirmation from "../../pages/deletionconfirm";
 import Homepage from "../../pages/homepage";
 import HomepageLogin from "../../pages/homepagelogin";
@@ -33,8 +34,9 @@ function AppRouter() {
         <Route exact path="register" element={<Register />} />
       </Route>
 
-      <Route element={<ProtectedRoute isAllowed={!!user?.email} />}>
+      <Route element={<ProtectedRoute isAllowed={user.email !== ""} />}>
         <Route path="home" element={<HomepageLogin />} />
+        <Route path="candidates" element={<Candidates />} />
         <Route path="post_job" element={<PostJob />} />
         <Route path="business" element={<Business />} />
         <Route path="account" element={<Account />}>

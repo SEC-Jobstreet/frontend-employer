@@ -8,7 +8,7 @@ import Accountcreation from "../../components/accountcreation";
 import CustomButton from "../../components/custombutton";
 import Enterprisecreating from "../../components/enterprisecreating";
 import JobPosting from "../../components/jobposting/job-posting";
-import { createEnterprise, postJob } from "../../services/axiosAPI";
+import { createEnterprise, postJob } from "../../services/configAPI";
 import { jobTypes } from "../../utils/postjob";
 
 import RegisterHeader from "./header";
