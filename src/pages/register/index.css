@@ -17,6 +17,15 @@
   padding: 2.4rem 4rem 3.2rem;
 }
 
+.login-link {
+  color: rgb(15, 98, 199);
+  text-decoration-line: none !important;
+}
+
+.login-link:hover {
+  text-decoration-line: underline !important;
+}
+
 @media screen and (max-width: 600px) {
   .register-container {
     padding: 24px 16px 32px;

@@ -25,7 +25,8 @@ function RegisterHeader({ step, handleButtonStepClick }) {
             style={{
               display: "flex",
               flexWrap: "nowrap",
-              width: "-webkit-fill-available",
+              width: keyInt < 3 ? "-webkit-fill-available" : "",
+              minWidth: "100px",
             }}
             key={`step ${keyInt}`}
           >
@@ -33,10 +34,11 @@ function RegisterHeader({ step, handleButtonStepClick }) {
               <div>
                 <button
                   onClick={() => handleButtonStepClick(keyInt)}
-                  //   disabled={!(step > key)}
+                  // disabled={!(step > key)}
                   type="button"
                 >
-                  {keyInt}
+                  {state !== "done" && keyInt}
+                  {state === "done" && <div className="done-icon" />}
                 </button>
               </div>
               <NavLink className="step-title" to="">

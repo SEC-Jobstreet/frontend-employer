@@ -6,6 +6,7 @@
 .step-button-wrapper {
   display: flex;
   flex-flow: column;
+  row-gap: 5px;
 }
 
 .step-button-wrapper button {
@@ -49,4 +50,13 @@
 }
 .step-button-wrapper.done .step-title:hover {
   text-decoration: underline;
+}
+
+.done-icon {
+  background-image: url("../../../assets/svg/done-icon.svg");
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  background-position-y: -2px;
+  background-position-x: -2px;
 }
