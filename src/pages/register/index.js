@@ -434,7 +434,10 @@ function Register() {
                 quillRef={quillRef}
                 setErrorNextStep={setErrorNextStep}
               />
-              <div style={{ marginTop: "30px", textAlign: "left" }}>
+              <div
+                style={{ marginTop: "30px", textAlign: "left" }}
+                className="submit-button"
+              >
                 <CustomButton
                   type="button"
                   color="green"
@@ -481,7 +484,10 @@ function Register() {
                 enterpriseLicense={enterpriseLicense}
                 setEnterpriseLicense={setEnterpriseLicense}
               />
-              <div style={{ marginTop: "30px", textAlign: "left" }}>
+              <div
+                style={{ marginTop: "30px", textAlign: "left" }}
+                className="submit-button"
+              >
                 <CustomButton
                   type="button"
                   color="green"
@@ -533,7 +539,10 @@ function Register() {
                 setErrorPasswordConfirmation={setErrorPasswordConfirmation}
               />
 
-              <div style={{ marginTop: "30px", textAlign: "left" }}>
+              <div
+                style={{ marginTop: "30px", textAlign: "left" }}
+                className="submit-button"
+              >
                 <CustomButton type="button" color="green" onClick={submit}>
                   Tiếp
                 </CustomButton>

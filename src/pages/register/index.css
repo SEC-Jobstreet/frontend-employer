@@ -30,6 +30,10 @@
   .register-container {
     padding: 24px 16px 32px;
   }
+
+  .submit-button button {
+    width: 100% !important;
+  }
 }
 
 .submit-loading {
