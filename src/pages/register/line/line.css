@@ -1,0 +1,32 @@
+.solidLine {
+  width: 100%;
+  height: 4px;
+  border-top: 4px solid rgb(14, 129, 54);
+  border-radius: 8px;
+}
+
+.dottedLine {
+  height: 4px;
+  display: flex;
+  flex-wrap: nowrap;
+  column-gap: 4px;
+}
+
+.dottedLine .straight {
+  border-top: 4px solid rgb(14, 129, 54);
+  border-radius: 8px;
+  width: 70%;
+}
+
+.dottedLine .dotted {
+  width: 30%;
+  border-top: 4px dotted rgb(14, 129, 54);
+}
+
+.greenLine {
+  border-color: rgb(14, 129, 54) !important;
+}
+
+.greyLine {
+  border-color: rgb(98, 98, 98) !important;
+}
