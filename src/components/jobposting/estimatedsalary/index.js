@@ -161,9 +161,9 @@ function EstimatedSalary({
           <p>
             Nhập số tiền chính xác sẽ hiển thị &quot;Mức lương dự kiến:{" "}
             {currentCurrency.label}{" "}
-            {salary === undefined || salary === "" ? "[Total]" : salary}
-            cho mỗi {timeOptions[paidPeriod - 1].label}&quot; trong mẩu tin
-            quảng cáo việc làm.
+            {salary === undefined || salary === "" ? "[Total]" : salary} cho mỗi{" "}
+            {timeOptions[paidPeriod - 1].label}&quot; trong mẩu tin quảng cáo
+            việc làm.
           </p>
         ) : (
           <p>
@@ -171,7 +171,7 @@ function EstimatedSalary({
             {currentCurrency.label}{" "}
             {salaryRange[0] === undefined || salaryRange[0] === ""
               ? "[Min] "
-              : salaryRange[0]}
+              : salaryRange[0]}{" "}
             – {currentCurrency.label}{" "}
             {salaryRange[1] === undefined || salaryRange[1] === ""
               ? "[Max]"
