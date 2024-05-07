@@ -5,7 +5,7 @@ import BusinessItem from "./components/businessitem";
 
 import "./styles.css";
 
-const DUMMY_DATA = [
+export const DUMMY_DATA = [
   {
     id: "v1",
     name: "Công ty TNHH ABC",
@@ -42,7 +42,7 @@ function Business() {
         </div>
         <div className="business-list-container">
           {DUMMY_DATA.map((item) => (
-            <BusinessItem key={item.key} info={item} />
+            <BusinessItem key={item.id} info={item} />
           ))}
         </div>
       </div>

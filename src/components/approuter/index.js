@@ -44,8 +44,11 @@ function AppRouter() {
         <Route path="business" element={<Business />} />
 
         <Route path="business/create" element={<CreateBusiness />} />
-        <Route path="business/:id/edit" element={<EditBusiness />} />
-        <Route path="business/:id/details" element={<DetailsBusiness />} />
+        <Route path="business/:businessId/edit" element={<EditBusiness />} />
+        <Route
+          path="business/:businessId/details"
+          element={<DetailsBusiness />}
+        />
 
         <Route path="account" element={<Account />}>
           <Route path="settings" element={<Setting />} />
