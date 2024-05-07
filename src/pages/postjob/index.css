@@ -1,0 +1,204 @@
+.job-posting-page {
+  width: 752px;
+  max-width: 1000px;
+  margin: auto;
+  position: relative;
+  font-family: "Noto Sans", sans-serif;
+  flex: auto;
+  text-align: left;
+}
+
+.register-page h2 {
+  padding: 0.6rem 2rem 1.1rem;
+  font-family: inherit;
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: left;
+  letter-spacing: -1.2px;
+}
+
+.register-container {
+  background-color: white;
+  padding: 2.4rem 4rem 3.2rem;
+}
+
+.register-desc {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  color: rgb(0, 0, 0);
+  letter-spacing: -0.48px;
+}
+
+.register-desc-email {
+  font-weight: 500;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+a.register-desc-link {
+  color: rgb(15, 98, 199) !important;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+  letter-spacing: -0.48px;
+  text-align: left;
+  text-decoration-line: none !important;
+}
+
+a.register-desc-link:hover {
+  cursor: pointer !important;
+  text-decoration: underline !important;
+}
+
+.register-header {
+  display: flex;
+  text-align: left;
+  padding: 4px 16px 16px;
+  margin: 0 !important;
+}
+
+.step-button-wrapper {
+  display: flex;
+  flex-flow: column;
+}
+
+.step-button-wrapper button {
+  border: 2px solid rgb(98, 98, 98) !important;
+  border-radius: 9999px;
+  width: 36px;
+  height: 36px;
+  color: rgb(98, 98, 98);
+  font-size: 16px;
+  font-weight: 400;
+  background-color: transparent;
+}
+
+.step-button-wrapper.done button {
+  color: rgb(14, 129, 54);
+  border-color: rgb(14, 129, 54) !important;
+}
+
+.step-button-wrapper.active button {
+  color: rgb(14, 129, 54);
+  border-color: rgb(14, 129, 54) !important;
+}
+
+.step-button-wrapper .step-title {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  color: rgb(98, 98, 98);
+  letter-spacing: -0.42px;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+.step-button-wrapper.active .step-title {
+  color: rgb(14, 129, 54);
+}
+
+.step-button-wrapper.done .step-title {
+  color: rgb(28, 28, 28);
+  pointer-events: fill;
+}
+
+.step-button-wrapper.done .step-title:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 600px) {
+  .register-container {
+    padding: 24px 16px 32px;
+  }
+}
+
+.submit-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  max-height: 100%;
+  background-color: #0000004f;
+  justify-content: center;
+  align-items: center;
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  box-sizing: border-box;
+  color: #4d585c
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid currentColor;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: currentColor transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.company {
+  display: flex;
+  gap: 20px;
+  margin: 16px 0 32px 0;
+}
+
+.company-logo {
+  border-width: 1px;
+  border-color: rgb(222, 222, 222);
+  border-radius: 4px;
+  background-color: rgb(240, 240, 240);
+  padding: 12px;
+  width: 48px;
+  height: 48px;
+}
+
+.company-name {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: rgb(0, 0, 0);
+  letter-spacing: -0.48px;
+}
+
+.company-address {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  color: rgb(0, 0, 0);
+  letter-spacing: -0.48px;
+}
