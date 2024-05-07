@@ -93,7 +93,7 @@ function NavBar() {
                 <img src={paperIcon} alt="Đăng tuyển" className="nav-icon" />
                 <span>Tin tuyển dụng của tôi</span>
               </NavLink>
-              <NavLink className="nav-link" to="post_job">
+              <NavLink className="nav-link" to="post-job">
                 <img src={addIcon} alt="Đăng tuyển" className="nav-icon" />
                 <span>Đăng tuyển</span>
               </NavLink>

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { ReactComponent as CompanyLogo } from "../../assets/svg/company_logo.svg";
+import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
 import CustomButton from "../../components/custombutton";
 import JobPosting from "../../components/jobposting/job-posting";
 import { selectUser } from "../../store/user";
@@ -10,6 +11,7 @@ import { selectUser } from "../../store/user";
 import "./index.css";
 
 function PostJob() {
+  const [formHasErrors, setFormHasErrors] = useState(false);
   const [jobTitle, setJobTitle] = useState("");
   const [errorJobTitle, setErrorJobTitle] = useState(false);
   const [jobType, setJobType] = useState(0);
@@ -34,10 +36,75 @@ function PostJob() {
   const [errorJobDescription, setErrorJobDescription] = useState("");
   const quillRef = React.useRef();
 
-  const user = useSelector(selectUser);
+  const validateForm = () => {
+    let isValid = true;
+    // Validate job title
+    if (!jobTitle) {
+      setErrorJobTitle("Vui lòng nhập chức danh công việc");
+      isValid = false;
+    } else {
+      setErrorJobTitle(""); // Clear any previous error if the input is now valid
+    }
 
+    // Validate job type
+    if (jobType === 0 || jobType === 4) {
+      setJobType(4); // To trigger error state for job type
+      isValid = false;
+    }
+
+    // Validate work shift, only if jobType requires it
+    if (jobType > 0 && jobType < 4) {
+      const hasValidTime = particularTime.some((day) => day.includes(true));
+      if (!whenever && !hasValidTime) {
+        setErrorWorkShift("Vui lòng chọn ít nhất một khung giờ làm việc");
+        isValid = false;
+      } else {
+        setErrorWorkShift("");
+      }
+    }
+
+    // Validate start date
+    if (!startDate) {
+      setErrorStartDate("Vui lòng nhập ngày bắt đầu công việc");
+      isValid = false;
+    } else {
+      setErrorStartDate("");
+    }
+
+    // Validate salary range
+    if (
+      salaryLevelDisplay === 3 &&
+      (salaryRange[0] === "" || salaryRange[1] === "")
+    ) {
+      setErrorSalaryRange("Vui lòng nhập khoảng lương mong muốn");
+      isValid = false;
+    } else {
+      setErrorSalaryRange("");
+    }
+
+    // Validate job description
+    if (
+      quillRef.current &&
+      quillRef.current.unprivilegedEditor.getLength() < 201
+    ) {
+      setErrorJobDescription(
+        "Xin vui lòng đảm bảo mô tả công việc của bạn có độ dài ít nhất 200 ký tự."
+      );
+      isValid = false;
+    } else {
+      setErrorJobDescription("");
+    }
+
+    setFormHasErrors(!isValid);
+    return isValid;
+  };
+
+  const user = useSelector(selectUser);
+  const navigate = useNavigate();
   const handleSubmit = () => {
-    // Implement job posting submission logic here
+    if (validateForm()) {
+      navigate("/post-job-success");
+    }
   };
 
   return (
@@ -110,6 +177,12 @@ function PostJob() {
         <CustomButton type="button" color="green" onClick={handleSubmit}>
           Đăng việc
         </CustomButton>
+        {formHasErrors && (
+          <div className="invalid-feedback-input">
+            <ErrorIcon />
+            Có lỗi trên trang này. Xin vui lòng sửa lại lỗi được đánh dấu.
+          </div>
+        )}
       </div>
     </div>
   );
