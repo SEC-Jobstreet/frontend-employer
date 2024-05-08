@@ -97,3 +97,44 @@
     margin-left: 1.5rem;
 }
 
+.contPopupDeleteJob{
+    border-radius: 0 !important;
+}
+
+.radioChooseDeleteJob{
+    display: flex;
+    align-items: center;
+    height: 30px;
+    margin-top: 7px;
+}
+
+.radioChooseDeleteJob input{
+    accent-color: #0e8136;
+    width: 17px;
+    height: 17px;
+    border: 0px;
+}
+
+#txtareaDeleteJob{
+    padding: 12px 16px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 8px;
+    border-color: rgb(128, 128, 128);
+    height: 60px !important;
+    outline-style: none;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 300;
+    color: rgb(0, 0, 0);
+    resize: none;
+    width: 450px;
+}
+#txtareaDeleteJob:focus{
+    border-color: #0e8136;
+}
+
+.errAppear{
+    opacity: 0;
+    visibility: hidden;
+}
