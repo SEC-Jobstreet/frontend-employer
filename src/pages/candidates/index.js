@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { Fragment, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -21,11 +20,11 @@ function CandidateProfile({ data }) {
         setProfile(response.data);
       } else {
         setProfile({
-          first_name: "John",
-          last_name: "Doe",
-          Address: "123 Example St",
-          CountryPhone: "+1",
-          Phone: "234567890",
+          first_name: "Nguyễn Đức",
+          last_name: "Cường",
+          Address: "227 Nguyễn Văn Cừ, Phường 4, Quận 5, TP. Hồ Chí Minh",
+          CountryPhone: "+84",
+          Phone: "23456789",
           ResumeLink: "https://example.com/resume",
         });
       }
@@ -81,10 +80,7 @@ function Candidates() {
       if (res.status === 200) {
         setApplicationList(res.data.applications);
       } else {
-        setApplicationList([
-          { ID: "1", CandidateID: "101", Name: "Alice Johnson" },
-          { ID: "2", CandidateID: "102", Name: "Bob Smith" },
-        ]);
+        setApplicationList([{ ID: "1", CandidateID: "101", Name: "Alice" }]);
       }
     };
     getApplicationList();

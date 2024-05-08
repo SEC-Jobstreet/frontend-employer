@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 import buildingIcon from "../../assets/svg/building_icon.svg";
 import { ReactComponent as EditIcon } from "../../assets/svg/edit_icon.svg";
@@ -68,10 +69,15 @@ function HomepageLogin() {
   }, []);
 
   console.log(jobList);
+
+  const navigate = useNavigate();
+  const handleClickPostJob = () => {
+    navigate("/post-job");
+  };
   return (
     <div className="job-container">
       <div className="post-job-button">
-        <CustomButton color="green" onClick={() => {}}>
+        <CustomButton color="green" onClick={handleClickPostJob}>
           Đăng tuyển
         </CustomButton>
       </div>
