@@ -52,7 +52,7 @@ function AppRouter() {
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="close-job-success" element={<CloseJobSuccess />} />
-        <Route path="edit-job" element={<EditJob />} />
+        <Route path="edit-job/:id" element={<EditJob />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

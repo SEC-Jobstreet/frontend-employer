@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Modal, Row } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-import buildingIcon from "../../assets/svg/building_icon.svg";
+import { ReactComponent as CompanyIcon } from "../../assets/svg/company_icon.svg";
 import { ReactComponent as EditIcon } from "../../assets/svg/edit_icon.svg";
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
 import { ReactComponent as ExitIcon } from "../../assets/svg/exit_icon.svg";
-import { ReactComponent as TrashIcon } from "../../assets/svg/trash_icon.svg";
+import { ReactComponent as ReverseIcon } from "../../assets/svg/reverse_icon.svg";
+import { ReactComponent as TrashIcon } from "../../assets/svg/trashs_icon.svg";
+import { ReactComponent as UserIcon } from "../../assets/svg/user_icon.svg";
 import CustomButton from "../../components/custombutton";
 import { getApplicationNumber, getJobList } from "../../services/configAPI";
 
@@ -15,14 +17,17 @@ import "./index.css";
 const statusList = {
   POSTED: {
     class: "status-posted",
+    classCont: "job-item-posted",
     name: "Đã duyệt",
   },
   REVIEWING: {
     class: "status-reviewing",
+    classCont: "job-item-reviewing",
     name: "Đang được xem xét",
   },
   DENIED: {
     class: "status-denied",
+    classCont: "job-item-denied",
     name: "Đã bị từ chối",
   },
 };
@@ -45,9 +50,9 @@ function ApplicationNumber({ data }) {
       target="_blank"
       href={`/candidates?job_id=${data.id}`}
       rel="noreferrer"
-      style={{ textDecoration: "none", color: "black" }}
+      className="link-candidate"
     >
-      {total} ứng viên
+      <UserIcon /> {"  "} {total} Ứng viên
     </a>
   );
 }
@@ -89,7 +94,7 @@ function HomepageLogin() {
     const valueTextArea = document.getElementById("txtareaDeleteJob").value;
     const count = 200 - valueTextArea.length;
     setLengthText(count);
-    if (count > 0 && count < 200) {
+    if (count > -1 && count < 200) {
       const msg = document.getElementById("messageErrDeleteJob");
       msg.classList.add("errAppear");
     }
@@ -99,7 +104,7 @@ function HomepageLogin() {
     e.preventDefault();
     if (choose === "1") {
       navigate("/close-job-success");
-    } else if (lengthText > 0 && lengthText < 200) {
+    } else if (lengthText > -1 && lengthText < 200) {
       navigate("/close-job-success");
     } else {
       const msg = document.getElementById("messageErrDeleteJob");
@@ -112,6 +117,7 @@ function HomepageLogin() {
     const formData = document.getElementById("formDeleteJob");
     formData.reset();
     setChoose("1");
+    setLengthText(200);
   };
   const handleShow = () => setShow(true);
 
@@ -132,9 +138,12 @@ function HomepageLogin() {
           //   statusClassname = "status-review";
           // else statusClassname = "status-denied";
           return (
-            <div className="job-item" key={ele.id}>
+            <div
+              className={`job-item ${statusList[ele.status]?.classCont}`}
+              key={ele.id}
+            >
               <div className="job-item-info">
-                <div>
+                <div style={{ fontWeight: "300" }}>
                   <span className={`status ${statusList[ele.status]?.class}`}>
                     {statusList[ele.status]?.name}
                   </span>
@@ -146,206 +155,230 @@ function HomepageLogin() {
                 <h3 className="title">{ele.title}</h3>
                 <div className="job-item-enterprise">
                   <div className="job-item-enterprise-icon">
-                    <img
-                      src={buildingIcon}
-                      alt="building"
-                      style={{ width: "30px" }}
-                    />
+                    <CompanyIcon />
                   </div>
                   <div className="job-item-enterprise-info">
-                    <h3>{ele.enterprise_name}</h3>
+                    <div style={{ fontWeight: "400" }}>
+                      {ele.enterprise_name}
+                    </div>
                     <p>{ele.enterprise_address}</p>
                   </div>
                 </div>
               </div>
-              <Row className="job-item-button-group">
-                <Col sm="6" className="candidate-numbers">
+              <div className="job-item-group-button">
+                <div className="job-item-group-button-child">
                   <ApplicationNumber data={ele} />
-                </Col>
-                <Col sm="3">
-                  <button type="button" onClick={() => {}}>
-                    <EditIcon />
-                    Chỉnh sửa việc
-                  </button>
-                </Col>
-                <Col sm="3">
-                  <Modal
-                    show={show}
-                    onHide={handleClose}
-                    size="lg"
-                    aria-labelledby="contained-modal-title-vcenter"
-                    centered
-                    contentClassName="contPopupDeleteJob"
-                    className="popupDeleteJob"
+                </div>
+                <div
+                  className="job-item-group-button-child"
+                  style={{
+                    borderLeft: "solid 1.5px #dedede",
+                    display: "flex",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  {ele.status === "POSTED" ? (
+                    <>
+                      <button
+                        className="link-candidate"
+                        type="button"
+                        onClick={() => {
+                          navigate(`/edit-job/${ele.id}`);
+                        }}
+                      >
+                        <EditIcon />
+                        Chỉnh sửa việc
+                      </button>
+                      <button
+                        type="button"
+                        className="link-candidate"
+                        onClick={handleShow}
+                      >
+                        <TrashIcon />
+                        Đóng việc
+                      </button>
+                    </>
+                  ) : (
+                    <button
+                      className="link-candidate"
+                      type="button"
+                      onClick={() => {}}
+                    >
+                      <ReverseIcon />
+                      Đặt lại quảng cáo
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              <Modal
+                show={show}
+                onHide={handleClose}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                contentClassName="contPopupDeleteJob"
+                className="popupDeleteJob"
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    padding: "20px 2em",
+                    backgroundColor: "#f0f0f0",
+                  }}
+                >
+                  <span>Bạn có thực sự muốn đóng việc này?</span>
+                  <Button
+                    variant="secondary"
+                    onClick={handleClose}
+                    style={{ backgroundColor: "#f0f0f0", border: "none" }}
                   >
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        padding: "20px 2em",
-                        backgroundColor: "#f0f0f0",
-                      }}
-                    >
-                      <span>Bạn có thực sự muốn đóng việc này?</span>
-                      <Button
-                        variant="secondary"
-                        onClick={handleClose}
-                        style={{ backgroundColor: "#f0f0f0", border: "none" }}
-                      >
-                        <ExitIcon />
-                      </Button>
-                    </div>
+                    <ExitIcon />
+                  </Button>
+                </div>
 
-                    <div
-                      style={{
-                        padding: "20px 2em",
-                        fontSize: "16px !important",
-                        fontWeight: "300",
-                      }}
-                    >
-                      <span>
-                        Chúng tôi hy vọng bạn đã tuyển được nhân viên mới cho vị
-                        trí này! Vui lòng cho chúng tôi biết....
+                <div
+                  style={{
+                    padding: "20px 2em",
+                    fontSize: "16px !important",
+                    fontWeight: "300",
+                  }}
+                >
+                  <span>
+                    Chúng tôi hy vọng bạn đã tuyển được nhân viên mới cho vị trí
+                    này! Vui lòng cho chúng tôi biết....
+                  </span>
+                  <form
+                    style={{ marginTop: "1em" }}
+                    onSubmit={handleSubmit}
+                    id="formDeleteJob"
+                  >
+                    <label htmlFor="choose1" className="radioChooseDeleteJob">
+                      <input
+                        type="radio"
+                        name="selectDeleteJob"
+                        id="choose1"
+                        value="1"
+                        onClick={handleClickChoose}
+                        defaultChecked={choose === "1"}
+                      />
+                      <span
+                        style={{
+                          marginLeft: "10px",
+                          cursor: "pointer",
+                          fontSize: "14px",
+                        }}
+                      >
+                        Tôi đã tuyển dụng được ở JobStreet
                       </span>
-                      <form
-                        style={{ marginTop: "1em" }}
-                        onSubmit={handleSubmit}
-                        id="formDeleteJob"
+                    </label>
+                    <label
+                      htmlFor="two"
+                      id="test"
+                      className="radioChooseDeleteJob"
+                    >
+                      <input
+                        type="radio"
+                        name="selectDeleteJob"
+                        id="two"
+                        value="2"
+                        onClick={handleClickChoose}
+                      />
+                      <span
+                        style={{
+                          marginLeft: "10px",
+                          cursor: "pointer",
+                          fontSize: "14px",
+                        }}
                       >
-                        <label
-                          htmlFor="choose1"
-                          className="radioChooseDeleteJob"
-                        >
-                          <input
-                            type="radio"
-                            name="selectDeleteJob"
-                            id="choose1"
-                            value="1"
-                            onClick={handleClickChoose}
-                            defaultChecked={choose === "1"}
+                        Tôi đã tuyển dụng được ở trang khác
+                      </span>
+                    </label>
+                    <label htmlFor="three" className="radioChooseDeleteJob">
+                      <input
+                        type="radio"
+                        id="three"
+                        name="selectDeleteJob"
+                        value="3"
+                        onClick={handleClickChoose}
+                      />
+                      <span
+                        style={{
+                          marginLeft: "10px",
+                          cursor: "pointer",
+                          fontSize: "14px",
+                        }}
+                      >
+                        Tôi chưa tuyển dụng được nhưng vẫn muốn đóng tin tuyển
+                        dụng
+                      </span>
+                    </label>
+                    <label
+                      htmlFor="txtareaDeleteJob"
+                      style={{ marginTop: "1em" }}
+                    >
+                      {choose === "2" && (
+                        <span style={{ display: "block" }}>Ở đâu?</span>
+                      )}
+                      {choose === "3" && (
+                        <span style={{ display: "block" }}>Tại sao?</span>
+                      )}
+                      {(choose === "2" || choose === "3") && (
+                        <div style={{ width: "450px" }}>
+                          <textarea
+                            name="txtareaDeleteJob"
+                            id="txtareaDeleteJob"
+                            onChange={handleChangeTextArea}
                           />
-                          <span
-                            style={{
-                              marginLeft: "10px",
-                              cursor: "pointer",
-                              fontSize: "14px",
-                            }}
-                          >
-                            Tôi đã tuyển dụng được ở JobStreet
-                          </span>
-                        </label>
-                        <label
-                          htmlFor="two"
-                          id="test"
-                          className="radioChooseDeleteJob"
-                        >
-                          <input
-                            type="radio"
-                            name="selectDeleteJob"
-                            id="two"
-                            value="2"
-                            onClick={handleClickChoose}
-                          />
-                          <span
-                            style={{
-                              marginLeft: "10px",
-                              cursor: "pointer",
-                              fontSize: "14px",
-                            }}
-                          >
-                            Tôi đã tuyển dụng được ở trang khác
-                          </span>
-                        </label>
-                        <label htmlFor="three" className="radioChooseDeleteJob">
-                          <input
-                            type="radio"
-                            id="three"
-                            name="selectDeleteJob"
-                            value="3"
-                            onClick={handleClickChoose}
-                          />
-                          <span
-                            style={{
-                              marginLeft: "10px",
-                              cursor: "pointer",
-                              fontSize: "14px",
-                            }}
-                          >
-                            Tôi chưa tuyển dụng được nhưng vẫn muốn đóng tin
-                            tuyển dụng
-                          </span>
-                        </label>
-                        <label
-                          htmlFor="txtareaDeleteJob"
-                          style={{ marginTop: "1em" }}
-                        >
-                          {choose === "2" && (
-                            <span style={{ display: "block" }}>Ở đâu?</span>
-                          )}
-                          {choose === "3" && (
-                            <span style={{ display: "block" }}>Tại sao?</span>
-                          )}
-                          {(choose === "2" || choose === "3") && (
-                            <div style={{ width: "450px" }}>
-                              <textarea
-                                name="txtareaDeleteJob"
-                                id="txtareaDeleteJob"
-                                onChange={handleChangeTextArea}
-                              />
-                              {lengthText > -1 ? (
-                                <p style={{ textAlign: "right" }}>
-                                  Còn {lengthText} chữ cái
-                                </p>
-                              ) : (
-                                <p style={{ textAlign: "right", color: "red" }}>
-                                  {Math.abs(lengthText)} chữ cái quá dài
-                                </p>
-                              )}
-                            </div>
-                          )}
-                        </label>
-
-                        <div
-                          className="errAppear"
-                          id="messageErrDeleteJob"
-                          style={{ fontSize: "14px", margin: "10px 0" }}
-                        >
-                          {" "}
-                          {lengthText === 200 ? (
-                            <>
-                              <ErrorIcon />
-                              <span style={{ marginLeft: "5px", color: "red" }}>
-                                Vui lòng nhập một câu trả lời.
-                              </span>
-                            </>
+                          {lengthText > -1 ? (
+                            <p style={{ textAlign: "right" }}>
+                              Còn {lengthText} chữ cái
+                            </p>
                           ) : (
-                            <>
-                              <ErrorIcon />
-                              <span style={{ marginLeft: "5px", color: "red" }}>
-                                Giữ câu trả lời không quá 200 kí tự
-                              </span>
-                            </>
+                            <p style={{ textAlign: "right", color: "red" }}>
+                              {Math.abs(lengthText)} chữ cái quá dài
+                            </p>
                           )}
                         </div>
+                      )}
+                    </label>
 
-                        <div>
-                          <CustomButton
-                            type="submit"
-                            color="green"
-                            onClick={() => {}}
-                          >
-                            Đúng, xóa tin tuyển dụng
-                          </CustomButton>
-                        </div>
-                      </form>
+                    <div
+                      className="errAppear"
+                      id="messageErrDeleteJob"
+                      style={{ fontSize: "14px", margin: "10px 0" }}
+                    >
+                      {" "}
+                      {lengthText === 200 ? (
+                        <>
+                          <ErrorIcon />
+                          <span style={{ marginLeft: "5px", color: "red" }}>
+                            Vui lòng nhập một câu trả lời.
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <ErrorIcon />
+                          <span style={{ marginLeft: "5px", color: "red" }}>
+                            Giữ câu trả lời không quá 200 kí tự
+                          </span>
+                        </>
+                      )}
                     </div>
-                  </Modal>
-                  <button type="button" onClick={handleShow}>
-                    <TrashIcon />
-                    Đóng việc
-                  </button>
-                </Col>
-              </Row>
+
+                    <div>
+                      <CustomButton
+                        type="submit"
+                        color="green"
+                        onClick={() => {}}
+                      >
+                        Đúng, xóa tin tuyển dụng
+                      </CustomButton>
+                    </div>
+                  </form>
+                </div>
+              </Modal>
             </div>
           );
         })}

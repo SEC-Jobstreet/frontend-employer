@@ -1,9 +1,11 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { ReactComponent as CompanyIcon } from "../../assets/svg/company_icon.svg";
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
 import CustomButton from "../../components/custombutton";
 import JobPosting from "../../components/jobposting/job-posting";
+import { getJobList } from "../../services/configAPI";
 
 import "./index.css";
 
@@ -40,6 +42,25 @@ function EditJob() {
   const [jobDescription, setJobDescription] = useState("");
   const [errorJobDescription, setErrorJobDescription] = useState("");
   const quillRef = useRef();
+  const navigate = useNavigate();
+
+  const { id } = useParams(); // get id job
+  useEffect(() => {
+    console.log(id);
+    const getJobs = async () => {
+      const request = {
+        pageId: 1,
+        pageSize: 10,
+      };
+      const response = await getJobList(request);
+      if (response.status === 200) {
+        const temp = response.data.jobs[0]; // lấy detail job đầu tiên của list job (làm dữ liệu để test ui thôi, ai làm thì get api khác cho đúng nhé)
+        // setJobTitle(temp.title);
+        console.log(temp);
+      }
+    };
+    getJobs();
+  }, []);
 
   const handleButtonStep1 = () => {
     // verify
@@ -168,7 +189,13 @@ function EditJob() {
           <CustomButton type="button" color="green" onClick={handleButtonStep1}>
             Cập nhật việc
           </CustomButton>{" "}
-          <CustomButton type="button" color="white" onClick={handleButtonStep1}>
+          <CustomButton
+            type="button"
+            color="white"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             Hủy
           </CustomButton>
         </div>

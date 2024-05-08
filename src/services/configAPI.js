@@ -1,5 +1,5 @@
 import axiosConfig from "./axiosConfig";
-
+// http://3.106.126.218:8080
 export const postJob = async (data) => {
   try {
     return await axiosConfig.post(
