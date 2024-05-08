@@ -39,6 +39,10 @@ function BusinessForm({
   setEmployerRole,
   errorEmployerRole,
   setErrorEmployerRole,
+  company,
+  setCompany,
+  errorCompany,
+  setErrorCompany,
   enterpriseURL,
   setEnterpriseURL,
   enterpriseLicense,
@@ -49,7 +53,10 @@ function BusinessForm({
     errorEnterpriseAddress === "" &&
     !errorEnterpriseField &&
     !errorEnterpriseSize &&
-    !errorEmployerRole;
+    !errorEmployerRole &&
+    (employerRole.toString() !== "3" ||
+      (employerRole.toString() === "3" && errorCompany === ""));
+
   const navigate = useNavigate();
 
   const onCancelHandler = () => {
@@ -72,15 +79,18 @@ function BusinessForm({
     if (employerRole.toString() === "0") {
       setErrorEmployerRole(true);
     }
+    if (employerRole.toString() === "3" && company === "") {
+      setErrorCompany("Vui lòng nhập tên công ty tuyển dụng");
+    }
     if (errorSubmitForm && enterpriseName !== "") {
-      const countryIndex = countries.findIndex((item) => item.id === country);
       console.log({
         enterpriseName,
-        country: countries[countryIndex],
+        country,
         enterpriseAddress,
-        enterpriseField: fields[enterpriseField],
-        enterpriseSize: sizes[enterpriseSize],
-        employerRole: employerRoles[employerRole],
+        enterpriseField,
+        enterpriseSize,
+        employerRole,
+        company,
         enterpriseURL,
         enterpriseLicense,
       });
@@ -248,6 +258,25 @@ function BusinessForm({
               </div>
             )}
           </div>
+          {/* company nếu người đăng là nhà tuyển dụng */}
+          <div className="field" hidden={employerRole !== "3"}>
+            <CustomInput
+              input={company}
+              error={errorCompany}
+              setInput={(e) => {
+                setErrorCompany("");
+                setCompany(e.target.value);
+              }}
+              setBlur={() => {
+                if (company === "")
+                  setErrorCompany("Vui lòng nhập tên công ty tuyển dụng");
+              }}
+              type="text"
+              label="Công ty tuyển dụng"
+              name="company"
+            />
+          </div>
+
           <div className="field">
             <CustomInput
               input={enterpriseURL}

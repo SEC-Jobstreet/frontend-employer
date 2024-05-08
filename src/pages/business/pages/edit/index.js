@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import BusinessForm from "../../components/form";
+import { DUMMY_DATA } from "../../index";
 
 function EditBusiness() {
+  const { businessId } = useParams();
+
   const [enterpriseName, setEnterpriseName] = useState("");
   const [errorEnterpriseName, setErrorEnterpriseName] = useState("");
 
@@ -23,6 +27,21 @@ function EditBusiness() {
   const [enterpriseURL, setEnterpriseURL] = useState("");
   const [enterpriseLicense, setEnterpriseLicense] = useState("");
 
+  const [company, setCompany] = useState("");
+  const [errorCompany, setErrorCompany] = useState("");
+
+  useEffect(() => {
+    const currentIndex = DUMMY_DATA.findIndex((item) => item.id === businessId);
+    const businessInfo = DUMMY_DATA[currentIndex];
+
+    setEnterpriseName(businessInfo.name);
+    setEnterpriseAddress(businessInfo.address);
+    setEnterpriseField(businessInfo.field);
+    setEnterpriseSize(businessInfo.size);
+    setEmployerRole(businessInfo.role);
+    setEnterpriseURL(businessInfo.url);
+    setEnterpriseLicense(businessInfo.license);
+  }, []);
   return (
     <BusinessForm
       type="EDIT"
@@ -48,6 +67,10 @@ function EditBusiness() {
       setEmployerRole={setEmployerRole}
       errorEmployerRole={errorEmployerRole}
       setErrorEmployerRole={setErrorEmployerRole}
+      company={company}
+      setCompany={setCompany}
+      errorCompany={errorCompany}
+      setErrorCompany={setErrorCompany}
       enterpriseURL={enterpriseURL}
       setEnterpriseURL={setEnterpriseURL}
       enterpriseLicense={enterpriseLicense}

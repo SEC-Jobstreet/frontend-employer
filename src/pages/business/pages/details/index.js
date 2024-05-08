@@ -3,6 +3,11 @@ import { useParams } from "react-router-dom";
 
 import BusinessIcon from "../../../../assets/svg/business_icon.svg";
 import PositionIcon from "../../../../assets/svg/location_icon.svg";
+import {
+  employerRoles,
+  fields,
+  sizes,
+} from "../../../../utils/createenterprise";
 import { DUMMY_DATA } from "../..";
 
 import "./styles.css";
@@ -17,6 +22,15 @@ function DetailsBusiness() {
     setBusinessDetails({ ...DUMMY_DATA[currentIndex] });
   }, []);
 
+  const indexField = businessDetails
+    ? fields.findIndex((item) => item.id === businessDetails.field)
+    : 0;
+  const indexSize = businessDetails
+    ? sizes.findIndex((item) => item.id === businessDetails.size)
+    : 0;
+  const indexRole = businessDetails
+    ? employerRoles.findIndex((item) => item.id === businessDetails.role)
+    : 0;
   if (businessDetails) {
     return (
       <div className="center-item-container">
@@ -50,25 +64,33 @@ function DetailsBusiness() {
             {/* feild */}
             <div className="desciption-details">
               <span>Lĩnh vực của doanh nghiệp</span>
-              <span style={{ fontWeight: "300" }}>{businessDetails.feild}</span>
+              <span style={{ fontWeight: "300" }}>
+                {fields[indexField].label}
+              </span>
             </div>
             {/* size */}
             <div className="desciption-details">
               <span>Quy mô của doanh nghiệp</span>
-              <span style={{ fontWeight: "300" }}>{businessDetails.size}</span>
+              <span style={{ fontWeight: "300" }}>
+                {sizes[indexSize].label}
+              </span>
             </div>
             {/* role */}
             <div className="desciption-details">
               <span>Vai trò của bạn trong doanh nghiệp này</span>
-              <span style={{ fontWeight: "300" }}>{businessDetails.role}</span>
-            </div>
-            {/* address */}
-            <div className="desciption-details">
-              <span>Tên công ty tuyển dụng</span>
               <span style={{ fontWeight: "300" }}>
-                {businessDetails.company}
+                {employerRoles[indexRole].label}
               </span>
             </div>
+            {/* address */}
+            {indexRole.toString() === "3" && (
+              <div className="desciption-details">
+                <span>Tên công ty tuyển dụng</span>
+                <span style={{ fontWeight: "300" }}>
+                  {businessDetails.company}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </div>

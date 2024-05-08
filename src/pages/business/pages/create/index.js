@@ -20,6 +20,9 @@ function EditBusiness() {
   const [employerRole, setEmployerRole] = useState(0);
   const [errorEmployerRole, setErrorEmployerRole] = useState(false);
 
+  const [company, setCompany] = useState("");
+  const [errorCompany, setErrorCompany] = useState("");
+
   const [enterpriseURL, setEnterpriseURL] = useState("");
   const [enterpriseLicense, setEnterpriseLicense] = useState("");
 
@@ -48,6 +51,10 @@ function EditBusiness() {
       setEmployerRole={setEmployerRole}
       errorEmployerRole={errorEmployerRole}
       setErrorEmployerRole={setErrorEmployerRole}
+      company={company}
+      setCompany={setCompany}
+      errorCompany={errorCompany}
+      setErrorCompany={setErrorCompany}
       enterpriseURL={enterpriseURL}
       setEnterpriseURL={setEnterpriseURL}
       enterpriseLicense={enterpriseLicense}
