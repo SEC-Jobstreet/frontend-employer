@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -35,6 +36,7 @@ function PostJob() {
   const [jobDescription, setJobDescription] = useState("");
   const [errorJobDescription, setErrorJobDescription] = useState("");
   const quillRef = React.useRef();
+  const [errorNextStep, setErrorNextStep] = useState(false);
 
   const validateForm = () => {
     let isValid = true;
@@ -158,6 +160,7 @@ function PostJob() {
           errorJobDescription={errorJobDescription}
           setErrorJobDescription={setErrorJobDescription}
           quillRef={quillRef}
+          setErrorNextStep={setErrorNextStep}
         />
         <div className="register-desc" style={{ marginTop: "24px" }}>
           Tin tuyển dụng này sẽ được đăng bởi:

@@ -37,10 +37,10 @@ function AppRouter() {
 
       <Route element={<ProtectedRoute isAllowed={user.email !== ""} />}>
         <Route path="home" element={<HomepageLogin />} />
-        <Route path="candidates" element={<Candidates />} />
         <Route path="business" element={<Business />} />
         <Route path="post-job" element={<PostJob />} />
         <Route path="post-job-success" element={<PostJobSuccess />} />
+        <Route path="candidates" element={<Candidates />} />
         <Route path="account" element={<Account />}>
           <Route path="settings" element={<Setting />} />
           <Route path="update-profile" element={<UpdateProfile />} />
