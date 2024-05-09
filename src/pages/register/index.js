@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { getCountryCallingCode } from "react-phone-number-input";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { signUp } from "aws-amplify/auth";
 
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
@@ -434,13 +434,18 @@ function Register() {
                 quillRef={quillRef}
                 setErrorNextStep={setErrorNextStep}
               />
-              <CustomButton
-                type="button"
-                color="green"
-                onClick={handleButtonStep1}
+              <div
+                style={{ marginTop: "30px", textAlign: "left" }}
+                className="submit-button"
               >
-                Tiếp
-              </CustomButton>
+                <CustomButton
+                  type="button"
+                  color="green"
+                  onClick={handleButtonStep1}
+                >
+                  Tiếp
+                </CustomButton>
+              </div>
               {errorNextStep && (
                 <div className="invalid-feedback-input">
                   <ErrorIcon />
@@ -479,13 +484,18 @@ function Register() {
                 enterpriseLicense={enterpriseLicense}
                 setEnterpriseLicense={setEnterpriseLicense}
               />
-              <CustomButton
-                type="button"
-                color="green"
-                onClick={handleButtonStep2}
+              <div
+                style={{ marginTop: "30px", textAlign: "left" }}
+                className="submit-button"
               >
-                Tiếp
-              </CustomButton>
+                <CustomButton
+                  type="button"
+                  color="green"
+                  onClick={handleButtonStep2}
+                >
+                  Tiếp
+                </CustomButton>
+              </div>
               {errorNextStep && (
                 <div className="invalid-feedback-input">
                   <ErrorIcon />
@@ -529,9 +539,14 @@ function Register() {
                 setErrorPasswordConfirmation={setErrorPasswordConfirmation}
               />
 
-              <CustomButton type="button" color="green" onClick={submit}>
-                Tiếp
-              </CustomButton>
+              <div
+                style={{ marginTop: "30px", textAlign: "left" }}
+                className="submit-button"
+              >
+                <CustomButton type="button" color="green" onClick={submit}>
+                  Tiếp
+                </CustomButton>
+              </div>
               {errorNextStep && (
                 <div className="invalid-feedback-input">
                   <ErrorIcon />
@@ -546,6 +561,14 @@ function Register() {
               )}
             </>
           )}
+          <div style={{ marginTop: "20px" }} className="job-title-texts">
+            <p>
+              Bạn đã có tài khoản nhà tuyển dụng?{" "}
+              <NavLink to="/login" className="login-link">
+                Đăng nhập
+              </NavLink>
+            </p>
+          </div>
         </div>
       </div>
       {showLoading && (
