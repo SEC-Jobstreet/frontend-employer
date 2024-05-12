@@ -10,10 +10,12 @@
 }
 
 .card {
-    width: 450px;
-    max-width: 600px;
+    width: 752px;
+    max-width: 1000px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
     margin-bottom: 20px;
 }
 
@@ -69,6 +71,7 @@ a.card-btn {
     gap: 8px;
     justify-content: space-between;
     width: fit-content;
+    font-size: 16px !important;
 }
 
 a.card-btn{
@@ -76,15 +79,15 @@ a.card-btn{
 }
 
 .card-title {
-    font-size: 16px !important;
-    font-weight: 400 !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    text-transform: uppercase;
+    letter-spacing: -0.72px;
 }
 
-.card-title,
 .card-text {
-    font-size: 14px;
-    line-height: 24px;
+    font-size: 16px !important;
+    line-height: 2;
     font-weight: 300;
-    letter-spacing: -0.72px;
 }
 
