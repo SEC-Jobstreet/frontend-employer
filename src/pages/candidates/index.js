@@ -6,6 +6,8 @@ import {
   getCandidateProfileAPI,
 } from "../../services/configAPI";
 
+import Pagination from "./pagination";
+
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./index.css";
 
@@ -71,7 +73,7 @@ function CandidateProfile({ data }) {
       }
     };
     getCandidateProfile();
-  }, []);
+  }, [data.CandidateID]);
 
   if (profile)
     return (
@@ -83,23 +85,15 @@ function CandidateProfile({ data }) {
             </h5>
             <p className="card-text">Địa chỉ: {profile.Address}</p>
             <p className="card-text">
-              Số điện thoại: {profile.CountryPhone + profile.Phone}
+              Số điện thoại di động: {profile.CountryPhone + profile.Phone}
             </p>
             {profile.CurrentPosition && (
               <p className="card-text">
                 Công việc hiện tại: {profile.CurrentPosition}
               </p>
             )}
-            {profile.StartDate && (
-              <p className="card-text">
-                Ngày bắt đầu công việc:{" "}
-                {new Date(profile.StartDate * 1000).toLocaleDateString()}
-              </p>
-            )}
             {profile.Description && (
-              <p className="card-text">
-                Lý do nên tuyển dụng: {profile.Description}
-              </p>
+              <p className="card-text">Mô tả bản thân: {profile.Description}</p>
             )}
             <p className="card-text" style={{ fontWeight: "bold" }}>
               Ca làm việc có thể
@@ -134,7 +128,10 @@ function CandidateProfile({ data }) {
 
 function Candidates() {
   const [searchParams] = useSearchParams();
-  const [applicationList, setApplicationList] = useState(null);
+  const [applicationList, setApplicationList] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize] = useState(2);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     const getApplicationList = async () => {
@@ -147,19 +144,31 @@ function Candidates() {
       console.log(res);
       if (res.status === 200) {
         setApplicationList(res.data.applications);
+        setTotalPages(Math.ceil(res.data.total / pageSize));
       }
     };
     getApplicationList();
-  }, []);
+  }, [searchParams, currentPage, pageSize]);
+
+  const currentApplications = applicationList.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
   return (
     <div className="candidates-container">
-      {" "}
-      {applicationList &&
-        applicationList.map((ele) => (
+      <h1>Danh sách ứng viên</h1>
+      {currentApplications &&
+        currentApplications.map((ele) => (
           <Fragment key={ele.ID}>
             <CandidateProfile data={ele} />
           </Fragment>
         ))}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
     </div>
   );
 }
