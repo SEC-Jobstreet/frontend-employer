@@ -69,3 +69,26 @@ export const getCandidateProfileAPI = async (id) => {
     return error;
   }
 };
+
+export const getJob = async (id) => {
+  try {
+    return await axiosConfig.get(
+      `${process.env.REACT_APP_JOB_SERVICE}/api/v1/job/${id}`
+    );
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+export const updateJob = async (data) => {
+  try {
+    return await axiosConfig.post(
+      `${process.env.REACT_APP_JOB_SERVICE}/api/v1/edit_job`,
+      data
+    );
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};

@@ -5,7 +5,8 @@ import { ReactComponent as CompanyIcon } from "../../assets/svg/company_icon.svg
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
 import CustomButton from "../../components/custombutton";
 import JobPosting from "../../components/jobposting/job-posting";
-import { getJobList } from "../../services/configAPI";
+import { getJob, updateJob } from "../../services/configAPI";
+import { jobTypes } from "../../utils/postjob";
 
 import "./index.css";
 
@@ -41,6 +42,12 @@ function EditJob() {
 
   const [jobDescription, setJobDescription] = useState("");
   const [errorJobDescription, setErrorJobDescription] = useState("");
+
+  const [enterpriseName, setEnterpriseName] = useState("");
+  const [enterpriseAddress, setEnterpriseAddress] = useState("");
+
+  const [rawData, setRawData] = useState({});
+
   const quillRef = useRef();
   const navigate = useNavigate();
 
@@ -48,24 +55,48 @@ function EditJob() {
   useEffect(() => {
     console.log(id);
     const getJobs = async () => {
-      const request = {
-        pageId: 1,
-        pageSize: 10,
-      };
-      const response = await getJobList(request);
+      const response = await getJob(id);
       if (response.status === 200) {
-        const temp = response.data.jobs[0]; // lấy detail job đầu tiên của list job (làm dữ liệu để test ui thôi, ai làm thì get api khác cho đúng nhé)
-        // setJobTitle(temp.title);
-        console.log(temp);
+        const data = response.data.job; // lấy detail job đầu tiên của list job (làm dữ liệu để test ui thôi, ai làm thì get api khác cho đúng nhé)
+        console.log(data);
+        setRawData(data);
+
+        // set input
+        setJobTitle(data.title);
+        setJobType(jobTypes.find((job) => job.key === data.type).id);
+        setWhenever(data.work_whenever);
+        setParticularTime(JSON.parse(data.work_shift));
+        setVisa(data.visa);
+        setWorkExperience(data.experience);
+        const date = new Date(parseInt(data.start_date, 10) * 1000);
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+        const formattedDate = `${day}/${month}/${year}`;
+        setStartDate(formattedDate);
+        setCurrency(data.currency);
+        if (data.range_salary === "") {
+          setSalaryLevelDisplay(1);
+          setSalary(parseInt(data.exact_salary, 10));
+        } else {
+          setSalaryLevelDisplay(2);
+          setSalaryRange(data.range_salary); // check again
+        }
+        // setPaidPeriod
+
+        setJobDescription(data.description);
+        setEnterpriseName(data.enterprise_name);
+        setEnterpriseAddress(data.enterprise_address);
       }
     };
     getJobs();
   }, []);
 
-  const handleButtonStep1 = () => {
+  const handleButtonStep1 = async () => {
     // verify
     if (errorJobTitle || jobTitle === "") {
       setErrorJobTitle("Vui lòng nhập chức danh công việc");
+      return;
     }
     if (jobType === 0 || jobType === 4) {
       setJobType(4);
@@ -83,6 +114,7 @@ function EditJob() {
       }
       if (!check) {
         setErrorWorkShift(true);
+        return;
       }
     }
     if (workExperience === 0) {
@@ -94,15 +126,44 @@ function EditJob() {
         parseInt(salaryRange[0], 10) > parseInt(salaryRange[1], 10))
     ) {
       setErrorSalaryRange(true);
+      return;
     }
     if (quillRef.current) {
       if (quillRef.current.unprivilegedEditor.getLength() === 1) {
         setErrorJobDescription("Xin vui lòng nhập một mô tả công việc.");
-      } else if (quillRef.current.unprivilegedEditor.getLength() < 201) {
+        return;
+      }
+      if (quillRef.current.unprivilegedEditor.getLength() < 201) {
         setErrorJobDescription(
           "Xin vui lòng đảm bảo mô tả công việc của bạn có độ dài ít nhất 200 ký tự."
         );
+        return;
       }
+    }
+
+    // submit
+    const [day, month, year] = startDate.split("/").map(Number);
+    const date = new Date(year, month - 1, day);
+    const timestamp = Math.floor(date.getTime() / 1000);
+    console.log(timestamp);
+    const data = {
+      ...rawData,
+      title: jobTitle,
+      type: jobTypes.find((job) => job.id === jobType).key,
+      work_whenever: whenever,
+      work_shift: JSON.stringify(particularTime),
+      visa,
+      experience: workExperience,
+      start_date: timestamp,
+      currency,
+      range_salary: JSON.stringify(salaryRange),
+      exact_salary: salary,
+    };
+    // setPaidPeriod
+    // set enterprise
+    const response = await updateJob(data);
+    if (response.status === 200) {
+      console.log(response);
     }
   };
 
@@ -180,8 +241,8 @@ function EditJob() {
                 marginLeft: "1em",
               }}
             >
-              <b>My Doanh Nghiep</b>
-              <div>Quận 1, Thành phố Hồ Chí Minh</div>
+              <b>{enterpriseName}</b>
+              <div>{enterpriseAddress}</div>
             </div>
           </div>
         </div>
