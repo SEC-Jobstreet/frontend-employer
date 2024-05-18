@@ -92,3 +92,15 @@ export const updateJob = async (data) => {
     return error;
   }
 };
+
+export const closeJob = async (id) => {
+  try {
+    return await axiosConfig.post(
+      `${process.env.REACT_APP_JOB_SERVICE}/api/v1/close_job`,
+      { id }
+    );
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};

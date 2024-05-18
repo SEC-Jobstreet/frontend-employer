@@ -10,7 +10,11 @@ import { ReactComponent as ReverseIcon } from "../../assets/svg/reverse_icon.svg
 import { ReactComponent as TrashIcon } from "../../assets/svg/trashs_icon.svg";
 import { ReactComponent as UserIcon } from "../../assets/svg/user_icon.svg";
 import CustomButton from "../../components/custombutton";
-import { getApplicationNumber, getJobList } from "../../services/configAPI";
+import {
+  closeJob,
+  getApplicationNumber,
+  getJobList,
+} from "../../services/configAPI";
 
 import "./index.css";
 
@@ -20,7 +24,7 @@ const statusList = {
     classCont: "job-item-posted",
     name: "Đã duyệt",
   },
-  REVIEWING: {
+  REVIEW: {
     class: "status-reviewing",
     classCont: "job-item-reviewing",
     name: "Đang được xem xét",
@@ -29,6 +33,11 @@ const statusList = {
     class: "status-denied",
     classCont: "job-item-denied",
     name: "Đã bị từ chối",
+  },
+  CLOSED: {
+    class: "status-closed",
+    classCont: "job-item-closed",
+    name: "Đã đóng",
   },
 };
 
@@ -121,6 +130,13 @@ function HomepageLogin() {
   };
   const handleShow = () => setShow(true);
 
+  const handleDeleteJob = async (id) => {
+    const respone = await closeJob(id);
+    if (respone.status === 200) {
+      console.log(respone);
+    }
+  };
+
   // console.log(jobList);
   return (
     <div className="job-container">
@@ -177,7 +193,7 @@ function HomepageLogin() {
                     justifyContent: "space-around",
                   }}
                 >
-                  {ele.status === "POSTED" ? (
+                  {ele.status === "POSTED" || ele.status === "REVIEW" ? (
                     <>
                       <button
                         className="link-candidate"
@@ -371,7 +387,7 @@ function HomepageLogin() {
                       <CustomButton
                         type="submit"
                         color="green"
-                        onClick={() => {}}
+                        onClick={() => handleDeleteJob(ele.id)}
                       >
                         Đúng, xóa tin tuyển dụng
                       </CustomButton>
