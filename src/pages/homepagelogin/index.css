@@ -1,99 +1,184 @@
-.job-item-button-group {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border: 1px solid #11111138;
-    margin: 0;
-
-    .candidate-numbers {
-        border-right: 1px solid #11111138;
-    }
-
-    button {
-        height: 45px;
-        background-color: transparent;
-        border: none;
-
-        svg {
-            height: 18px;
-            width: 18px;
-        }
-    }
+.job-item-group-button {
+  display: flex;
+  justify-content: center;
+  border-top: 1.5px solid #dedede;
+}
+.job-item-group-button-child {
+  text-align: center;
+  padding: 10px 1em;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 300;
+}
+.job-item-group-button-child button {
+  border: none;
+  background-color: transparent;
+  font-weight: 300;
+}
+job-item-group-button-child button:hover {
+  text-decoration: underline;
+}
+.job-item-group-button-child svg {
+  margin-right: 5px;
+  margin-bottom: 2px;
 }
 
 .job-container {
-    width: 752px;
-    max-width: 1000px;
-    margin: auto;
-    position: relative;
-    font-family: "Noto Sans", sans-serif;
-    flex: auto;
-    text-align: left;
+  width: 752px;
+  max-width: 1000px;
+  margin: auto;
+  position: relative;
+  font-family: "Noto Sans", sans-serif;
+  flex: auto;
+  text-align: left;
+  margin-bottom: 1.5em;
 
-    .post-job-button {
-        display: flex;
-        justify-content: right;
-        margin-bottom: 1.5rem;
+  .post-job-button {
+    display: flex;
+    justify-content: right;
+    margin-bottom: 1.5rem;
 
-        button {
-            margin-right: 2rem;
-        }
+    button {
+      margin-right: 2rem;
     }
+  }
+}
+
+.job-item-posted {
+  border-left: 8px solid #247710 !important;
+}
+
+.job-item-reviewing {
+  border-left: 8px solid #ffbb33 !important;
+}
+
+.job-item-denied {
+  border-left: 8px solid #626262 !important;
+}
+
+.job-item-closed {
+  border-left: 8px solid black !important;
 }
 
 .job-container .job-item {
-    background-color: white;
-    position: relative;
-    display: flex;
-    margin-bottom: 1.5rem;
-    border: 1px solid #11111138;
-    border-left: 10px solid #247710;
-    border-radius: 0 3px 3px 0;
-    flex-direction: column;
+  background-color: white;
+  position: relative;
+  display: flex;
+  margin-bottom: 1.5rem;
+  border: 0.5px solid #dedede;
+  flex-direction: column;
 
-    .job-item-info {
-        margin: 2rem 3rem;
+  .job-item-info {
+    margin: 2rem 3rem;
 
-        .status {
-            padding: .2rem 1rem;
-            border-radius: 5px;
-            margin-right: 1rem;
-        }
-
-        .status-posted {
-            background-color: #0e8136;
-            color: white;
-        }
-
-        span {
-            font-size: 1.5rem;
-        }
-
-        .title {
-            margin: 1rem 0;
-        }
+    .status {
+      padding: 0.2rem 1rem;
+      border-radius: 5px;
+      margin-right: 1rem;
     }
+
+    .status-posted {
+      background-color: #0e8136;
+      color: white;
+    }
+
+    .status-reviewing {
+      background-color: #ffbb33;
+      color: black;
+    }
+
+    .status-denied {
+      background-color: #626262;
+      color: white;
+    }
+
+    .status-closed {
+      background-color: black;
+      color: white;
+    }
+
+    span {
+      font-size: 1.5rem;
+    }
+
+    .title {
+      font-weight: 400;
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+  }
 }
 
-
 .job-item-enterprise {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .job-item-enterprise-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    border: 1px solid #00000038;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  border: solid 0.5px #dedede;
 }
 
 .job-item-enterprise-info {
-    margin-left: 1.5rem;
+  margin-left: 1.5rem;
 }
 
+.contPopupDeleteJob {
+  border-radius: 0 !important;
+}
+
+.radioChooseDeleteJob {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin-top: 7px;
+}
+
+.radioChooseDeleteJob input {
+  accent-color: #0e8136;
+  width: 17px;
+  height: 17px;
+  border: 0px;
+}
+
+#txtareaDeleteJob {
+  padding: 12px 16px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: rgb(128, 128, 128);
+  height: 60px !important;
+  outline-style: none;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  color: rgb(0, 0, 0);
+  resize: none;
+  width: 450px;
+}
+#txtareaDeleteJob:focus {
+  border-color: #0e8136;
+}
+
+.errAppear {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.link-candidate {
+  color: #333;
+  text-decoration: none;
+}
+.link-candidate svg {
+  margin-right: 5px;
+  margin-bottom: 2px;
+}
+.link-candidate:hover {
+  text-decoration: underline;
+}

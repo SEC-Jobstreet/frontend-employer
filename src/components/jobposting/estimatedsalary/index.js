@@ -82,7 +82,7 @@ function EstimatedSalary({
                 id="input-salary"
                 name="Mức lương"
                 placeholder={`${currentCurrency.label} Tổng cộng`}
-                defaultValue={salary}
+                value={salary}
                 decimalsLimit={0}
                 onValueChange={(value) => setSalary(value)}
               />
