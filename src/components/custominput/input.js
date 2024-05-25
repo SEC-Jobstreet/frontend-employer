@@ -15,6 +15,7 @@ function CustomInput({
   required,
   max,
   className,
+  disable,
 }) {
   return (
     <div style={{ width: "100%" }} className={`${className}`}>
@@ -32,6 +33,7 @@ function CustomInput({
             onBlur={setBlur}
             required={required}
             max={max}
+            disabled={disable}
           />
         </label>
         {children}

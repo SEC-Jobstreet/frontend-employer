@@ -17,8 +17,10 @@ function MyAccount() {
       <div className="account-info-header">Tài khoản</div>
       <div className="account-info">
         <div className="info-section">
-          <span className="info-name">{user.firstName}</span>
-          <span className="info-surname">{user.lastName}</span>
+          <span className="info-name">
+            {user.firstName} {user.lastName}
+          </span>
+          {/* <span className="info-surname">{user.lastName}</span> */}
           <div className="info-email">{user.email}</div>
           <div className="info-phone">{user.phone}</div>
         </div>

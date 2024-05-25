@@ -3,6 +3,7 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 import vi from "react-phone-number-input/locale/vi.json";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { updateUserAttributes } from "aws-amplify/auth";
 
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
 import CountrySelect from "../../components/countryselectforphone";
@@ -24,12 +25,9 @@ function UpdateProfile() {
   const [errorInputSurName, setErrorInputSurName] = useState("");
 
   const [inputEmail, setInputEmail] = useState("");
-  const [errorInputEmail, setErrorInputEmail] = useState("");
-
-  const [inputConfirmEmail, setInputConfirmEmail] = useState("");
-  const [errorInputConfirmEmail, setErrorInputConfirmEmail] = useState("");
 
   const [country, setCountry] = useState("VN");
+
   const [inputPhone, setInputPhone] = useState("");
   const [errorInputPhone, setErrorInputPhone] = useState("");
 
@@ -40,7 +38,6 @@ function UpdateProfile() {
       setInputName(profile.firstName);
       setInputSurName(profile.lastName);
       setInputEmail(profile.email);
-      setInputConfirmEmail(profile.email);
       setInputPhone(profile.phone);
     }
   }, [profile]);
@@ -54,23 +51,38 @@ function UpdateProfile() {
     else setErrorInputSurName("");
   }, [inputSurName]);
   useEffect(() => {
-    if (!inputEmail) setErrorInputEmail("Hãy điền địa chỉ email của bạn");
-    else setErrorInputEmail("");
-  }, [inputEmail]);
-  useEffect(() => {
-    if (!inputConfirmEmail)
-      setErrorInputConfirmEmail("Hãy điền địa chỉ email của bạn");
-    else if (inputConfirmEmail !== inputEmail)
-      setErrorInputConfirmEmail(
-        "Vui lòng kiểm tra xem các email có khớp không"
-      );
-    else setErrorInputConfirmEmail("");
-  }, [inputConfirmEmail]);
-  useEffect(() => {
     if (!inputPhone)
       setErrorInputPhone("Xin vui lòng nhập số điện thoại của bạn");
     else setErrorInputPhone("");
   }, [inputPhone]);
+
+  const handleOnClickUpdate = async () => {
+    if (!errorInputName && !errorInputSurName && !errorInputPhone) {
+      try {
+        const attributes = await updateUserAttributes({
+          userAttributes: {
+            given_name: inputName,
+            family_name: inputSurName,
+            phone_number: inputPhone,
+          },
+        });
+        if (
+          attributes.given_name.isUpdated &&
+          attributes.family_name.isUpdated &&
+          attributes.phone_number.isUpdated
+        ) {
+          console.log("UPDATE SUCCEED"); // SUCCESS
+          navigate("/account");
+        } else console.log("UPDATE FAILED");
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      setErrorLine(
+        "Có lỗi trên trang này. Xin vui lòng sửa lại lỗi được đánh dấu"
+      );
+    }
+  };
 
   return (
     <div className="update-profile-page">
@@ -106,11 +118,8 @@ function UpdateProfile() {
           name="input-info"
         />
         <CustomInput
+          disable
           input={inputEmail}
-          error={errorInputEmail}
-          setInput={(e) => {
-            setInputEmail(e.target.value);
-          }}
           type="text"
           label="Email"
           name="input-info"
@@ -123,16 +132,6 @@ function UpdateProfile() {
           Email này sẽ được dùng để đăng nhập vào tài khoản của bạn. Tất cả các
           email trong tương lai sẽ được gửi tới đó.
         </p>
-        <CustomInput
-          input={inputConfirmEmail}
-          error={errorInputConfirmEmail}
-          setInput={(e) => {
-            setInputConfirmEmail(e.target.value);
-          }}
-          type="text"
-          label="Xác nhận email"
-          name="input-info"
-        />
         <div className="phone-number-container">Số điện thoại di động</div>
         <div className="phone-number-content">
           <CountrySelect labels={vi} value={country} onChange={setCountry} />
@@ -162,22 +161,7 @@ function UpdateProfile() {
             color="green"
             width="190.89px"
             height="50px"
-            onClick={() => {
-              if (
-                !errorInputName &&
-                !errorInputSurName &&
-                !errorInputEmail &&
-                !errorInputConfirmEmail &&
-                !errorInputPhone
-              ) {
-                console.log("UPDATE SUCCEED");
-              } else {
-                setErrorLine(
-                  "Có lỗi trên trang này. Xin vui lòng sửa lại lỗi được đánh dấu"
-                );
-                console.log("UPDATE FAILED");
-              }
-            }}
+            onClick={handleOnClickUpdate}
           >
             Cập nhật thông tin
           </CustomButton>
@@ -194,8 +178,8 @@ function UpdateProfile() {
         {errorLine &&
           (errorInputName ||
             errorInputSurName ||
-            errorInputEmail ||
-            errorInputConfirmEmail ||
+            // errorInputEmail ||
+            // errorInputConfirmEmail ||
             errorInputPhone) && (
             <div className="error-line invalid-feedback-input">
               <ErrorIcon />
