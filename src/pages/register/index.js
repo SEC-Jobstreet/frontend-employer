@@ -307,18 +307,6 @@ function Register() {
         });
         console.log(res);
 
-        const enterprise = {
-          enterpriseName,
-          country,
-          enterpriseAddress,
-          enterpriseField,
-          enterpriseSize,
-          enterpriseURL,
-          enterpriseLicense,
-          employerRole,
-          employerId: res.userId,
-        };
-
         let dateString = startDate;
 
         const dateParts = dateString.split("/");
@@ -327,7 +315,7 @@ function Register() {
 
         const job = {
           title: jobTitle,
-          employer_id: res.userId,
+          employerId: res.userId,
           type: jobTypes[jobType - 1].key,
           workWhenever: whenever,
           workShift: JSON.stringify(particularTime),
@@ -335,29 +323,31 @@ function Register() {
           visa,
           experience: workExperience,
           startDate: Math.floor(dateString.getTime() / 1000),
+          salaryLevelDisplay: salaryLevelDisplay.toString(),
+          paidPeriod: paidPeriod.toString(),
           currency,
+          enterpriseName,
+          enterpriseCountry: country,
+          enterpriseAddress,
+          enterpriseField,
+          enterpriseSize,
+          enterpriseUrl: enterpriseURL,
+          enterpriseLicense,
+          employerRole,
         };
 
         if (salaryLevelDisplay.toString() === "1") {
-          job.exactSalary = salary;
+          job.exactSalary = parseInt(salary, 10);
         } else {
           job.rangeSalary = JSON.stringify(salaryRange);
         }
 
-        console.log(enterprise);
-        // await createEnterprise(enterprise).then((enterpriseResponse) => {
-        //   console.log(enterpriseResponse);
-        //   console.log(enterpriseResponse.data.id);
-        //   job.enterprise_id = enterpriseResponse.data.id;
-        //   console.log(job);
-        //   const jobResponse = postJob(job);
-        //   console.log(jobResponse);
-        // });
-        await postJob({ ...enterprise, ...job }).then((respone) => {
+        await postJob(job).then((respone) => {
           console.log(respone);
         });
 
         localStorage.setItem("email", email);
+        localStorage.setItem("pass", password);
         setErrorNextStep(false);
         navigate("/verify-email");
       } catch (error) {

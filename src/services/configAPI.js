@@ -39,7 +39,7 @@ export const getJobList = async (data) => {
 export const getApplicationNumber = async (data) => {
   try {
     return await axiosConfig.get(
-      `${process.env.REACT_APP_APPLICATION_SERVICE}/api/v1/application_number_by_job_id/${data}`,
+      `${process.env.REACT_APP_CANDIDATE_SERVICE}/api/v1/application_number_by_job_id/${data}`,
       data
     );
   } catch (error) {
@@ -51,7 +51,7 @@ export const getApplicationNumber = async (data) => {
 export const getApplicationListAPI = async (data) => {
   try {
     return await axiosConfig.get(
-      `${process.env.REACT_APP_APPLICATION_SERVICE}/api/v1/application_list_by_employer?job_id=${data.id}&page_id=${data.pageId}&page_size=${data.pageSize}`
+      `${process.env.REACT_APP_CANDIDATE_SERVICE}/api/v1/application_list_by_employer?job_id=${data.id}&page_id=${data.pageId}&page_size=${data.pageSize}`
     );
   } catch (error) {
     console.log(error);
