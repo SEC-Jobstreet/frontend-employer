@@ -8,7 +8,7 @@ import Accountcreation from "../../components/accountcreation";
 import CustomButton from "../../components/custombutton";
 import Enterprisecreating from "../../components/enterprisecreating";
 import JobPosting from "../../components/jobposting/job-posting";
-import { createEnterprise, postJob } from "../../services/configAPI";
+import { postJob } from "../../services/configAPI";
 import { jobTypes } from "../../utils/postjob";
 
 import RegisterHeader from "./header";
@@ -308,15 +308,15 @@ function Register() {
         console.log(res);
 
         const enterprise = {
-          name: enterpriseName,
+          enterpriseName,
           country,
-          address: enterpriseAddress,
-          field: enterpriseField,
-          size: enterpriseSize,
-          url: enterpriseURL,
-          license: enterpriseLicense,
-          employer_role: employerRole,
-          employer_id: res.userId,
+          enterpriseAddress,
+          enterpriseField,
+          enterpriseSize,
+          enterpriseURL,
+          enterpriseLicense,
+          employerRole,
+          employerId: res.userId,
         };
 
         let dateString = startDate;
@@ -329,32 +329,32 @@ function Register() {
           title: jobTitle,
           employer_id: res.userId,
           type: jobTypes[jobType - 1].key,
-          work_whenever: whenever,
-          work_shift: JSON.stringify(particularTime),
+          workWhenever: whenever,
+          workShift: JSON.stringify(particularTime),
           description: jobDescription,
           visa,
           experience: workExperience,
-          start_date: Math.floor(dateString.getTime() / 1000),
+          startDate: Math.floor(dateString.getTime() / 1000),
           currency,
-
-          enterprise_name: enterpriseName,
-          enterprise_address: enterpriseAddress,
         };
 
         if (salaryLevelDisplay.toString() === "1") {
-          job.exact_salary = salary;
+          job.exactSalary = salary;
         } else {
-          job.range_salary = JSON.stringify(salaryRange);
+          job.rangeSalary = JSON.stringify(salaryRange);
         }
 
         console.log(enterprise);
-        await createEnterprise(enterprise).then((enterpriseResponse) => {
-          console.log(enterpriseResponse);
-          console.log(enterpriseResponse.data.id);
-          job.enterprise_id = enterpriseResponse.data.id;
-          console.log(job);
-          const jobResponse = postJob(job);
-          console.log(jobResponse);
+        // await createEnterprise(enterprise).then((enterpriseResponse) => {
+        //   console.log(enterpriseResponse);
+        //   console.log(enterpriseResponse.data.id);
+        //   job.enterprise_id = enterpriseResponse.data.id;
+        //   console.log(job);
+        //   const jobResponse = postJob(job);
+        //   console.log(jobResponse);
+        // });
+        await postJob({ ...enterprise, ...job }).then((respone) => {
+          console.log(respone);
         });
 
         localStorage.setItem("email", email);
