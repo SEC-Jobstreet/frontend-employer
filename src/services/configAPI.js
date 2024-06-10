@@ -39,8 +39,7 @@ export const getJobList = async (data) => {
 export const getApplicationNumber = async (data) => {
   try {
     return await axiosConfig.get(
-      `${process.env.REACT_APP_CANDIDATE_SERVICE}/api/v1/application_number_by_job_id/${data}`,
-      data
+      `${process.env.REACT_APP_CANDIDATE_SERVICE}/api/v1/application_number_by_job_id/${data}`
     );
   } catch (error) {
     console.log(error);

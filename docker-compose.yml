@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: employer-prod
+    image: employer-prod
+    build:
+      context: .
+      target: production
+    volumes:
+      - './src:/app/src'
+    ports:
+      - 3001:3001

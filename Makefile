@@ -1,7 +1,7 @@
 build_prod:
 	-docker rm employer-prod
 	-docker rmi employer-prod
-	docker-compose -f docker-compose.prod.yml build
+	docker-compose build
 
 # Shouldn't run. big image size ~ 1GB
 build_dev:
