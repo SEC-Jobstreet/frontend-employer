@@ -1,0 +1,54 @@
+name: Frontend Employer CICD
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-jobstreet-frontend:
+    # runs-on: self-hosted
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          
+      - name: Install SSH client
+        run: sudo apt-get update && sudo apt-get install -y openssh-client
+
+      - name: Set up .env file
+        run: echo "${{ secrets.ENV_JOBSTREET_EMPLOYER }}" > .env
+
+      - name: Build Docker image
+        run: |
+          docker build -t nguyenthuanit265/frontend-employer:latest .
+      
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+      - name: Push Docker image to Docker Hub
+        run: |
+          docker push nguyenthuanit265/frontend-employer:latest
+        
+      - name: Transfer Docker image to remote server
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+      
+      - name: Run remove docker container frontend-employer-prod
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.FRONTEND_REMOTE_SERVER_USERNAME }}@${{ secrets.FRONTEND_REMOTE_SERVER_ADDRESS }} << 'ENDSSH'
+          docker stop frontend-employer-prod || true
+          docker rm -f frontend-employer-prod || true
+          docker rmi -f nguyenthuanit265/frontend-employer:latest
+          ENDSSH
+
+      - name: Run docker container frontend-employer-prod
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.FRONTEND_REMOTE_SERVER_USERNAME }}@${{ secrets.FRONTEND_REMOTE_SERVER_ADDRESS }} << 'ENDSSH'
+          docker run -d -p 3000:3000 --name frontend-employer-prod nguyenthuanit265/frontend-employer:latest
+          ENDSSH
