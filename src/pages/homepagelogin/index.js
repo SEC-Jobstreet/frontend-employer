@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Col, Modal, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as CompanyIcon } from "../../assets/svg/company_icon.svg";
@@ -88,6 +88,13 @@ function HomepageLogin() {
     getJobs();
   }, []);
 
+  console.log(jobList);
+
+  const navigate = useNavigate();
+  const handleClickPostJob = () => {
+    navigate("/post-job");
+  };
+
   const handleClickChoose = () => {
     const valueRadio = document.querySelector(
       'input[name="selectDeleteJob"]:checked'
@@ -141,7 +148,7 @@ function HomepageLogin() {
   return (
     <div className="job-container">
       <div className="post-job-button">
-        <CustomButton color="green" onClick={() => {}}>
+        <CustomButton color="green" onClick={handleClickPostJob}>
           Đăng tuyển
         </CustomButton>
       </div>

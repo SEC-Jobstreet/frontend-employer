@@ -12,6 +12,7 @@ import HomepageLogin from "../../pages/homepagelogin";
 import Login from "../../pages/login";
 import NotFound from "../../pages/notfound";
 import PostJob from "../../pages/postjob";
+import PostJobSuccess from "../../pages/postjobsuccess";
 import Register from "../../pages/register";
 import Setting from "../../pages/setting";
 import UpdatePassword from "../../pages/updatepassword";
@@ -38,9 +39,10 @@ function AppRouter() {
 
       <Route element={<ProtectedRoute isAllowed={user.email !== ""} />}>
         <Route path="home" element={<HomepageLogin />} />
-        <Route path="candidates" element={<Candidates />} />
-        <Route path="post_job" element={<PostJob />} />
         <Route path="business" element={<Business />} />
+        <Route path="post-job" element={<PostJob />} />
+        <Route path="post-job-success" element={<PostJobSuccess />} />
+        <Route path="candidates" element={<Candidates />} />
         <Route path="account" element={<Account />}>
           <Route path="settings" element={<Setting />} />
           <Route path="update-profile" element={<UpdateProfile />} />

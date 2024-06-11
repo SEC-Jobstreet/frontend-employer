@@ -1,0 +1,141 @@
+.candidates-container {
+    margin: auto;
+    position: relative;
+    font-family: "Noto Sans", sans-serif;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.card {
+    width: 752px;
+    max-width: 1000px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-success {
+    border-color: #28a745;
+    font-size: 14px !important;
+}
+
+.btn-outline-success:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+.card.mb-3 {
+    margin-bottom: -0.5rem !important;
+    border: solid 1.5px #0e8136;
+
+}
+
+.card-body {
+    background: rgb(255, 255, 255);
+    padding: 24px 32px 32px !important;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 300;
+    color: rgb(0, 0, 0);
+    letter-spacing: -0.48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-actions button,
+a.card-btn {
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+    width: fit-content;
+    font-size: 16px !important;
+}
+
+a.card-btn {
+    margin-top: 8px;
+}
+
+.card-title {
+    font-size: 20px !important;
+    font-weight: bold !important;
+    text-transform: uppercase;
+    letter-spacing: -0.72px;
+}
+
+.card-text {
+    font-size: 16px !important;
+    line-height: 2;
+    font-weight: 300;
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.page-item {
+    margin: 0;
+    position: relative;
+}
+
+.page-item.active{
+   border-bottom: solid 1.5px #0e8136;
+}
+
+.page-item.active .page-link{
+    font-weight: bold;
+}
+
+.page-item .page-link {
+    display: block;
+    color: #1c1c1c !important;
+    font-size: 1.6rem !important;
+    text-wrap: nowrap;
+    padding: 0.7rem 1.1rem;
+    text-decoration: none;
+    background-color: #fff !important;
+    border: 1px solid #dee2e6 !important;
+    cursor: pointer;
+}
+
+.page-item .page-link {
+    border-radius: 0 !important;
+}
+
+.page-item .page-link:hover {
+    text-decoration: underline;
+    font-weight: bold;
+    color: #0e8136 !important;
+}
+
+.page-item .page-link.text{
+    color: #1c1c1c !important;
+}
