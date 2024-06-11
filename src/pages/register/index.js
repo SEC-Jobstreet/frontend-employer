@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { getCountryCallingCode } from "react-phone-number-input";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { signUp } from "aws-amplify/auth";
 
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
@@ -8,7 +8,7 @@ import Accountcreation from "../../components/accountcreation";
 import CustomButton from "../../components/custombutton";
 import Enterprisecreating from "../../components/enterprisecreating";
 import JobPosting from "../../components/jobposting/job-posting";
-import { createEnterprise, postJob } from "../../services/configAPI";
+import { postJob } from "../../services/configAPI";
 import { jobTypes } from "../../utils/postjob";
 
 import RegisterHeader from "./header";
@@ -307,18 +307,6 @@ function Register() {
         });
         console.log(res);
 
-        const enterprise = {
-          name: enterpriseName,
-          country,
-          address: enterpriseAddress,
-          field: enterpriseField,
-          size: enterpriseSize,
-          url: enterpriseURL,
-          license: enterpriseLicense,
-          employer_role: employerRole,
-          employer_id: res.userId,
-        };
-
         let dateString = startDate;
 
         const dateParts = dateString.split("/");
@@ -327,37 +315,39 @@ function Register() {
 
         const job = {
           title: jobTitle,
-          employer_id: res.userId,
+          employerId: res.userId,
           type: jobTypes[jobType - 1].key,
-          work_whenever: whenever,
-          work_shift: JSON.stringify(particularTime),
+          workWhenever: whenever,
+          workShift: JSON.stringify(particularTime),
           description: jobDescription,
           visa,
           experience: workExperience,
-          start_date: Math.floor(dateString.getTime() / 1000),
+          startDate: Math.floor(dateString.getTime() / 1000),
+          salaryLevelDisplay: salaryLevelDisplay.toString(),
+          paidPeriod: paidPeriod.toString(),
           currency,
-
-          enterprise_name: enterpriseName,
-          enterprise_address: enterpriseAddress,
+          enterpriseName,
+          enterpriseCountry: country,
+          enterpriseAddress,
+          enterpriseField,
+          enterpriseSize,
+          enterpriseUrl: enterpriseURL,
+          enterpriseLicense,
+          employerRole,
         };
 
         if (salaryLevelDisplay.toString() === "1") {
-          job.exact_salary = salary;
+          job.exactSalary = parseInt(salary, 10);
         } else {
-          job.range_salary = JSON.stringify(salaryRange);
+          job.rangeSalary = JSON.stringify(salaryRange);
         }
 
-        console.log(enterprise);
-        await createEnterprise(enterprise).then((enterpriseResponse) => {
-          console.log(enterpriseResponse);
-          console.log(enterpriseResponse.data.id);
-          job.enterprise_id = enterpriseResponse.data.id;
-          console.log(job);
-          const jobResponse = postJob(job);
-          console.log(jobResponse);
+        await postJob(job).then((respone) => {
+          console.log(respone);
         });
 
         localStorage.setItem("email", email);
+        localStorage.setItem("pass", password);
         setErrorNextStep(false);
         navigate("/verify-email");
       } catch (error) {
@@ -434,13 +424,18 @@ function Register() {
                 quillRef={quillRef}
                 setErrorNextStep={setErrorNextStep}
               />
-              <CustomButton
-                type="button"
-                color="green"
-                onClick={handleButtonStep1}
+              <div
+                style={{ marginTop: "30px", textAlign: "left" }}
+                className="submit-button"
               >
-                Tiếp
-              </CustomButton>
+                <CustomButton
+                  type="button"
+                  color="green"
+                  onClick={handleButtonStep1}
+                >
+                  Tiếp
+                </CustomButton>
+              </div>
               {errorNextStep && (
                 <div className="invalid-feedback-input">
                   <ErrorIcon />
@@ -479,13 +474,18 @@ function Register() {
                 enterpriseLicense={enterpriseLicense}
                 setEnterpriseLicense={setEnterpriseLicense}
               />
-              <CustomButton
-                type="button"
-                color="green"
-                onClick={handleButtonStep2}
+              <div
+                style={{ marginTop: "30px", textAlign: "left" }}
+                className="submit-button"
               >
-                Tiếp
-              </CustomButton>
+                <CustomButton
+                  type="button"
+                  color="green"
+                  onClick={handleButtonStep2}
+                >
+                  Tiếp
+                </CustomButton>
+              </div>
               {errorNextStep && (
                 <div className="invalid-feedback-input">
                   <ErrorIcon />
@@ -529,9 +529,14 @@ function Register() {
                 setErrorPasswordConfirmation={setErrorPasswordConfirmation}
               />
 
-              <CustomButton type="button" color="green" onClick={submit}>
-                Tiếp
-              </CustomButton>
+              <div
+                style={{ marginTop: "30px", textAlign: "left" }}
+                className="submit-button"
+              >
+                <CustomButton type="button" color="green" onClick={submit}>
+                  Tiếp
+                </CustomButton>
+              </div>
               {errorNextStep && (
                 <div className="invalid-feedback-input">
                   <ErrorIcon />
@@ -546,6 +551,14 @@ function Register() {
               )}
             </>
           )}
+          <div style={{ marginTop: "20px" }} className="job-title-texts">
+            <p>
+              Bạn đã có tài khoản nhà tuyển dụng?{" "}
+              <NavLink to="/login" className="login-link">
+                Đăng nhập
+              </NavLink>
+            </p>
+          </div>
         </div>
       </div>
       {showLoading && (

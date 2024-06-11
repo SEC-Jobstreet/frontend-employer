@@ -1,0 +1,17 @@
+
+.close-job-container{
+    max-width: 752px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.close-job-content{
+    background-color: white;
+    padding: 2.4rem 4.4rem 3.2rem;
+}
+
+.close-job-content-second{
+    background-color: white;
+    padding: 2.4rem 4.4rem 3.2rem;
+    margin-top: 1em;
+}

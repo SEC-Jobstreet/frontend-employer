@@ -1,11 +1,16 @@
-import styles from "./line.module.css";
+import "./line.css";
 
-function Line({ type }) {
+function Line({ type, color }) {
   // type: dotted, solid
   return (
     <div style={{ width: "100%", marginTop: "19px" }}>
-      {type === "dotted" && <div className={styles.dottedLine} />}
-      {type === "solid" && <div className={styles.solidLine} />}
+      {type === "dotted" && (
+        <div className={`dottedLine ${color}Line`}>
+          <div className="straight" />
+          <div className="dotted" />
+        </div>
+      )}
+      {type === "solid" && <div className={`solidLine ${color}Line`} />}
     </div>
   );
 }

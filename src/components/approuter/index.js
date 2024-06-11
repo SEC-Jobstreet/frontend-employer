@@ -4,7 +4,9 @@ import { Route, Routes } from "react-router-dom";
 import Account from "../../pages/account/account";
 import Business from "../../pages/business";
 import Candidates from "../../pages/candidates";
+import CloseJobSuccess from "../../pages/closejobsuccess";
 import DeletionConfirmation from "../../pages/deletionconfirm";
+import EditJob from "../../pages/editjob";
 import Homepage from "../../pages/homepage";
 import HomepageLogin from "../../pages/homepagelogin";
 import Login from "../../pages/login";
@@ -51,6 +53,8 @@ function AppRouter() {
           />
           <Route path="*" element={<NotFound />} />
         </Route>
+        <Route path="close-job-success" element={<CloseJobSuccess />} />
+        <Route path="edit-job/:id" element={<EditJob />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
