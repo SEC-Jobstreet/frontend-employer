@@ -88,6 +88,12 @@ function HomepageLogin() {
     getJobs();
   }, []);
 
+  console.log(jobList);
+
+  const handleClickPostJob = () => {
+    navigate("/post-job");
+  };
+
   const handleClickChoose = () => {
     const valueRadio = document.querySelector(
       'input[name="selectDeleteJob"]:checked'
@@ -141,7 +147,7 @@ function HomepageLogin() {
   return (
     <div className="job-container">
       <div className="post-job-button">
-        <CustomButton color="green" onClick={() => {}}>
+        <CustomButton color="green" onClick={handleClickPostJob}>
           Đăng tuyển
         </CustomButton>
       </div>

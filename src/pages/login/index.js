@@ -126,7 +126,7 @@ function Login() {
         <div className="sign-up-section">
           <span>
             Bạn chưa có tài khoản nhà tuyển dụng?{" "}
-            <Link to="/post_job" className="sign-up-link link-to-orther-page">
+            <Link to="/register" className="sign-up-link link-to-orther-page">
               Đăng ký
             </Link>
           </span>

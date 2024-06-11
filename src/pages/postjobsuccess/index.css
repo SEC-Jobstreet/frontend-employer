@@ -1,0 +1,99 @@
+.success-container {
+    width: 752px;
+    max-width: 1000px;
+    margin: auto;
+    position: relative;
+    font-family: "Noto Sans", sans-serif;
+    flex: auto;
+    text-align: left;
+}
+
+.success-info {
+    margin-bottom: 20px;
+    background: rgb(255, 255, 255);
+    padding: 24px 32px 32px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 300;
+    color: rgb(0, 0, 0);
+    letter-spacing: -0.48px;
+}
+
+.success-desc {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    letter-spacing: -0.72px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    margin-top: 16px;
+}
+
+.success-actions {
+    background: rgb(255, 255, 255);
+    padding: 24px 32px 32px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 300;
+    color: rgb(0, 0, 0);
+    letter-spacing: -0.48px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.actions-header {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    letter-spacing: -0.48px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 12px;
+}
+
+.actions-desc {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 300;
+    color: rgb(0, 0, 0);
+    letter-spacing: -0.48px;
+}
+
+.rounded-button-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding: 12px 24px;
+    border: none;
+    height: 48px;
+    width: 240px;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.48px;
+    text-align: center;
+  }
+  
+  .btn-sign-up {
+    background-color: #0e8136;
+    color: #ffffff;
+  }
+  
+  .btn-sign-up:hover {
+    background-color: #15a449;
+  }
+  
+  .btn-cancel {
+    color: #0e8136;
+    background-color: #ffffff;
+    border: 1px solid #0e8136 !important;
+    width: 170px;
+  }
+  
+  .btn-cancel:hover {
+    color: #15a449;
+  }

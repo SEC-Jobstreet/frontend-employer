@@ -10,6 +10,7 @@
     "aws-amplify": "^6.1.4",
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "classnames": "^2.5.1",
     "dotenv": "^16.4.5",
     "eslint-config-airbnb": "^19.0.4",
