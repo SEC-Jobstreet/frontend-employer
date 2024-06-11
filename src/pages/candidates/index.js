@@ -1,27 +1,11 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import {
-  getApplicationListAPI,
-  getCandidateProfileAPI,
-} from "../../services/configAPI";
+import { getApplicationListAPI } from "../../services/configAPI";
 
-function CandidateProfile({ data }) {
-  const [profile, setProfile] = useState(null);
-
-  useEffect(() => {
-    const getCandidateProfile = async () => {
-      const response = await getCandidateProfileAPI(data.CandidateID);
-      console.log(response);
-      if (response.status === 200) {
-        setProfile(response.data);
-      }
-    };
-    getCandidateProfile();
-  }, []);
-
-  if (profile)
-    return (
+function CandidateProfile({ profile }) {
+  return (
+    profile && (
       <div>
         <h3>
           {profile.first_name} {profile.last_name}
@@ -37,7 +21,8 @@ function CandidateProfile({ data }) {
           Link CV
         </a>
       </div>
-    );
+    )
+  );
 }
 
 function Candidates() {
@@ -62,10 +47,10 @@ function Candidates() {
   return (
     <div>
       {applicationList &&
-        applicationList.map((ele) => (
-          <Fragment key={ele.ID}>
-            <CandidateProfile data={ele} />
-          </Fragment>
+        applicationList.map((info) => (
+          <div key={info.username}>
+            <CandidateProfile profile={info} />
+          </div>
         ))}
     </div>
   );
