@@ -12,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [rehydrated, setReHyddated] = useState(false);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,6 +31,9 @@ function App() {
           userinfo = {
             ...userinfo,
             email: data.payload.email,
+            firstName: data.payload.given_name,
+            lastName: data.payload.family_name,
+            phone: data.payload.phone_number,
           };
         } catch (err) {
           console.log(err);
