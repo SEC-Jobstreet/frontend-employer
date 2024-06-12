@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import vi from "react-phone-number-input/locale/vi.json";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updateUserAttributes } from "aws-amplify/auth";
 
@@ -10,7 +10,7 @@ import CountrySelect from "../../components/countryselectforphone";
 import CustomButton from "../../components/custombutton";
 import CustomInput from "../../components/custominput/input";
 import SuggestionInfo from "../../components/suggestioninfo";
-import { selectUser } from "../../store/user";
+import { loginAccount, selectUser } from "../../store/user";
 
 import "./index.css";
 
@@ -32,6 +32,8 @@ function UpdateProfile() {
   const [errorInputPhone, setErrorInputPhone] = useState("");
 
   const [errorLine, setErrorLine] = useState("");
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (profile) {
@@ -72,6 +74,15 @@ function UpdateProfile() {
           attributes.phone_number.isUpdated
         ) {
           console.log("UPDATE SUCCEED"); // SUCCESS
+          // update user store
+          dispatch(
+            loginAccount({
+              ...profile,
+              firstName: inputName,
+              lastName: inputSurName,
+              phone: inputPhone,
+            })
+          );
           navigate("/account");
         } else console.log("UPDATE FAILED");
       } catch (error) {
