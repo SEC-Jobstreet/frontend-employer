@@ -3,6 +3,9 @@ import { Route, Routes } from "react-router-dom";
 
 import Account from "../../pages/account/account";
 import Business from "../../pages/business";
+import CreateBusiness from "../../pages/business/pages/create";
+import DetailsBusiness from "../../pages/business/pages/details";
+import EditBusiness from "../../pages/business/pages/edit";
 import Candidates from "../../pages/candidates";
 import CloseJobSuccess from "../../pages/closejobsuccess";
 import DeletionConfirmation from "../../pages/deletionconfirm";
@@ -43,6 +46,14 @@ function AppRouter() {
         <Route path="post-job" element={<PostJob />} />
         <Route path="post-job-success" element={<PostJobSuccess />} />
         <Route path="candidates" element={<Candidates />} />
+
+        <Route path="business/create" element={<CreateBusiness />} />
+        <Route path="business/:businessId/edit" element={<EditBusiness />} />
+        <Route
+          path="business/:businessId/details"
+          element={<DetailsBusiness />}
+        />
+
         <Route path="account" element={<Account />}>
           <Route path="settings" element={<Setting />} />
           <Route path="update-profile" element={<UpdateProfile />} />

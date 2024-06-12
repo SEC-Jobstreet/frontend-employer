@@ -1,0 +1,47 @@
+.content-container#details-business {
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 320px;
+  max-width: 752px;
+}
+
+.content#content-details-business {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  text-align: start;
+  width: 100%;
+  background: white;
+  padding: 23px 40px 33px;
+  gap: 16px;
+}
+
+h3.heading-details {
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 24px;
+  padding: 5px 20px 11px;
+  width: 100%;
+  text-align: start;
+}
+#content-details-business .title-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+#content-details-business .business-icon-container {
+  background-color: #dedede;
+}
+#content-details-business .desciption-details {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  align-items: flex-start;
+  width: 100%;
+}

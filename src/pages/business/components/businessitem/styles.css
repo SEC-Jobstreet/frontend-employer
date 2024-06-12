@@ -1,0 +1,57 @@
+.content-container.item {
+  background: white;
+  display: block;
+  font-weight: 300;
+  cursor: pointer;
+  text-decoration: none;
+  color: #1c1c1c;
+  &:active {
+    border: 1px solid #0f62c7;
+  }
+}
+
+.main-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  gap: 16px;
+  padding: 23px 40px 0px;
+}
+.business-icon-container {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0 no-repeat 50%;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+}
+.text-item-container {
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+  justify-content: start;
+  text-align: start;
+}
+
+.edit-containter {
+  margin-top: 23px;
+  border-top: 1px solid #dedede;
+  padding: 16px 0px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.edit-containter a.edit-link {
+  text-decoration: none;
+  color: #1c1c1c;
+  &:hover {
+    text-decoration: underline;
+  }
+}
