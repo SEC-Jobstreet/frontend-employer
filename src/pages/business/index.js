@@ -1,5 +1,8 @@
+import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+
+import { getEnterprises } from "../../services/configAPI";
 
 import BusinessItem from "./components/businessitem";
 
@@ -29,8 +32,22 @@ export const DUMMY_DATA = [
     license: "ABC",
   },
 ];
+
 function Business() {
   const navigate = useNavigate();
+  const [enterprises, setEnterprises] = useState([]);
+
+  useEffect(() => {
+    const getListEnterprise = async () => {
+      const res = await getEnterprises();
+      if (res.status === 200) {
+        console.log(res);
+        setEnterprises(res.data);
+      }
+    };
+    getListEnterprise();
+  }, []);
+
   return (
     <div className="center-item-container">
       <div className="content-container">
@@ -45,7 +62,7 @@ function Business() {
           </Button>
         </div>
         <div className="business-list-container">
-          {DUMMY_DATA.map((item) => (
+          {enterprises.map((item) => (
             <BusinessItem key={item.id} info={item} />
           ))}
         </div>

@@ -24,6 +24,28 @@ export const createEnterprise = async (data) => {
   }
 };
 
+export const getEnterprises = async () => {
+  try {
+    return await axiosConfig.get(
+      `${process.env.REACT_APP_EMPLOYER_SERVICE}/api/v1/get_enterprise_by_employer`
+    );
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+export const getEnterpriseInfo = async (id) => {
+  try {
+    return await axiosConfig.get(
+      `${process.env.REACT_APP_EMPLOYER_SERVICE}/api/v1/get_enterprise_by_id/${id}`
+    );
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
 export const getJobList = async (data) => {
   try {
     return await axiosConfig.get(
