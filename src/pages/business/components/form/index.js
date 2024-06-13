@@ -114,8 +114,8 @@ function BusinessForm({
           size: enterpriseSize,
           employer_role: employerRole,
           company,
-          enterprise_url: enterpriseURL,
-          enterprise_license: enterpriseLicense,
+          url: enterpriseURL,
+          license: enterpriseLicense,
         });
         if (respone.status === 200) {
           console.log(respone);
@@ -146,6 +146,7 @@ function BusinessForm({
           }
         }
       }
+      navigate("/business");
     }
   };
   return (
