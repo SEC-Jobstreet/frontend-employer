@@ -1,12 +1,15 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Button, ListGroup, Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { decodeJWT, getCurrentUser } from "aws-amplify/auth";
 
 import { ReactComponent as CompanyLogo } from "../../assets/svg/company_logo.svg";
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
 import CustomButton from "../../components/custombutton";
 import JobPosting from "../../components/jobposting/job-posting";
+import { getEnterprises, postJob } from "../../services/configAPI";
 import { selectUser } from "../../store/user";
 
 import "./index.css";
@@ -37,6 +40,11 @@ function PostJob() {
   const [errorJobDescription, setErrorJobDescription] = useState("");
   const quillRef = React.useRef();
   const [errorNextStep, setErrorNextStep] = useState(false);
+
+  const [showCompanyModal, setShowCompanyModal] = useState(false);
+  const [enterprises, setEnterprises] = useState([]);
+  const [enterprise, setEnterprise] = useState("");
+  const [newEnterprise, setNewEnterprise] = useState("");
 
   const validateForm = () => {
     let isValid = true;
@@ -103,11 +111,63 @@ function PostJob() {
 
   const user = useSelector(selectUser);
   const navigate = useNavigate();
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (validateForm()) {
-      navigate("/post-job-success");
+      const respone = await getCurrentUser();
+      if (respone.userId) {
+        const accessToken = localStorage.getItem(
+          `CognitoIdentityServiceProvider.${process.env.REACT_APP_COGNITO_USER_POOL_CLIENT_ID}.${respone.username}.accessToken`
+        );
+        const data = decodeJWT(accessToken);
+        const res = await postJob({
+          title: jobTitle,
+          type: jobType.toString(),
+          workWhenever: whenever,
+          workShift: particularTime.toString(),
+          description: jobDescription,
+          visa,
+          experience: workExperience,
+          startDate,
+          currency,
+          salaryLevelDisplay: salaryLevelDisplay.toString(),
+          exactSalary: salary,
+          rangeSalary: JSON.stringify(salaryRange),
+          paidPeriod: paidPeriod.toString(),
+          enterpriseId: enterprise.id,
+          enterpriseName: enterprise.name,
+          enterpriseAddress: enterprise.address,
+          crawl: false,
+          employerId: data.payload.username,
+        });
+        if (res.status === 200) {
+          console.log(res);
+          navigate("/post-job-success");
+        }
+        // if failed?
+      }
     }
   };
+
+  const handleClickCompanyOption = (companyId) => {
+    setNewEnterprise(companyId);
+  };
+
+  const handleModalSubmit = () => {
+    setEnterprise(enterprises.find((item) => item.id === newEnterprise));
+    setShowCompanyModal(false);
+  };
+
+  useEffect(() => {
+    const getListEnterprise = async () => {
+      const res = await getEnterprises();
+      if (res.status === 200) {
+        console.log(res);
+        setEnterprises(res.data);
+        setEnterprise(res.data[0]);
+      }
+    };
+    getListEnterprise();
+  }, []);
 
   return (
     <div className="job-posting-page">
@@ -170,12 +230,16 @@ function PostJob() {
             <CompanyLogo />
           </div>
           <div className="company-info">
-            <div className="company-name">Công ty TNHH XYZ</div>
-            <div className="company-address">Quận 5, TP. Hồ Chí Minh</div>
+            <div className="company-name">{enterprise.name}</div>
+            <div className="company-address">{enterprise.address}</div>
           </div>
-          <Link to="/" className="register-desc-link">
+          <Button
+            to="/"
+            className="register-desc-link"
+            onClick={() => setShowCompanyModal(true)}
+          >
             <div>thay đổi</div>
-          </Link>
+          </Button>
         </div>
         <CustomButton type="button" color="green" onClick={handleSubmit}>
           Đăng việc
@@ -187,6 +251,60 @@ function PostJob() {
           </div>
         )}
       </div>
+      <Modal
+        show={showCompanyModal}
+        onHide={() => setShowCompanyModal(false)}
+        backdrop="static"
+        keyboard={false}
+        scrollable
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Công ty</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ListGroup
+            defaultActiveKey={`#${enterprise.id}`}
+            activeKey={`#${newEnterprise}`}
+            className="list-company"
+          >
+            {enterprises.map((item) => (
+              <ListGroup.Item
+                action
+                href={`#${item.id}`}
+                variant="light"
+                onClick={() => handleClickCompanyOption(`${item.id}`)}
+                key={item.id}
+              >
+                <div className="company" style={{ marginBlock: "10px" }}>
+                  <div className="company-logo">
+                    <CompanyLogo />
+                  </div>
+                  <div className="company-info">
+                    <div className="company-name" style={{ color: "unset" }}>
+                      {item.name}
+                    </div>
+                    <div className="company-address" style={{ color: "unset" }}>
+                      {item.address}
+                    </div>
+                  </div>
+                </div>
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            size="lg"
+            variant="secondary"
+            onClick={() => setShowCompanyModal(false)}
+          >
+            Hủy bỏ
+          </Button>
+          <Button size="lg" variant="success" onClick={handleModalSubmit}>
+            Xác nhận
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

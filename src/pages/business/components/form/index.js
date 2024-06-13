@@ -124,7 +124,6 @@ function BusinessForm({
       if (type === "CREATE") {
         const res = await getCurrentUser();
         if (res.userId) {
-          console.log(res);
           const accessToken = localStorage.getItem(
             `CognitoIdentityServiceProvider.${process.env.REACT_APP_COGNITO_USER_POOL_CLIENT_ID}.${res.username}.accessToken`
           );

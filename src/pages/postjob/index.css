@@ -37,17 +37,19 @@
   margin-bottom: 20px;
 }
 
-a.register-desc-link {
+.register-desc-link {
   color: rgb(15, 98, 199) !important;
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 24px;
+  font-size: 1.3rem !important;
+  font-weight: 300 !important;
   letter-spacing: -0.48px;
-  text-align: left;
   text-decoration-line: none !important;
+  background-color: transparent !important;
+  border: 0px !important;
+  height: auto !important;
+  margin-bottom: auto;
 }
 
-a.register-desc-link:hover {
+.register-desc-link:hover {
   cursor: pointer !important;
   text-decoration: underline !important;
 }
@@ -133,7 +135,7 @@ a.register-desc-link:hover {
   width: 80px;
   height: 80px;
   box-sizing: border-box;
-  color: #4d585c
+  color: #4d585c;
 }
 
 .lds-ring div {
@@ -203,6 +205,11 @@ a.register-desc-link:hover {
   letter-spacing: -0.48px;
 }
 
-div.invalid-feedback-input{
+div.invalid-feedback-input {
   margin-top: 12px !important;
+}
+
+.list-company {
+  max-width: 400px;
+  margin-inline: auto;
 }
