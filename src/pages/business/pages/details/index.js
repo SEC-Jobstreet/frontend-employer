@@ -77,7 +77,7 @@ function DetailsBusiness() {
               >
                 <img src={PositionIcon} alt="position-icon" />
                 <span style={{ fontWeight: "300" }}>
-                  {businessDetails.address}
+                  {businessDetails.country} | {businessDetails.address}
                 </span>
               </div>
             </div>
@@ -102,6 +102,20 @@ function DetailsBusiness() {
                 <span>Tên công ty tuyển dụng</span>
                 <span style={{ fontWeight: "300" }}>
                   {businessDetails.company}
+                </span>
+              </div>
+            )}
+            {businessDetails.url && (
+              <div className="desciption-details">
+                <span>Trang web của doanh nghiệp</span>
+                <span style={{ fontWeight: "300" }}>{businessDetails.url}</span>
+              </div>
+            )}
+            {businessDetails.license && (
+              <div className="desciption-details">
+                <span>Số giấy phép kinh doanh</span>
+                <span style={{ fontWeight: "300" }}>
+                  {businessDetails.license}
                 </span>
               </div>
             )}

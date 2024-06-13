@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import { getEnterpriseInfo } from "../../../../services/configAPI";
 import BusinessForm from "../../components/form";
-import { DUMMY_DATA } from "../../index";
 
 function EditBusiness() {
   const { businessId } = useParams();
@@ -31,16 +31,23 @@ function EditBusiness() {
   const [errorCompany, setErrorCompany] = useState("");
 
   useEffect(() => {
-    const currentIndex = DUMMY_DATA.findIndex((item) => item.id === businessId);
-    const businessInfo = DUMMY_DATA[currentIndex];
+    // fetch data using business id
+    const loadEnterpriseInfo = async () => {
+      const res = await getEnterpriseInfo(businessId);
+      if (res.status === 200) {
+        console.log(res);
+        const businessInfo = res.data;
+        setEnterpriseName(businessInfo.name);
+        setEnterpriseAddress(businessInfo.address);
+        setEnterpriseField(businessInfo.field);
+        setEnterpriseSize(businessInfo.size);
+        setEmployerRole(businessInfo.employer_role);
+        setEnterpriseURL(businessInfo.url);
+        setEnterpriseLicense(businessInfo.license);
+      }
+    };
 
-    setEnterpriseName(businessInfo.name);
-    setEnterpriseAddress(businessInfo.address);
-    setEnterpriseField(businessInfo.field);
-    setEnterpriseSize(businessInfo.size);
-    setEmployerRole(businessInfo.role);
-    setEnterpriseURL(businessInfo.url);
-    setEnterpriseLicense(businessInfo.license);
+    loadEnterpriseInfo();
   }, []);
   return (
     <BusinessForm

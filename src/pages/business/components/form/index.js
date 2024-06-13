@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { decodeJWT, getCurrentUser } from "aws-amplify/auth";
 
 import ErrorIcon from "../../../../assets/svg/error-icon.svg";
@@ -7,7 +7,10 @@ import SearchBarIcon from "../../../../assets/svg/search-icon.svg";
 import DropdownButton from "../../../../components/customdropdown";
 import CustomInput from "../../../../components/custominput/input";
 import SuggestionInfo from "../../../../components/suggestioninfo";
-import { createEnterprise } from "../../../../services/configAPI";
+import {
+  createEnterprise,
+  updateEnterpriseInfo,
+} from "../../../../services/configAPI";
 import {
   countries,
   employerRoles,
@@ -60,6 +63,7 @@ function BusinessForm({
       (employerRole.toString() === "3" && errorCompany === ""));
 
   const navigate = useNavigate();
+  const { businessId } = useParams();
 
   const onCancelHandler = () => {
     navigate("/business");
@@ -100,14 +104,9 @@ function BusinessForm({
     console.log(errorSubmitForm);
     // successful
     if (errorSubmitForm) {
-      const res = await getCurrentUser();
-      if (res.userId) {
-        console.log(res);
-        const accessToken = localStorage.getItem(
-          `CognitoIdentityServiceProvider.${process.env.REACT_APP_COGNITO_USER_POOL_CLIENT_ID}.${res.username}.accessToken`
-        );
-        const data = decodeJWT(accessToken);
-        const respone = await createEnterprise({
+      if (type === "EDIT") {
+        const respone = await updateEnterpriseInfo({
+          id: businessId,
           name: enterpriseName,
           country,
           address: enterpriseAddress,
@@ -117,10 +116,34 @@ function BusinessForm({
           company,
           enterprise_url: enterpriseURL,
           enterprise_license: enterpriseLicense,
-          employer_id: data.payload.username,
         });
         if (respone.status === 200) {
           console.log(respone);
+        }
+      }
+      if (type === "CREATE") {
+        const res = await getCurrentUser();
+        if (res.userId) {
+          console.log(res);
+          const accessToken = localStorage.getItem(
+            `CognitoIdentityServiceProvider.${process.env.REACT_APP_COGNITO_USER_POOL_CLIENT_ID}.${res.username}.accessToken`
+          );
+          const data = decodeJWT(accessToken);
+          const respone = await createEnterprise({
+            name: enterpriseName,
+            country,
+            address: enterpriseAddress,
+            field: enterpriseField,
+            size: enterpriseSize,
+            employer_role: employerRole,
+            company,
+            enterprise_url: enterpriseURL,
+            enterprise_license: enterpriseLicense,
+            employer_id: data.payload.username,
+          });
+          if (respone.status === 200) {
+            console.log(respone);
+          }
         }
       }
     }

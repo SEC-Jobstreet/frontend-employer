@@ -24,6 +24,18 @@ export const createEnterprise = async (data) => {
   }
 };
 
+export const updateEnterpriseInfo = async (data) => {
+  try {
+    return await axiosConfig.post(
+      `${process.env.REACT_APP_EMPLOYER_SERVICE}/api/v1/update_enterprise`,
+      data
+    );
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
 export const getEnterprises = async () => {
   try {
     return await axiosConfig.get(
