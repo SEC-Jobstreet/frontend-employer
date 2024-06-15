@@ -64,6 +64,7 @@ function EditJob() {
         // set input
         setJobTitle(data.title);
         setJobType(jobTypes.find((job) => job.key === data.type).id);
+        // setJobType(data.type);
         setWhenever(data.work_whenever);
         setParticularTime(JSON.parse(data.work_shift));
         setVisa(data.visa);
@@ -75,12 +76,13 @@ function EditJob() {
         const formattedDate = `${day}/${month}/${year}`;
         setStartDate(formattedDate);
         setCurrency(data.currency);
-        if (data.range_salary === "") {
+
+        if (data.salary_level_display === "2") {
+          setSalaryLevelDisplay(2);
+          setSalaryRange(data.range_salary);
+        } else {
           setSalaryLevelDisplay(1);
           setSalary(parseInt(data.exact_salary, 10));
-        } else {
-          setSalaryLevelDisplay(2);
-          setSalaryRange(data.range_salary); // check again
         }
         // setPaidPeriod
 
@@ -156,8 +158,11 @@ function EditJob() {
       experience: workExperience,
       start_date: timestamp,
       currency,
-      range_salary: JSON.stringify(salaryRange),
-      exact_salary: salary,
+      description: jobDescription,
+      exact_salary: salaryLevelDisplay === 1 ? parseInt(salary, 10) : 0,
+      salary_level_display: salaryLevelDisplay,
+      range_salary:
+        salaryLevelDisplay === 2 ? JSON.stringify(salaryRange) : `'["",""]'`,
     };
     // setPaidPeriod
     // set enterprise
@@ -166,6 +171,9 @@ function EditJob() {
       console.log(response);
     }
   };
+
+  console.log(salaryLevelDisplay);
+  console.log(salaryLevelDisplay === 1);
 
   return (
     <div className="register-page">

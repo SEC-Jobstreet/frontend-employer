@@ -11,6 +11,7 @@ import CustomButton from "../../components/custombutton";
 import JobPosting from "../../components/jobposting/job-posting";
 import { getEnterprises, postJob } from "../../services/configAPI";
 import { selectUser } from "../../store/user";
+import { jobTypes } from "../../utils/postjob";
 
 import "./index.css";
 
@@ -45,6 +46,9 @@ function PostJob() {
   const [enterprises, setEnterprises] = useState([]);
   const [enterprise, setEnterprise] = useState("");
   const [newEnterprise, setNewEnterprise] = useState("");
+
+  console.log(salaryLevelDisplay);
+  console.log(salaryLevelDisplay === 1);
 
   const validateForm = () => {
     let isValid = true;
@@ -119,20 +123,31 @@ function PostJob() {
           `CognitoIdentityServiceProvider.${process.env.REACT_APP_COGNITO_USER_POOL_CLIENT_ID}.${respone.username}.accessToken`
         );
         const data = decodeJWT(accessToken);
+
+        const dateParts = startDate.split("/");
+        const dateString = new Date(
+          +dateParts[2],
+          dateParts[1] - 1,
+          +dateParts[0]
+        );
+
         const res = await postJob({
           title: jobTitle,
-          type: jobType.toString(),
+          type: jobTypes[jobType - 1].key,
           workWhenever: whenever,
-          workShift: particularTime.toString(),
+          workShift: JSON.stringify(particularTime),
           description: jobDescription,
           visa,
           experience: workExperience,
-          startDate,
+          startDate: Math.floor(dateString.getTime() / 1000),
           currency,
-          salaryLevelDisplay: salaryLevelDisplay.toString(),
-          exactSalary: salary,
-          rangeSalary: JSON.stringify(salaryRange),
-          paidPeriod: paidPeriod.toString(),
+          salaryLevelDisplay,
+          exactSalary: salaryLevelDisplay === 1 ? parseInt(salary, 10) : 0,
+          rangeSalary:
+            salaryLevelDisplay === 2
+              ? JSON.stringify(salaryRange)
+              : `'["",""]'`,
+          paidPeriod,
           enterpriseId: enterprise.id,
           enterpriseName: enterprise.name,
           enterpriseAddress: enterprise.address,

@@ -75,7 +75,7 @@ function EstimatedSalary({
         <div className="salary-range-wrapper">
           <div className="custom-title">Mức lương</div>
 
-          {salaryLevelDisplay.toString() === "1" ? (
+          {salaryLevelDisplay === 1 ? (
             <div className="salary-range">
               <CurrencyInput
                 prefix={`${currentCurrency.label} `}
