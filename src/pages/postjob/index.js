@@ -47,6 +47,9 @@ function PostJob() {
   const [enterprise, setEnterprise] = useState("");
   const [newEnterprise, setNewEnterprise] = useState("");
 
+  console.log(salaryLevelDisplay);
+  console.log(salaryLevelDisplay === 1);
+
   const validateForm = () => {
     let isValid = true;
     // Validate job title
@@ -127,8 +130,7 @@ function PostJob() {
         dateString = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
         const job = {
           title: jobTitle,
-          employerId: data.payload.username,
-          type: jobTypes[jobType - 1].key,
+          type: jobType.toString(),
           workWhenever: whenever,
           workShift: JSON.stringify(particularTime),
           description: jobDescription,
@@ -137,6 +139,8 @@ function PostJob() {
           startDate: Math.floor(dateString.getTime() / 1000),
           currency,
           salaryLevelDisplay: salaryLevelDisplay.toString(),
+          exactSalary: salary,
+          rangeSalary: JSON.stringify(salaryRange),
           paidPeriod: paidPeriod.toString(),
           enterpriseId: enterprise.id,
           enterpriseName: enterprise.name,
