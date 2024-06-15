@@ -11,6 +11,7 @@ import CustomButton from "../../components/custombutton";
 import JobPosting from "../../components/jobposting/job-posting";
 import { getEnterprises, postJob } from "../../services/configAPI";
 import { selectUser } from "../../store/user";
+import { jobTypes } from "../../utils/postjob";
 
 import "./index.css";
 
@@ -119,26 +120,38 @@ function PostJob() {
           `CognitoIdentityServiceProvider.${process.env.REACT_APP_COGNITO_USER_POOL_CLIENT_ID}.${respone.username}.accessToken`
         );
         const data = decodeJWT(accessToken);
-        const res = await postJob({
+        let dateString = startDate;
+
+        const dateParts = dateString.split("/");
+
+        dateString = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+        const job = {
           title: jobTitle,
-          type: jobType.toString(),
+          employerId: data.payload.username,
+          type: jobTypes[jobType - 1].key,
           workWhenever: whenever,
-          workShift: particularTime.toString(),
+          workShift: JSON.stringify(particularTime),
           description: jobDescription,
           visa,
           experience: workExperience,
-          startDate,
+          startDate: Math.floor(dateString.getTime() / 1000),
           currency,
           salaryLevelDisplay: salaryLevelDisplay.toString(),
-          exactSalary: salary,
-          rangeSalary: JSON.stringify(salaryRange),
           paidPeriod: paidPeriod.toString(),
           enterpriseId: enterprise.id,
           enterpriseName: enterprise.name,
           enterpriseAddress: enterprise.address,
           crawl: false,
-          employerId: data.payload.username,
-        });
+        };
+
+        if (salaryLevelDisplay.toString() === "1") {
+          job.exactSalary = parseInt(salary, 10);
+        } else {
+          job.rangeSalary = JSON.stringify(salaryRange);
+        }
+
+        const res = await postJob(job);
+
         if (res.status === 200) {
           console.log(res);
           navigate("/post-job-success");

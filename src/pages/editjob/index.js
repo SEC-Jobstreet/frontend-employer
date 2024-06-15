@@ -141,23 +141,22 @@ function EditJob() {
       }
     }
 
-    // submit
-    const [day, month, year] = startDate.split("/").map(Number);
-    const date = new Date(year, month - 1, day);
-    const timestamp = Math.floor(date.getTime() / 1000);
-    console.log(timestamp);
+    let dateString = startDate;
+    const dateParts = dateString.split("/");
+    dateString = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
     const data = {
       ...rawData,
       title: jobTitle,
-      type: jobTypes.find((job) => job.id === jobType).key,
-      work_whenever: whenever,
-      work_shift: JSON.stringify(particularTime),
+      type: jobTypes[jobType - 1].key,
+      description: jobDescription,
+      workWhenever: whenever,
+      workShift: JSON.stringify(particularTime),
       visa,
       experience: workExperience,
-      start_date: timestamp,
+      startDate: Math.floor(dateString.getTime() / 1000),
       currency,
-      range_salary: JSON.stringify(salaryRange),
-      exact_salary: salary,
+      salaryLevelDisplay: salaryLevelDisplay.toString(),
+      paidPeriod: paidPeriod.toString(),
     };
     // setPaidPeriod
     // set enterprise
