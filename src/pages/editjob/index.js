@@ -162,6 +162,13 @@ function EditJob() {
     };
     // setPaidPeriod
     // set enterprise
+
+    if (salaryLevelDisplay.toString() === "1") {
+      data.exactSalary = parseInt(salary, 10);
+    } else {
+      data.rangeSalary = JSON.stringify(salaryRange);
+    }
+
     const response = await updateJob(data);
     if (response.status === 200) {
       console.log(response);
