@@ -20,24 +20,26 @@ function HomePage() {
             <div className="content-signup">
               Đăng ký để đăng việc <span>MIỄN PHÍ</span> ngay hôm nay.
             </div>
-            <button
-              type="button"
-              className="rounded-button-primary sign-in"
-              onClick={() => {
-                navigate("/register");
-              }}
-            >
-              Đăng kí ngay
-            </button>
-            <button
-              type="button"
-              className="rounded-button-primary sign-up"
-              onClick={() => {
-                navigate("/login");
-              }}
-            >
-              Đăng nhập
-            </button>
+            <div className="actions-group">
+              <button
+                type="button"
+                className="rounded-button-primary-2 sign-in"
+                onClick={() => {
+                  navigate("/register");
+                }}
+              >
+                Đăng kí ngay
+              </button>
+              <button
+                type="button"
+                className="rounded-button-primary-2 sign-up"
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                Đăng nhập
+              </button>
+            </div>
           </div>
           <div className="content-image">
             <HomeIcon />
@@ -86,7 +88,7 @@ function HomePage() {
             </div>
             <button
               type="button"
-              className="rounded-button-primary sign-in"
+              className="rounded-button-primary-2 sign-in"
               onClick={() => {
                 navigate("/register");
               }}
