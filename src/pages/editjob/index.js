@@ -176,6 +176,7 @@ function EditJob() {
     const response = await updateJob(data);
     if (response.status === 200) {
       console.log(response);
+      navigate("/post-job-success");
     }
   };
 
