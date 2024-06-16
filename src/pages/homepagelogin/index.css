@@ -166,11 +166,6 @@ job-item-group-button-child button:hover {
   border-color: #0e8136;
 }
 
-.errAppear {
-  opacity: 0;
-  visibility: hidden;
-}
-
 .link-candidate {
   color: #333;
   text-decoration: none;

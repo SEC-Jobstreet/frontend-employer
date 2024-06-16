@@ -41,6 +41,15 @@ const statusList = {
   },
 };
 
+const reasons = [
+  { key: "1", content: "Tôi đã tuyển dụng được ở JobStreet" },
+  { key: "2", content: "Tôi đã tuyển dụng được ở trang khác" },
+  {
+    key: "3",
+    content: "Tôi chưa tuyển dụng được nhưng vẫn muốn đóng tin tuyển dụng",
+  },
+];
+
 function ApplicationNumber({ data }) {
   const [total, setTotal] = useState(0);
 
@@ -71,7 +80,8 @@ function HomepageLogin() {
   const [jobList, setJobList] = useState(null);
   const [show, setShow] = useState(false);
   const [choose, setChoose] = useState("1");
-  const [lengthText, setLengthText] = useState(200);
+  const [error, setError] = useState(false);
+  const [reasonDetail, setReasonDetail] = useState("");
 
   useEffect(() => {
     const getJobs = async () => {
@@ -94,36 +104,40 @@ function HomepageLogin() {
     navigate("/post-job");
   };
 
-  const handleClickChoose = () => {
-    const valueRadio = document.querySelector(
-      'input[name="selectDeleteJob"]:checked'
-    ).value;
-    if (valueRadio === "1") {
-      const msg = document.getElementById("messageErrDeleteJob");
-      msg.classList.add("errAppear");
-    }
-    setChoose(valueRadio);
-  };
+  // const handleClickChoose = (key) => {
+  //   // const valueRadio = document.querySelector(
+  //   //   'input[name="selectDeleteJob"]:checked'
+  //   // ).value;
+  //   // if (valueRadio === "1") {
+  //   //   const msg = document.getElementById("messageErrDeleteJob");
+  //   //   msg.classList.add("errAppear");
+  //   // }
+  //   setChoose(key);
+  // };
 
-  const handleChangeTextArea = () => {
-    const valueTextArea = document.getElementById("txtareaDeleteJob").value;
-    const count = 200 - valueTextArea.length;
-    setLengthText(count);
-    if (count > -1 && count < 200) {
-      const msg = document.getElementById("messageErrDeleteJob");
-      msg.classList.add("errAppear");
-    }
-  };
+  console.log(choose);
 
-  const handleSubmit = (e) => {
+  // const handleChangeTextArea = () => {
+  //   const valueTextArea = document.getElementById("txtareaDeleteJob").value;
+  //   const count = 200 - valueTextArea.length;
+  //   setLengthText(count);
+  //   if (count > -1 && count < 200) {
+  //     const msg = document.getElementById("messageErrDeleteJob");
+  //     msg.classList.add("errAppear");
+  //   }
+  // };
+
+  const handleSubmit = async (e, id) => {
     e.preventDefault();
-    if (choose === "1") {
-      navigate("/close-job-success");
-    } else if (lengthText > -1 && lengthText < 200) {
-      navigate("/close-job-success");
+    if (reasonDetail.length <= 200) {
+      const respone = await closeJob(id);
+      if (respone.status === 200) {
+        console.log(respone);
+        setShow(false);
+        navigate("/close-job-success");
+      }
     } else {
-      const msg = document.getElementById("messageErrDeleteJob");
-      msg.classList.remove("errAppear");
+      setError(true);
     }
   };
 
@@ -132,17 +146,8 @@ function HomepageLogin() {
     const formData = document.getElementById("formDeleteJob");
     formData.reset();
     setChoose("1");
-    setLengthText(200);
   };
   const handleShow = () => setShow(true);
-
-  const handleDeleteJob = async (id) => {
-    const respone = await closeJob(id);
-    if (respone.status === 200) {
-      console.log(respone);
-      setShow(false);
-    }
-  };
 
   // console.log(jobList);
   return (
@@ -220,7 +225,9 @@ function HomepageLogin() {
                     <button
                       className="link-candidate"
                       type="button"
-                      onClick={() => {}}
+                      onClick={() => {
+                        navigate(`/edit-job/${ele.id}`);
+                      }}
                     >
                       <ReverseIcon />
                       Đặt lại quảng cáo
@@ -269,71 +276,33 @@ function HomepageLogin() {
                   </span>
                   <form
                     style={{ marginTop: "1em" }}
-                    onSubmit={handleSubmit}
+                    onSubmit={(e) => handleSubmit(e, ele.id)}
                     id="formDeleteJob"
                   >
-                    <label htmlFor="choose1" className="radioChooseDeleteJob">
-                      <input
-                        type="radio"
-                        name="selectDeleteJob"
-                        id="choose1"
-                        value="1"
-                        onClick={handleClickChoose}
-                        checked={choose === "1"}
-                      />
-                      <span
-                        style={{
-                          marginLeft: "10px",
-                          cursor: "pointer",
-                          fontSize: "14px",
-                        }}
+                    {reasons.map((reason) => (
+                      <label
+                        htmlFor={`choose${reason.key}`}
+                        className="radioChooseDeleteJob"
                       >
-                        Tôi đã tuyển dụng được ở JobStreet
-                      </span>
-                    </label>
-                    <label
-                      htmlFor="two"
-                      id="test"
-                      className="radioChooseDeleteJob"
-                    >
-                      <input
-                        type="radio"
-                        name="selectDeleteJob"
-                        id="two"
-                        value="2"
-                        onClick={handleClickChoose}
-                        checked={choose === "2"}
-                      />
-                      <span
-                        style={{
-                          marginLeft: "10px",
-                          cursor: "pointer",
-                          fontSize: "14px",
-                        }}
-                      >
-                        Tôi đã tuyển dụng được ở trang khác
-                      </span>
-                    </label>
-                    <label htmlFor="three" className="radioChooseDeleteJob">
-                      <input
-                        type="radio"
-                        id="three"
-                        name="selectDeleteJob"
-                        value="3"
-                        onClick={handleClickChoose}
-                        checked={choose === "3"}
-                      />
-                      <span
-                        style={{
-                          marginLeft: "10px",
-                          cursor: "pointer",
-                          fontSize: "14px",
-                        }}
-                      >
-                        Tôi chưa tuyển dụng được nhưng vẫn muốn đóng tin tuyển
-                        dụng
-                      </span>
-                    </label>
+                        <input
+                          type="radio"
+                          name="selectDeleteJob"
+                          id={`choose${reason.key}`}
+                          value={reason.key}
+                          onChange={() => setChoose(reason.key)}
+                          checked={choose === reason.key}
+                        />
+                        <span
+                          style={{
+                            marginLeft: "10px",
+                            cursor: "pointer",
+                            fontSize: "14px",
+                          }}
+                        >
+                          {reason.content}
+                        </span>
+                      </label>
+                    ))}
                     <label
                       htmlFor="txtareaDeleteJob"
                       style={{ marginTop: "1em" }}
@@ -349,49 +318,55 @@ function HomepageLogin() {
                           <textarea
                             name="txtareaDeleteJob"
                             id="txtareaDeleteJob"
-                            onChange={handleChangeTextArea}
+                            onChange={(e) => {
+                              setReasonDetail(e.target.value);
+                              setError(false);
+                            }}
+                            value={reasonDetail}
                           />
-                          {lengthText > -1 ? (
+                          {reasonDetail.length <= 200 ? (
                             <p style={{ textAlign: "right" }}>
-                              Còn {lengthText} chữ cái
+                              Còn {200 - reasonDetail.length} chữ cái
                             </p>
                           ) : (
                             <p style={{ textAlign: "right", color: "red" }}>
-                              {Math.abs(lengthText)} chữ cái quá dài
+                              {Math.abs(200 - reasonDetail.length)} chữ cái quá
+                              dài
                             </p>
                           )}
                         </div>
                       )}
                     </label>
 
-                    <div
-                      className="errAppear"
-                      id="messageErrDeleteJob"
-                      style={{ fontSize: "14px", margin: "10px 0" }}
-                    >
-                      {" "}
-                      {lengthText === 200 ? (
-                        <>
-                          <ErrorIcon />
-                          <span style={{ marginLeft: "5px", color: "red" }}>
-                            Vui lòng nhập một câu trả lời.
-                          </span>
-                        </>
-                      ) : (
-                        <>
-                          <ErrorIcon />
-                          <span style={{ marginLeft: "5px", color: "red" }}>
-                            Giữ câu trả lời không quá 200 kí tự
-                          </span>
-                        </>
-                      )}
-                    </div>
+                    {choose !== "1" && error && (
+                      <div
+                        className="errAppear"
+                        style={{ fontSize: "14px", margin: "10px 0" }}
+                      >
+                        {" "}
+                        {reasonDetail.length <= 200 ? (
+                          <>
+                            <ErrorIcon />
+                            <span style={{ marginLeft: "5px", color: "red" }}>
+                              Vui lòng nhập một câu trả lời.
+                            </span>
+                          </>
+                        ) : (
+                          <>
+                            <ErrorIcon />
+                            <span style={{ marginLeft: "5px", color: "red" }}>
+                              Giữ câu trả lời không quá 200 kí tự
+                            </span>
+                          </>
+                        )}
+                      </div>
+                    )}
 
                     <div>
                       <CustomButton
                         type="submit"
                         color="green"
-                        onClick={() => handleDeleteJob(ele.id)}
+                        // onClick={() => handleDeleteJob(ele.id)}
                       >
                         Đúng, xóa tin tuyển dụng
                       </CustomButton>
