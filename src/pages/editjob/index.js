@@ -147,6 +147,7 @@ function EditJob() {
     const dateParts = dateString.split("/");
     dateString = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
     const data = {
+      id: rawData.id,
       title: jobTitle,
       type: jobTypes[jobType - 1].key,
       description: jobDescription,
