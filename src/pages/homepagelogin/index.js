@@ -140,6 +140,7 @@ function HomepageLogin() {
     const respone = await closeJob(id);
     if (respone.status === 200) {
       console.log(respone);
+      setShow(false);
     }
   };
 
@@ -154,11 +155,6 @@ function HomepageLogin() {
       {jobList &&
         jobList.map((ele) => {
           const created = new Date(parseInt(ele.CreatedAt, 10) * 1000);
-          // let statusClassname;
-          // if (ele.status === "POSTED") statusClassname = "status-post";
-          // else if (ele.status === "REVIEWING")
-          //   statusClassname = "status-review";
-          // else statusClassname = "status-denied";
           return (
             <div
               className={`job-item ${statusList[ele.status]?.classCont}`}
@@ -283,7 +279,7 @@ function HomepageLogin() {
                         id="choose1"
                         value="1"
                         onClick={handleClickChoose}
-                        defaultChecked={choose === "1"}
+                        checked={choose === "1"}
                       />
                       <span
                         style={{
@@ -306,6 +302,7 @@ function HomepageLogin() {
                         id="two"
                         value="2"
                         onClick={handleClickChoose}
+                        checked={choose === "2"}
                       />
                       <span
                         style={{
@@ -324,6 +321,7 @@ function HomepageLogin() {
                         name="selectDeleteJob"
                         value="3"
                         onClick={handleClickChoose}
+                        checked={choose === "3"}
                       />
                       <span
                         style={{
