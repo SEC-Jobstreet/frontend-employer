@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { signIn } from "aws-amplify/auth";
+import { decodeJWT, getCurrentUser, signIn } from "aws-amplify/auth";
 
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error_icon.svg";
 import hidePasswordIcon from "../../assets/svg/hide_password.svg";
@@ -39,6 +39,7 @@ function Login() {
         username: email,
         password,
       });
+      console.log(res);
       if (
         res.isSignedIn === false &&
         res.nextStep?.signInStep === "CONFIRM_SIGN_UP"
@@ -47,7 +48,23 @@ function Login() {
         localStorage.setItem("pass", password);
         navigate("/verify-email");
       } else if (res.isSignedIn === true) {
-        dispatch(loginAccount({ email }));
+        const respone = await getCurrentUser();
+        try {
+          const idToken = localStorage.getItem(
+            `CognitoIdentityServiceProvider.${process.env.REACT_APP_COGNITO_USER_POOL_CLIENT_ID}.${respone.username}.idToken`
+          );
+          const useInfo = decodeJWT(idToken);
+          dispatch(
+            loginAccount({
+              email,
+              firstName: useInfo.payload.given_name,
+              lastName: useInfo.payload.family_name,
+              phone: useInfo.payload.phone_number,
+            })
+          );
+        } catch (err) {
+          console.log(err);
+        }
         navigate("/home");
       }
     } catch (error) {
