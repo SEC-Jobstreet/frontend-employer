@@ -119,10 +119,6 @@ function PostJob() {
     if (validateForm()) {
       const respone = await getCurrentUser();
       if (respone.userId) {
-        const accessToken = localStorage.getItem(
-          `CognitoIdentityServiceProvider.${process.env.REACT_APP_COGNITO_USER_POOL_CLIENT_ID}.${respone.username}.accessToken`
-        );
-        const data = decodeJWT(accessToken);
         let dateString = startDate;
 
         const dateParts = dateString.split("/");
@@ -130,18 +126,17 @@ function PostJob() {
         dateString = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
         const job = {
           title: jobTitle,
-          type: jobType.toString(),
+          employerId: respone.userId,
+          type: jobTypes[jobType - 1].key,
           workWhenever: whenever,
           workShift: JSON.stringify(particularTime),
           description: jobDescription,
           visa,
           experience: workExperience,
           startDate: Math.floor(dateString.getTime() / 1000),
-          currency,
           salaryLevelDisplay: salaryLevelDisplay.toString(),
-          exactSalary: salary,
-          rangeSalary: JSON.stringify(salaryRange),
           paidPeriod: paidPeriod.toString(),
+          currency,
           enterpriseId: enterprise.id,
           enterpriseName: enterprise.name,
           enterpriseAddress: enterprise.address,

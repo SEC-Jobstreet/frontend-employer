@@ -147,7 +147,6 @@ function EditJob() {
     const dateParts = dateString.split("/");
     dateString = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
     const data = {
-      ...rawData,
       title: jobTitle,
       type: jobTypes[jobType - 1].key,
       description: jobDescription,
@@ -159,6 +158,10 @@ function EditJob() {
       currency,
       salaryLevelDisplay: salaryLevelDisplay.toString(),
       paidPeriod: paidPeriod.toString(),
+
+      enterpriseId: rawData.enterprise_id,
+      enterpriseName: rawData.enterprise_name,
+      enterpriseAddress: rawData.enterprise_address,
     };
     // setPaidPeriod
     // set enterprise
